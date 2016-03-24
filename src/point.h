@@ -2,8 +2,8 @@
 #define DEF_POINT_H
 
 typedef struct {
-    unsigned short x;
-    unsigned short y;
+    int x;
+    int y;
 } Point;
 
 #endif
