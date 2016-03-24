@@ -3,7 +3,6 @@
 
 #include "graphics.h"
 
-int main();
 void demo();
 
 #endif
