@@ -3,7 +3,7 @@
 SRC_DIR := ./src
 
 CC	:= gcc
-CFLAGS	:= -W -Wall -Wshadow --ansi --pedantic
+CFLAGS	:= -std=c99 -W -Wall -Wshadow --pedantic
 NAME := demo
 
 LIBS	:= -lm -lSDL2-2.0 -lSDL2_image-2.0
