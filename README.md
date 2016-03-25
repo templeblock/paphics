@@ -28,4 +28,4 @@ En tant qu'utilisateur lambda dans un terminal, se placer dans le répertoire r�
 
 ## Utilisation
 
-Le moyen le plus simple d'utiliser la bibliothèque est de remplacer le contenu des fichiers main.c et main.cpp en faisant juste en sorte de garder les fichiers inclus, puis d'ajouter ses propres fichiers - toujours dans le répertoire src. Pour changer le nom de l'exécutable produit, il suffit de remplacer la valeur de NAME dans le Makefile.
+Le moyen le plus simple d'utiliser la bibliothèque est de remplacer le contenu des fichiers main.c et main.h en faisant juste en sorte de garder les fichiers inclus, puis d'ajouter ses propres fichiers - toujours dans le répertoire src. Pour changer le nom de l'exécutable produit, il suffit de remplacer la valeur de NAME dans le Makefile.
