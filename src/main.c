@@ -2,10 +2,6 @@
 
 #define SDL_MAIN_HANDLED
 
-// screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
-
 int main(int argc, char** args) {
 
     system("clear");
@@ -25,39 +21,23 @@ void demo() {
     init_graphics(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO);
     atexit(SDL_Quit);
 
-    /*
-      // the window we'll be rendering to
-      SDL_Window* window = NULL;
+    Window window;
 
-      // the surface contained by the window
-      SDL_Surface* window_surface = NULL;
+    Point position;
+    Point size;
 
-      // initialize SDL
-      if (SDL_Init( SDL_INIT_VIDEO ) < 0) {
-          printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-      } else {
-          // create window
-          window = SDL_CreateWindow("Graphics demo", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+    position.x = 50;
+    position.y = 50;
+    size.x = 800;
+    size.y = 600;
 
-          if (window == NULL) {
-              printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-          } else {
-              // get window surface
-              window_surface = SDL_GetWindowSurface(window);
-              // fill the surface white
-              SDL_FillRect(window_surface, NULL, SDL_MapRGB(window_surface->format, 0xFF, 0xFF, 0xFF));
-              // update the surface
-              SDL_UpdateWindowSurface(window);
-              // wait two seconds
-              SDL_Delay(2000);
-          }
-      }
+    window = create_window("Démo", position, size);
+    update_window(window);
 
-      // destroy window
-      SDL_DestroyWindow(window);
-      */
+    SDL_Delay(10000);
 
-    // quit SDL subsystems
+    window = destroy_window(window);
+
     SDL_Quit();
 
 }
