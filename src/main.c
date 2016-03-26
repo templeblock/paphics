@@ -44,7 +44,7 @@ void demo() {
     p2.x = 484;
     p2.y = 323;
 
-    draw_rectangle(window.surface, p1, p2, 0x101010);
+    draw_fill_rectangle(window.surface, p1, p2, 0x101010);
 
     while (!event.quit) {
         event = update_event(event);
