@@ -28,7 +28,6 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
     }
 
     if (min.x == max.x) {
-        printf("case 1");
         tmp.x = min.x;
 
         for (tmp.y = min.y; tmp.y <= max.y; tmp.y++) {
@@ -37,7 +36,6 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
     }
 
     if (min.y == max.y) {
-        printf("case 2");
         tmp.y = min.y;
 
         for (tmp.x = min.x; tmp.x < max.x; tmp.x++) {
@@ -47,7 +45,6 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
 
     // max var x
     if ((max.x - min.x >= max.y - min.y) && (max.y - min.y > 0)) {
-        printf("case 3");
         c = (float) (a.y - b.y) / ((float) a.x - b.x);
         d = a.y - c * a.x;
 
@@ -66,7 +63,6 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
 
     // max var y
     if ((max.y - min.y > max.x - min.x) && (max.x - min.x > 0)) {
-        printf("case 4");
         c = (float) (a.y - b.y) / ((float) (a.x - b.x));
         d = a.y - c * a.x;
 
