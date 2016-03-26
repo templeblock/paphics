@@ -1,5 +1,16 @@
 #include "window.h"
 
+void load_window_img(Window window, char* pathToImg) {
+
+    load_surface_img(window.surface, pathToImg);
+
+}
+
+void update_window(Window window) {
+
+    SDL_UpdateWindowSurface(window.window);
+}
+
 Window create_window(char* title, Point position, Point size) {
 
     Window newWindow;
@@ -32,15 +43,11 @@ Window create_window(char* title, Point position, Point size) {
 
 Window destroy_window(Window window) {
 
-    SDL_DestroyWindow(window.window);
-
+    SDL_FreeSurface(window.surface.surface);
     window.surface.surface = NULL;
+
+    SDL_DestroyWindow(window.window);
     window.window = NULL;
 
     return window;
-}
-
-void update_window(Window window) {
-
-    SDL_UpdateWindowSurface(window.window);
 }
