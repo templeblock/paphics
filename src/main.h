@@ -5,6 +5,7 @@
 #include "event.h"
 #include "point.h"
 #include "window.h"
+#include "draw.h"
 
 void demo();
 

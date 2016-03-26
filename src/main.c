@@ -31,14 +31,24 @@ void demo() {
     size.x = 800;
     size.y = 600;
 
+    event = create_event();
     window = create_window("Démo", position, size);
 
-    load_window_img(window, "media/demo/img/demo.png");
+    //load_window_img(window, "media/demo/img/demo.png");
     update_window(window);
+
+    Point p1;
+    Point p2;
+    p1.x = 790;
+    p1.y = 10;
+    p2.y = p1.y;
+    p2.x = 10;
 
     while (!event.quit) {
         event = update_event(event);
+        draw_line(window.surface, p1, p2, 0x357374);
         update_window(window);
+        SDL_Delay(4);
     }
 
     window = destroy_window(window);
