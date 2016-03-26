@@ -34,10 +34,15 @@ void demo() {
     window = create_window("Démo", position, size);
     update_window(window);
 
-    SDL_Delay(10000);
+    SDL_Delay(4000);
+
+    load_window_img(window, "media/demo/img/demo.png");
+    update_window(window);
+
+    SDL_Delay(4000);
 
     window = destroy_window(window);
 
-    SDL_Quit();
+    quit_graphics();
 
 }
