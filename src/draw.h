@@ -8,4 +8,6 @@
 
 void draw_line(Surface surface, Point a, Point b, Uint32 color);
 
+void draw_rectangle(Surface surface, Point a, Point b, Uint32 color);
+
 #endif

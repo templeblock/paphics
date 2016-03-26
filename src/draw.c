@@ -79,3 +79,21 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
         }
     }
 }
+
+void draw_rectangle(Surface surface, Point a, Point b, Uint32 color) {
+
+    Point c;
+    Point d;
+
+    c.x = a.x;
+    c.y = b.y;
+
+    d.x = b.x;
+    d.y = a.y;
+
+    draw_line(surface, a, c, color);
+    draw_line(surface, b, c, color);
+    draw_line(surface, a, d, color);
+    draw_line(surface, b, d, color);
+
+}
