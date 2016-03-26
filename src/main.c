@@ -39,14 +39,16 @@ void demo() {
 
     Point p1;
     Point p2;
-    p1.x = 790;
-    p1.y = 10;
-    p2.y = p1.y;
-    p2.x = 10;
+    p1.x = 50;
+    p1.y = 50;
+    p2.x = 484;
+    p2.y = 323;
+
+    draw_rectangle(window.surface, p1, p2, 0x101010);
 
     while (!event.quit) {
         event = update_event(event);
-        draw_line(window.surface, p1, p2, 0x357374);
+
         update_window(window);
         SDL_Delay(4);
     }
