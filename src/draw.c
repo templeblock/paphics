@@ -1,5 +1,45 @@
 #include "draw.h"
 
+void draw_circle(Surface surface, Point center, int radius, Uint32 color) {
+
+    int i;
+    float dx;
+    float dy;
+    float dr;
+    Point min;
+    Point max;
+    Point pix;
+
+    min.x = center.x - radius;
+    max.x = center.x + radius;
+    min.y = center.y - radius;
+    max.y = center.y + radius;
+
+    dr = radius * radius;
+
+    for (i = min.x; i <= max.x; i++) {
+        dx = i - center.x;
+        dy = sqrt(dr - dx * dx);
+        pix.x = i;
+
+        pix.y = center.y + dy;
+        add_pixel(surface, pix, color);
+        pix.y = center.y - dy;
+        add_pixel(surface, pix, color);
+    }
+
+    for (i = min.y; i <= max.y; i++) {
+        dy = i - center.y;
+        dx = sqrt(dr - dy * dy);
+        pix.y = i;
+
+        pix.x = center.x + dx;
+        add_pixel(surface, pix, color);
+        pix.x = center.x - dx;
+        add_pixel(surface, pix, color);
+    }
+}
+
 void draw_fill_rectangle(Surface surface, Point a, Point b, Uint32 color) {
 
 
