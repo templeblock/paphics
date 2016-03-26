@@ -45,6 +45,7 @@ void demo() {
     p2.y = 323;
 
     draw_fill_rectangle(window.surface, p1, p2, 0x800888);
+    draw_circle(window.surface, p1, 49, 0x4875FA);
 
     while (!event.quit) {
         event = update_event(event);
