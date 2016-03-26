@@ -3,7 +3,6 @@
 void load_window_img(Window window, char* pathToImg) {
 
     load_surface_img(window.surface, pathToImg);
-
 }
 
 void update_window(Window window) {
