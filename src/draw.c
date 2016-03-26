@@ -71,9 +71,11 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
             k = (tmp.y - d) / c;
             tmp.x = k;
 
-            if (((k - tmp.x) > 0.5) && (tmp.x < surface.size.x)) {
+            if (((k - tmp.x) > 0.5) && (tmp.x < surface.size.x - 1)) {
                 tmp.x++;
             }
+
+            add_pixel(surface, tmp, color);
         }
     }
 }
