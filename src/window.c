@@ -35,6 +35,8 @@ Window create_window(char* title, Point position, Point size) {
         error_quit();
     }
 
+    newWindow.surface.size = size;
+
     SDL_FillRect(newWindow.surface.surface, NULL, SDL_MapRGB(newWindow.surface.surface->format, 0xFF, 0xFF, 0xFF));
 
     return newWindow;
