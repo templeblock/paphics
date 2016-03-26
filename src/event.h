@@ -3,9 +3,11 @@
 
 #include <stdbool.h>
 #include <SDL2/SDL.h>
+#include "point.h"
 
 typedef struct {
     bool quit;
+    Point arrows;
 } Event;
 
 Event create_event();
