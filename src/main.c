@@ -22,9 +22,9 @@ void demo() {
     atexit(SDL_Quit);
 
     Window window;
-
     Point position;
     Point size;
+    Event event;
 
     position.x = 50;
     position.y = 50;
@@ -32,14 +32,14 @@ void demo() {
     size.y = 600;
 
     window = create_window("Démo", position, size);
-    update_window(window);
-
-    SDL_Delay(4000);
 
     load_window_img(window, "media/demo/img/demo.png");
     update_window(window);
 
-    SDL_Delay(4000);
+    while (!event.quit) {
+        event = update_event(event);
+        update_window(window);
+    }
 
     window = destroy_window(window);
 
