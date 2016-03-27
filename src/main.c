@@ -24,32 +24,27 @@ void demo() {
     Window window;
     Point position;
     Point size;
-    Event event;
+    Event input;
+    Point p1;
 
     position.x = 50;
     position.y = 50;
     size.x = 800;
     size.y = 600;
 
-    event = create_event();
+    input = create_event();
     window = create_window("Démo", position, size);
 
-    //load_window_img(window, "media/demo/img/demo.png");
-    update_window(window);
-
-    Point p1;
-    Point p2;
     p1.x = 50;
     p1.y = 50;
-    p2.x = 484;
-    p2.y = 323;
 
-    draw_fill_rectangle(window.surface, p1, p2, 0x800888);
-    draw_circle(window.surface, p1, 49, 0x4875FA);
+    while (!input.quit) {
+        input = update_event(input);
+        p1.x += 2 * input.arrows.x;
+        p1.y += 2 * input.arrows.y;
 
-    while (!event.quit) {
-        event = update_event(event);
-
+        window = clear_window(window);
+        draw_fill_circle(window.surface, p1, 49, 0x4875FA);
         update_window(window);
         SDL_Delay(4);
     }
