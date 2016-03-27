@@ -32,6 +32,8 @@ Event update_event(Event event) {
             case SDLK_RIGHT:
                 event.arrows.x = 1;
                 break;
+            case SDLK_ESCAPE:
+                event.quit = 1;
             default:
                 break;
             }
