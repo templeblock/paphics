@@ -8,6 +8,8 @@
 
 void draw_circle(Surface surface, Point center, int radius, Uint32 color);
 
+void draw_fill_circle(Surface surface, Point center, int radius, Uint32 color);
+
 void draw_fill_rectangle(Surface surface, Point a, Point b, Uint32 color);
 
 void draw_line(Surface surface, Point a, Point b, Uint32 color);
