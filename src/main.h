@@ -6,6 +6,7 @@
 #include "point.h"
 #include "window.h"
 #include "draw.h"
+#include "collision.h"
 
 void demo();
 

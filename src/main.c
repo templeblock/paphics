@@ -29,24 +29,47 @@ void demo() {
 
     position.x = 50;
     position.y = 50;
-    size.x = 800;
-    size.y = 600;
+    size.x = 1000;
+    size.y = 800;
 
     input = create_event();
     window = create_window("Démo", position, size);
 
-    p1.x = 50;
-    p1.y = 50;
+    p1.x = size.x / 2;
+    p1.y = size.y / 2;
+
+    int dx;
+    int dy;
+    int radius;
+
+    radius = 45;
+    dx = 1;
+    dy = 1;
 
     while (!input.quit) {
-        input = update_event(input);
-        p1.x += 2 * input.arrows.x;
-        p1.y += 2 * input.arrows.y;
 
-        window = clear_window(window);
-        draw_fill_circle(window.surface, p1, 49, 0x4875FA);
+        input = update_event(input);
+
+        dx += input.arrows.x;
+        dy += input.arrows.y;
+
+        if (is_out_of_surface_x(window.surface, p1.x + dx, radius)) {
+            dx = -dx;
+        }
+
+        if (is_out_of_surface_y(window.surface, p1.y + dy, radius)) {
+            dy = -dy;
+        }
+
+        p1.x += dx;
+        p1.y += dy;
+
+        clear_window(window);
+
+        draw_fill_sphere(window.surface, p1, radius, 0x2288A2);
+
         update_window(window);
-        SDL_Delay(4);
+        SDL_Delay(2);
     }
 
     window = destroy_window(window);
