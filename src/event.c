@@ -21,29 +21,37 @@ Event update_event(Event event) {
         } else if (tmp.type == SDL_KEYDOWN) {
             switch (tmp.key.keysym.sym) {
             case SDLK_UP:
+                event.arrows.y = 1;
+                break;
+            case SDLK_DOWN:
+                event.arrows.y = -1;
+                break;
+            case SDLK_LEFT:
+                event.arrows.x = -1;
+                break;
+            case SDLK_RIGHT:
                 event.arrows.x = 1;
+                break;
+            default:
+                break;
+            }
+        } else if (tmp.type == SDL_KEYUP) {
+            switch (tmp.key.keysym.sym) {
+            case SDLK_UP:
                 event.arrows.y = 0;
                 break;
             case SDLK_DOWN:
-                event.arrows.x = -1;
                 event.arrows.y = 0;
                 break;
             case SDLK_LEFT:
                 event.arrows.x = 0;
-                event.arrows.y = -1;
                 break;
             case SDLK_RIGHT:
                 event.arrows.x = 0;
-                event.arrows.y = 1;
                 break;
             default:
-                event.arrows.x = 0;
-                event.arrows.y = 0;
+                break;
             }
-        } else if (tmp.type == SDL_KEYUP) {
-
-            event.arrows.x = 0;
-            event.arrows.y = 0;
         }
     }
 
