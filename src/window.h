@@ -20,6 +20,8 @@ void load_window_img(Window window, char* pathToImg);
 
 void update_window(Window window);
 
+Window clear_window(Window window);
+
 Window create_window(char* title, Point position, Point size);
 
 Window destroy_window(Window window);

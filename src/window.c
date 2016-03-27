@@ -10,6 +10,13 @@ void update_window(Window window) {
     SDL_UpdateWindowSurface(window.window);
 }
 
+Window clear_window(Window window) {
+
+    SDL_FillRect(window.surface.surface, NULL, SDL_MapRGB(window.surface.surface->format, 0x00, 0x00, 0x00));
+
+    return window;
+}
+
 Window create_window(char* title, Point position, Point size) {
 
     Window newWindow;
