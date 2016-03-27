@@ -29,3 +29,19 @@ void quit_graphics() {
     IMG_Quit();
     SDL_Quit();
 }
+
+SDL_Color translate_color(Uint32 int_color) {
+
+#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+    SDL_Color color = {(int_color & 0x00ff0000) / 0x10000, (int_color &0x0000ff00) / 0x100, (int_color & 0x000000ff), 0};
+#else
+    SDL_Color color = {(int_color & 0x000000ff), (int_color &0x0000ff00) / 0x100, (int_color & 0x00ff0000) / 0x10000, 0};
+#endif
+
+    // shouldn't have to do this... would be good to find why
+    color.r = 255 - color.r;
+    color.g = 255 - color.g;
+    color.b = 255 - color.b;
+
+    return color;
+}
