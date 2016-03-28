@@ -26,11 +26,16 @@ void demo() {
     Point size;
     Event input;
     Point p1;
+    Uint32 color;
+    Point p2;
+    Point p3;
+    Point p4;
+    int i;
 
     position.x = 50;
     position.y = 50;
-    size.x = 1000;
-    size.y = 800;
+    size.x = 800;
+    size.y = 600;
 
     input = create_event();
     window = create_window("Démo", position, size);
@@ -42,9 +47,11 @@ void demo() {
     int dy;
     int radius;
 
-    radius = 45;
-    dx = 1;
+    radius = 27;
+    dx = 2;
     dy = 1;
+    color = 0x000000;
+    i = 0;
 
     while (!input.quit) {
 
@@ -52,6 +59,18 @@ void demo() {
 
         dx += input.arrows.x;
         dy += input.arrows.y;
+
+        if (dy > 5) {
+            dy--;
+        } else if(dy < -5) {
+            dy++;
+        }
+
+        if (dx > 5) {
+            dx--;
+        } else if(dx < -5) {
+            dx++;
+        }
 
         if (is_out_of_surface_x(window.surface, p1.x + dx, radius)) {
             dx = -dx;
@@ -63,13 +82,29 @@ void demo() {
 
         p1.x += dx;
         p1.y += dy;
+        p2.x = size.x - p1.x;
+        p2.y = size.y - p1.y;
+        p3.x = p1.x;
+        p3.y = size.y - p1.y;
+        p4.x = size.x - p1.x;
+        p4.y = p1.y;
+
+        if (i == 400) {
+            color += 1234567890;
+            i = 0;
+        } else {
+            i++;
+        }
 
         clear_window(window);
 
-        draw_fill_sphere(window.surface, p1, radius, 0x2288A2);
+        draw_fill_sphere(window.surface, p1, radius, color);
+        draw_fill_sphere(window.surface, p2, radius, color);
+        draw_fill_sphere(window.surface, p3, radius, color);
+        draw_fill_sphere(window.surface, p4, radius, color);
 
         update_window(window);
-        SDL_Delay(2);
+        SDL_Delay(4);
     }
 
     window = destroy_window(window);
