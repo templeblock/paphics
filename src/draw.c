@@ -1,5 +1,17 @@
 #include "draw.h"
 
+void draw(Surface surface, ...) {
+
+    va_list ap;
+
+    va_start(ap, surface);
+
+
+    va_end(ap);
+
+    ;
+}
+
 void draw_circle(Surface surface, Point center, int radius, Uint32 color) {
 
     int i;
@@ -20,9 +32,9 @@ void draw_circle(Surface surface, Point center, int radius, Uint32 color) {
         pix.x = i;
 
         pix.y = center.y + dy;
-        add_pixel(surface, pix, color);
+        draw_pixelOld(surface, pix, color);
         pix.y = center.y - dy;
-        add_pixel(surface, pix, color);
+        draw_pixelOld(surface, pix, color);
     }
 
     for (i = min.y; i <= max.y; i++) {
@@ -31,9 +43,9 @@ void draw_circle(Surface surface, Point center, int radius, Uint32 color) {
         pix.y = i;
 
         pix.x = center.x + dx;
-        add_pixel(surface, pix, color);
+        draw_pixelOld(surface, pix, color);
         pix.x = center.x - dx;
-        add_pixel(surface, pix, color);
+        draw_pixelOld(surface, pix, color);
     }
 }
 
@@ -59,7 +71,7 @@ void draw_fill_circle(Surface surface, Point center, int radius, Uint32 color) {
             dy = pix.y - center.y;
 
             if (dx * dx + dy * dy <= radius * radius) {
-                add_pixel(surface, pix, color);
+                draw_pixelOld(surface, pix, color);
             }
         }
     }
@@ -179,7 +191,7 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
         tmp.x = min.x;
 
         for (tmp.y = min.y; tmp.y <= max.y; tmp.y++) {
-            add_pixel(surface, tmp, color);
+            draw_pixelOld(surface, tmp, color);
         }
     }
 
@@ -187,7 +199,7 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
         tmp.y = min.y;
 
         for (tmp.x = min.x; tmp.x < max.x; tmp.x++) {
-            add_pixel(surface, tmp, color);
+            draw_pixelOld(surface, tmp, color);
         }
     }
 
@@ -205,7 +217,7 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
                 tmp.y++;
             }
 
-            add_pixel(surface, tmp, color);
+            draw_pixelOld(surface, tmp, color);
         }
     }
 
@@ -223,8 +235,22 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
                 tmp.x++;
             }
 
-            add_pixel(surface, tmp, color);
+            draw_pixelOld(surface, tmp, color);
         }
+    }
+}
+
+void draw_pixel(Surface surface, Pixel pixel) {
+
+    if (pixel.position.x > 0 && pixel.position.y > 0 && pixel.position.x < surface.surface->w && pixel.position.y < surface.surface->h) {
+        *((Uint32*) surface.surface->pixels + (surface.surface->h - pixel.position.y - 1) * surface.surface->w + pixel.position.x) = pixel.color;
+    }
+}
+
+void draw_pixelOld(Surface surface, Point point, Uint32 color) {
+
+    if (point.x > 0 && point.y > 0 && point.x < surface.surface->w && point.y < surface.surface->h) {
+        *((Uint32*) surface.surface->pixels + (surface.surface->h - point.y - 1) * surface.surface->w + point.x) = color;
     }
 }
 
