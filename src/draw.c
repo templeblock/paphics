@@ -55,23 +55,25 @@ void draw_fill_circle(Surface surface, Point center, int radius, Uint32 color) {
     float dy;
     Point min;
     Point max;
-    Point pix;
+    Pixel pix;
+
+    pix.color = color;
 
     min.x = center.x - radius;
     max.x = center.x + radius;
     min.y = center.y - radius;
     max.y = center.y + radius;
 
-    for (pix.x = min.x; pix.x <= max.x; pix.x++) {
+    for (pix.position.x = min.x; pix.position.x <= max.x; pix.position.x++) {
 
-        dx = pix.x - center.x;
+        dx = pix.position.x - center.x;
 
-        for (pix.y = min.y; pix.y <= max.y; pix.y++) {
+        for (pix.position.y = min.y; pix.position.y <= max.y; pix.position.y++) {
 
-            dy = pix.y - center.y;
+            dy = pix.position.y - center.y;
 
             if (dx * dx + dy * dy <= radius * radius) {
-                draw_pixelOld(surface, pix, color);
+                draw_pixel(surface, pix);
             }
         }
     }
