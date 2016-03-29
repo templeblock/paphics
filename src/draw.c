@@ -19,7 +19,9 @@ void draw_circle(Surface surface, Point center, int radius, Uint32 color) {
     float dy;
     Point min;
     Point max;
-    Point pix;
+    Pixel pix;
+
+    pix.color = color;
 
     min.x = center.x - radius;
     max.x = center.x + radius;
@@ -29,23 +31,23 @@ void draw_circle(Surface surface, Point center, int radius, Uint32 color) {
     for (i = min.x; i <= max.x; i++) {
         dx = i - center.x;
         dy = sqrt(radius * radius - dx * dx);
-        pix.x = i;
+        pix.position.x = i;
 
-        pix.y = center.y + dy;
-        draw_pixelOld(surface, pix, color);
-        pix.y = center.y - dy;
-        draw_pixelOld(surface, pix, color);
+        pix.position.y = center.y + dy;
+        draw_pixel(surface, pix);
+        pix.position.y = center.y - dy;
+        draw_pixel(surface, pix);
     }
 
     for (i = min.y; i <= max.y; i++) {
         dy = i - center.y;
         dx = sqrt(radius * radius - dy * dy);
-        pix.y = i;
+        pix.position.y = i;
 
-        pix.x = center.x + dx;
-        draw_pixelOld(surface, pix, color);
-        pix.x = center.x - dx;
-        draw_pixelOld(surface, pix, color);
+        pix.position.x = center.x + dx;
+        draw_pixel(surface, pix);
+        pix.position.x = center.x - dx;
+        draw_pixel(surface, pix);
     }
 }
 
