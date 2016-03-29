@@ -7,6 +7,7 @@
 #include "point.h"
 #include "pixel.h"
 #include "sphere.h"
+#include "line.h"
 
 void draw(Surface surface, ...);
 
@@ -18,7 +19,7 @@ void draw_fill_rectangle(Surface surface, Point a, Point b, Uint32 color);
 
 void draw_fill_sphere(Surface surface, Sphere sphere);
 
-void draw_line(Surface surface, Point a, Point b, Uint32 color);
+void draw_line(Surface surface, Line line);
 
 void draw_pixel(Surface surface, Pixel pixel);
 

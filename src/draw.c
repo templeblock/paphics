@@ -91,6 +91,10 @@ void draw_fill_rectangle(Surface surface, Point a, Point b, Uint32 color) {
     Point bottom_tmp;
     Point top_tmp;
 
+    Line line;
+
+    line.color = color;
+
     if (a.x <= b.x) {
         bottom_left.x = a.x;
         top_left.x = a.x;
@@ -117,7 +121,9 @@ void draw_fill_rectangle(Surface surface, Point a, Point b, Uint32 color) {
     for (i = 0; i < top_right.x - bottom_left.x; i++) {
         bottom_tmp.x += 1; // replacing 1 per i gives a funny effect
         top_tmp.x += 1;
-        draw_line(surface, bottom_tmp, top_tmp, color);
+        line.a = bottom_tmp;
+        line.b = top_tmp;
+        draw_line(surface, line);
     }
 }
 
@@ -164,16 +170,22 @@ void draw_fill_sphere(Surface surface, Sphere sphere) {
     }
 }
 
-void draw_line(Surface surface, Point a, Point b, Uint32 color) {
+void draw_line(Surface surface, Line line) {
 
     Point min;
     Point max;
     Pixel pix;
+    Point a;
+    Point b;
+    Uint32 color;
 
     float c;
     float d;
     float k;
 
+    a = line.a;
+    b = line.b;
+    color = line.color;
     pix.color = color;
 
     if (a.x < b.x) {
@@ -254,6 +266,11 @@ void draw_pixel(Surface surface, Pixel pixel) {
 
 void draw_rectangle(Surface surface, Point a, Point b, Uint32 color) {
 
+    Line l;
+    Line m;
+    Line n;
+    Line o;
+
     Point c;
     Point d;
 
@@ -263,9 +280,23 @@ void draw_rectangle(Surface surface, Point a, Point b, Uint32 color) {
     d.x = b.x;
     d.y = a.y;
 
-    draw_line(surface, a, c, color);
-    draw_line(surface, b, c, color);
-    draw_line(surface, a, d, color);
-    draw_line(surface, b, d, color);
+    l.a = a;
+    l.b = c;
+    m.a = b;
+    m.b = c;
+    n.a = a;
+    n.b = d;
+    o.a = b;
+    o.b = d;
+
+    l.color = color;
+    m.color = color;
+    n.color = color;
+    o.color = color;
+
+    draw_line(surface, l);
+    draw_line(surface, m);
+    draw_line(surface, n);
+    draw_line(surface, o);
 
 }
