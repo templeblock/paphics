@@ -25,12 +25,13 @@ void demo() {
     Point position;
     Point size;
     Event input;
-    Point p1;
     Uint32 color;
-    Point p2;
-    Point p3;
-    Point p4;
     int i;
+    Sphere sphere1;
+    Sphere sphere2;
+    Sphere sphere3;
+    Sphere sphere4;
+
 
     position.x = 50;
     position.y = 50;
@@ -40,18 +41,23 @@ void demo() {
     input = create_event();
     window = create_window("Démo", position, size);
 
-    p1.x = size.x / 2;
-    p1.y = size.y / 2;
+    sphere1.center.x = size.x / 2;
+    sphere1.center.y = size.y / 2;
 
     int dx;
     int dy;
     int radius;
 
-    radius = 27;
-    dx = 2;
+    dx = 1;
     dy = 1;
-    color = 0x000000;
+    color = 0xEAAAAA;
     i = 0;
+
+    radius = 5;
+    sphere1.radius = radius;
+    sphere2.radius = radius;
+    sphere3.radius = radius;
+    sphere4.radius = radius;
 
     while (!input.quit) {
 
@@ -72,22 +78,22 @@ void demo() {
             dx++;
         }
 
-        if (is_out_of_surface_x(window.surface, p1.x + dx, radius)) {
+        if (is_out_of_surface_x(window.surface, sphere1.center.x + dx, sphere1.radius)) {
             dx = -dx;
         }
 
-        if (is_out_of_surface_y(window.surface, p1.y + dy, radius)) {
+        if (is_out_of_surface_y(window.surface,sphere1.center.y + dy, sphere1.radius)) {
             dy = -dy;
         }
 
-        p1.x += dx;
-        p1.y += dy;
-        p2.x = size.x - p1.x;
-        p2.y = size.y - p1.y;
-        p3.x = p1.x;
-        p3.y = size.y - p1.y;
-        p4.x = size.x - p1.x;
-        p4.y = p1.y;
+        sphere1.center.x += dx;
+        sphere1.center.y += dy;
+        sphere2.center.x = size.x - sphere1.center.x;
+        sphere2.center.y = size.y - sphere1.center.y;
+        sphere3.center.x = sphere1.center.x;
+        sphere3.center.y = size.y - sphere1.center.y;
+        sphere4.center.x = size.x - sphere1.center.x;
+        sphere4.center.y = sphere1.center.y;
 
         if (i == 400) {
             color += 1234567890;
@@ -96,12 +102,17 @@ void demo() {
             i++;
         }
 
+        sphere1.color = color;
+        sphere2.color = color;
+        sphere3.color = color;
+        sphere4.color = color;
+
         clear_window(window);
 
-        draw_fill_sphere(window.surface, p1, radius, color);
-        draw_fill_sphere(window.surface, p2, radius, color);
-        draw_fill_sphere(window.surface, p3, radius, color);
-        draw_fill_sphere(window.surface, p4, radius, color);
+        draw_fill_sphere(window.surface, sphere1);
+        draw_fill_sphere(window.surface, sphere2);
+        draw_fill_sphere(window.surface, sphere3);
+        draw_fill_sphere(window.surface, sphere4);
 
         update_window(window);
         SDL_Delay(4);
