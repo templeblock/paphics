@@ -252,13 +252,6 @@ void draw_pixel(Surface surface, Pixel pixel) {
     }
 }
 
-void draw_pixelOld(Surface surface, Point point, Uint32 color) {
-
-    if (point.x > 0 && point.y > 0 && point.x < surface.surface->w && point.y < surface.surface->h) {
-        *((Uint32*) surface.surface->pixels + (surface.surface->h - point.y - 1) * surface.surface->w + point.x) = color;
-    }
-}
-
 void draw_rectangle(Surface surface, Point a, Point b, Uint32 color) {
 
     Point c;

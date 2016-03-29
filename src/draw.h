@@ -21,8 +21,6 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color);
 
 void draw_pixel(Surface surface, Pixel pixel);
 
-void draw_pixelOld(Surface surface, Point point, Uint32 color);
-
 void draw_rectangle(Surface surface, Point a, Point b, Uint32 color);
 
 #endif
