@@ -11,8 +11,6 @@ typedef struct {
     Point size;
 } Surface;
 
-void add_pixel(Surface surface, Point point, Uint32 color);
-
 void load_surface_img(Surface surface, char* pathToImg);
 
 #endif
