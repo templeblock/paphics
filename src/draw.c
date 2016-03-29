@@ -121,7 +121,7 @@ void draw_fill_rectangle(Surface surface, Point a, Point b, Uint32 color) {
     }
 }
 
-void draw_fill_sphere(Surface surface, Point center, int radius, Uint32 originalColor) {
+void draw_fill_sphere(Surface surface, Sphere sphere) {
 
     int i;
     int nb_step;
@@ -137,15 +137,15 @@ void draw_fill_sphere(Surface surface, Point center, int radius, Uint32 original
     Point pointTmp;
     int radiusTmp;
 
-    color = translate_color(originalColor);
+    color = translate_color(sphere.color);
 
-    nb_step = radius * 0.5;
+    nb_step = sphere.radius * 0.5;
 
     dred = (255 - color.r) / nb_step;
     dgreen = (255 - color.g) / nb_step;
     dblue = (255 - color.b) / nb_step;
 
-    dradius = radius / nb_step;
+    dradius = sphere.radius / nb_step;
 
     for (i = 0; i < nb_step; i++) {
 
@@ -153,10 +153,10 @@ void draw_fill_sphere(Surface surface, Point center, int radius, Uint32 original
         colorTmp.g = color.g + dgreen * i;
         colorTmp.b = color.b + dblue * i;
 
-        pointTmp.x = center.x + i;
-        pointTmp.y = center.y + i;
+        pointTmp.x = sphere.center.x + i;
+        pointTmp.y = sphere.center.y + i;
 
-        radiusTmp = radius - dradius * i;
+        radiusTmp = sphere.radius - dradius * i;
 
         newColor = SDL_MapRGB(surface.surface->format, colorTmp.r, colorTmp.g, colorTmp.b);
 
