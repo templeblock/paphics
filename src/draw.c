@@ -164,12 +164,13 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
 
     Point min;
     Point max;
-
-    Point tmp;
+    Pixel pix;
 
     float c;
     float d;
     float k;
+
+    pix.color = color;
 
     if (a.x < b.x) {
         min.x = a.x;
@@ -188,18 +189,18 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
     }
 
     if (min.x == max.x) {
-        tmp.x = min.x;
+        pix.position.x = min.x;
 
-        for (tmp.y = min.y; tmp.y <= max.y; tmp.y++) {
-            draw_pixelOld(surface, tmp, color);
+        for (pix.position.y = min.y; pix.position.y <= max.y; pix.position.y++) {
+            draw_pixel(surface, pix);
         }
     }
 
     if (min.y == max.y) {
-        tmp.y = min.y;
+        pix.position.y = pix.position.y;
 
-        for (tmp.x = min.x; tmp.x < max.x; tmp.x++) {
-            draw_pixelOld(surface, tmp, color);
+        for (pix.position.x = min.x; pix.position.x < max.x; pix.position.x++) {
+            draw_pixel(surface, pix);
         }
     }
 
@@ -208,16 +209,16 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
         c = (float) (a.y - b.y) / ((float) a.x - b.x);
         d = a.y - c * a.x;
 
-        for (tmp.x = min.x; tmp.x < max.x; tmp.x++) {
+        for (pix.position.x = min.x; pix.position.x < max.x; pix.position.x++) {
 
-            k = c * tmp.x + d;
-            tmp.y = k;
+            k = c * pix.position.x + d;
+            pix.position.y = k;
 
-            if (((k - tmp.y) > 0.5) && (tmp.y < surface.size.y - 1)) {
-                tmp.y++;
+            if (((k - pix.position.y) > 0.5) && (pix.position.y < surface.size.y - 1)) {
+                pix.position.y++;
             }
 
-            draw_pixelOld(surface, tmp, color);
+            draw_pixel(surface, pix);
         }
     }
 
@@ -226,16 +227,16 @@ void draw_line(Surface surface, Point a, Point b, Uint32 color) {
         c = (float) (a.y - b.y) / ((float) (a.x - b.x));
         d = a.y - c * a.x;
 
-        for (tmp.y = min.y; tmp.y < max.y; tmp.y++) {
+        for (pix.position.y = min.y; pix.position.y < max.y; pix.position.y++) {
 
-            k = (tmp.y - d) / c;
-            tmp.x = k;
+            k = (pix.position.y - d) / c;
+            pix.position.x = k;
 
-            if (((k - tmp.x) > 0.5) && (tmp.x < surface.size.x - 1)) {
-                tmp.x++;
+            if (((k - pix.position.x) > 0.5) && (pix.position.x < surface.size.x - 1)) {
+                pix.position.x++;
             }
 
-            draw_pixelOld(surface, tmp, color);
+            draw_pixel(surface, pix);
         }
     }
 }
