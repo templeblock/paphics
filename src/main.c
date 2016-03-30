@@ -39,10 +39,10 @@ void demo() {
     size.y = 600;
 
     input = create_event();
-    window = create_window("Démo", position, size);
+    window = create_window("Démo", position, size, SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_SHOWN);
 
-    sphere1.center.x = size.x / 2;
-    sphere1.center.y = size.y / 2;
+    sphere1.center.x = window.size.x / 2;
+    sphere1.center.y = window.size.y / 2;
 
     int dx;
     int dy;
@@ -53,7 +53,7 @@ void demo() {
     color = 0xEAAAAA;
     i = 0;
 
-    radius = 5;
+    radius = 20;
     sphere1.radius = radius;
     sphere2.radius = radius;
     sphere3.radius = radius;
@@ -66,15 +66,15 @@ void demo() {
         dx += input.arrows.x;
         dy += input.arrows.y;
 
-        if (dy > 5) {
+        if (dy > 7) {
             dy--;
-        } else if(dy < -5) {
+        } else if(dy < -7) {
             dy++;
         }
 
-        if (dx > 5) {
+        if (dx > 7) {
             dx--;
-        } else if(dx < -5) {
+        } else if(dx < -7) {
             dx++;
         }
 
@@ -88,11 +88,11 @@ void demo() {
 
         sphere1.center.x += dx;
         sphere1.center.y += dy;
-        sphere2.center.x = size.x - sphere1.center.x;
-        sphere2.center.y = size.y - sphere1.center.y;
+        sphere2.center.x = window.size.x - sphere1.center.x;
+        sphere2.center.y = window.size.y - sphere1.center.y;
         sphere3.center.x = sphere1.center.x;
-        sphere3.center.y = size.y - sphere1.center.y;
-        sphere4.center.x = size.x - sphere1.center.x;
+        sphere3.center.y = window.size.y - sphere1.center.y;
+        sphere4.center.x = window.size.x - sphere1.center.x;
         sphere4.center.y = sphere1.center.y;
 
         if (i == 400) {
@@ -107,15 +107,15 @@ void demo() {
         sphere3.color = color;
         sphere4.color = color;
 
-        clear_window(window);
+        // clear_window(window);
 
-        draw_fill_sphere(window.surface, sphere1);
-        draw_fill_sphere(window.surface, sphere2);
-        draw_fill_sphere(window.surface, sphere3);
-        draw_fill_sphere(window.surface, sphere4);
+        draw_fill_sphere(window.surface, &sphere1);
+        draw_fill_sphere(window.surface, &sphere2);
+        draw_fill_sphere(window.surface, &sphere3);
+        draw_fill_sphere(window.surface, &sphere4);
 
         update_window(window);
-        SDL_Delay(4);
+        SDL_Delay(2);
     }
 
     window = destroy_window(window);
