@@ -14,9 +14,12 @@ Surface create_surface(Point size, Point origin, Surface parent) {
     }
 
     newSurface.size = size;
-    newSurface.origin = origin;
     newSurface.parent = parent.surface;
     newSurface.surface = newSDL_Surface;
+
+    newSurface.origin = origin;
+    //newSurface.origin.y = parent.size.y - origin.y - 2;
+
 
     return newSurface;
 
