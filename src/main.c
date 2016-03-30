@@ -110,6 +110,10 @@ void demo() {
         clear_surface(window);
         clear_surface(plate);
 
+        draw_borders_in(window, 0xFFFFFF);
+
+        draw_borders_out(plate, 0xFF2222);
+
         draw_fill_sphere(plate, &sphere1);
         draw_fill_sphere(plate, &sphere2);
         draw_fill_sphere(plate, &sphere3);
