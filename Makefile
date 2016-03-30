@@ -6,7 +6,7 @@ CC	:= gcc
 CFLAGS	:= -std=c99 -W -Wall -Wshadow --pedantic
 NAME := demo
 
-LIBS	:= -lm -lSDL2-2.0 -lSDL2_image-2.0
+LIBS	:= -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL_mixer
 export BUILD_DIR=$(PWD)/build
 
 TARGET		:= main
