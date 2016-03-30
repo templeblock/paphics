@@ -12,6 +12,42 @@ void draw(Surface surface, ...) {
     ;
 }
 
+void draw_borders_in(Surface surface, Uint32 color) {
+
+    Point a;
+    Point b;
+
+    a.x = 1;
+    a.y = 1;
+
+    b = surface.size;
+
+    b.x--;
+    b.y--;
+
+    draw_rectangle(surface, a, b, color);
+}
+
+void draw_borders_out(Surface surface, Uint32 color) {
+
+    Surface tmp;
+    tmp.surface = surface.parent;
+
+    Point a;
+    Point b;
+
+    a = surface.origin;
+    b = a;
+
+    a.x--;
+    a.y--;
+
+    b.x += surface.size.x;
+    b.y += surface.size.y;
+
+    draw_rectangle(tmp, a, b, color);
+}
+
 void draw_circle(Surface surface, Point center, int radius, Uint32 color) {
 
     int i;
@@ -213,7 +249,7 @@ void draw_line(Surface surface, Line* line) {
     }
 
     if (min.y == max.y) {
-        pix.position.y = pix.position.y;
+        pix.position.y = min.y;
 
         for (pix.position.x = min.x; pix.position.x < max.x; pix.position.x++) {
             draw_pixel(surface, &pix);

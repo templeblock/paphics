@@ -11,6 +11,10 @@
 
 void draw(Surface surface, ...);
 
+void draw_borders_in(Surface surface, Uint32 color);
+
+void draw_borders_out(Surface surface, Uint32 color);
+
 void draw_circle(Surface surface, Point center, int radius, Uint32 color);
 
 void draw_fill_circle(Surface surface, Point center, int radius, Uint32 color);
