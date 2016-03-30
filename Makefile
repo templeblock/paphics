@@ -6,7 +6,7 @@ CC	:= gcc
 CFLAGS	:= -std=c99 -W -Wall -Wshadow --pedantic
 NAME := demo
 
-LIBS	:= -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL_mixer
+LIBS	:= -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL2_mixer-2.0
 export BUILD_DIR=$(PWD)/build
 
 TARGET		:= main
@@ -36,7 +36,7 @@ mrproper: clean
 	-rm -rf $(TARGET)
 
 install :
-	apt-get install astyle gcc libsdl2-2.0-0 libsdl2-dev libsdl2-image-2.0-0 libsdl2-image-dev
+	apt-get install astyle gcc libsdl2-2.0-0 libsdl2-dev libsdl2-image-2.0-0 libsdl2-image-dev libsdl2-mixer-2.0-0 libsdl2-mixer-dev
 
 run :
 	./$(NAME)
