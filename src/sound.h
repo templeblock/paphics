@@ -5,7 +5,7 @@
 void init_sound();
 
 // charge un son
-void load_sound(char* nomFichier, Mix_Music* sound);
+void load_sound(char* nomFichier, Mix_Music** sound);
 
 // joue indéfiniment une musique
 void play_music(Mix_Music* music);

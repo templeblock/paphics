@@ -7,13 +7,13 @@ void init_sound() {
     }
 }
 
-void load_sound(char* nomFichier, Mix_Music* sound) {
+void load_sound(char* nomFichier, Mix_Music** sound) {
 
-    sound = NULL;
+    *sound = NULL;
 
-    sound = Mix_LoadMUS(nomFichier);
+    *sound = Mix_LoadMUS(nomFichier);
 
-    if (sound == NULL) {
+    if (*sound == NULL) {
         fprintf(stderr, "Failed to load sound! SDL_mixer Error: %s\n", SDL_GetError());
         error_quit();
     }
