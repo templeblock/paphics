@@ -45,3 +45,20 @@ SDL_Color translate_color(Uint32 int_color) {
 
     return color;
 }
+
+Point get_screen_size() {
+
+    SDL_DisplayMode tmp;
+    Point screenSize;
+
+    if(SDL_GetDesktopDisplayMode(0, &tmp) != 0) {
+        fprintf(stderr, "\nSDL_GetDesktopDisplayMode failed: %s\n", SDL_GetError());
+        error_quit();
+    }
+
+    screenSize.x = tmp.w;
+    screenSize.y = tmp.h;
+
+    return screenSize;
+
+}
