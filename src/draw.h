@@ -17,11 +17,11 @@ void draw_fill_circle(Surface surface, Point center, int radius, Uint32 color);
 
 void draw_fill_rectangle(Surface surface, Point a, Point b, Uint32 color);
 
-void draw_fill_sphere(Surface surface, Sphere sphere);
+void draw_fill_sphere(Surface surface, Sphere* sphere);
 
-void draw_line(Surface surface, Line line);
+void draw_line(Surface surface, Line* line);
 
-void draw_pixel(Surface surface, Pixel pixel);
+void draw_pixel(Surface surface, Pixel* pixel);
 
 void draw_rectangle(Surface surface, Point a, Point b, Uint32 color);
 

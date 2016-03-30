@@ -34,9 +34,9 @@ void draw_circle(Surface surface, Point center, int radius, Uint32 color) {
         pix.position.x = i;
 
         pix.position.y = center.y + dy;
-        draw_pixel(surface, pix);
+        draw_pixel(surface, &pix);
         pix.position.y = center.y - dy;
-        draw_pixel(surface, pix);
+        draw_pixel(surface, &pix);
     }
 
     for (i = min.y; i <= max.y; i++) {
@@ -45,9 +45,9 @@ void draw_circle(Surface surface, Point center, int radius, Uint32 color) {
         pix.position.y = i;
 
         pix.position.x = center.x + dx;
-        draw_pixel(surface, pix);
+        draw_pixel(surface, &pix);
         pix.position.x = center.x - dx;
-        draw_pixel(surface, pix);
+        draw_pixel(surface, &pix);
     }
 }
 
@@ -75,7 +75,7 @@ void draw_fill_circle(Surface surface, Point center, int radius, Uint32 color) {
             dy = pix.position.y - center.y;
 
             if (dx * dx + dy * dy <= radius * radius) {
-                draw_pixel(surface, pix);
+                draw_pixel(surface, &pix);
             }
         }
     }
@@ -123,11 +123,11 @@ void draw_fill_rectangle(Surface surface, Point a, Point b, Uint32 color) {
         top_tmp.x += 1;
         line.a = bottom_tmp;
         line.b = top_tmp;
-        draw_line(surface, line);
+        draw_line(surface, &line);
     }
 }
 
-void draw_fill_sphere(Surface surface, Sphere sphere) {
+void draw_fill_sphere(Surface surface, Sphere* sphere) {
 
     int i;
     int nb_step;
@@ -143,15 +143,15 @@ void draw_fill_sphere(Surface surface, Sphere sphere) {
     Point pointTmp;
     int radiusTmp;
 
-    color = translate_color(sphere.color);
+    color = translate_color(sphere->color);
 
-    nb_step = sphere.radius * 0.5;
+    nb_step = sphere->radius * 0.5;
 
     dred = (255 - color.r) / nb_step;
     dgreen = (255 - color.g) / nb_step;
     dblue = (255 - color.b) / nb_step;
 
-    dradius = sphere.radius / nb_step;
+    dradius = sphere->radius / nb_step;
 
     for (i = 0; i < nb_step; i++) {
 
@@ -159,10 +159,10 @@ void draw_fill_sphere(Surface surface, Sphere sphere) {
         colorTmp.g = color.g + dgreen * i;
         colorTmp.b = color.b + dblue * i;
 
-        pointTmp.x = sphere.center.x + i;
-        pointTmp.y = sphere.center.y + i;
+        pointTmp.x = sphere->center.x + i;
+        pointTmp.y = sphere->center.y + i;
 
-        radiusTmp = sphere.radius - dradius * i;
+        radiusTmp = sphere->radius - dradius * i;
 
         newColor = SDL_MapRGB(surface.surface->format, colorTmp.r, colorTmp.g, colorTmp.b);
 
@@ -170,7 +170,7 @@ void draw_fill_sphere(Surface surface, Sphere sphere) {
     }
 }
 
-void draw_line(Surface surface, Line line) {
+void draw_line(Surface surface, Line* line) {
 
     Point min;
     Point max;
@@ -183,9 +183,9 @@ void draw_line(Surface surface, Line line) {
     float d;
     float k;
 
-    a = line.a;
-    b = line.b;
-    color = line.color;
+    a = line->a;
+    b = line->b;
+    color = line->color;
     pix.color = color;
 
     if (a.x < b.x) {
@@ -208,7 +208,7 @@ void draw_line(Surface surface, Line line) {
         pix.position.x = min.x;
 
         for (pix.position.y = min.y; pix.position.y <= max.y; pix.position.y++) {
-            draw_pixel(surface, pix);
+            draw_pixel(surface, &pix);
         }
     }
 
@@ -216,7 +216,7 @@ void draw_line(Surface surface, Line line) {
         pix.position.y = pix.position.y;
 
         for (pix.position.x = min.x; pix.position.x < max.x; pix.position.x++) {
-            draw_pixel(surface, pix);
+            draw_pixel(surface, &pix);
         }
     }
 
@@ -234,7 +234,7 @@ void draw_line(Surface surface, Line line) {
                 pix.position.y++;
             }
 
-            draw_pixel(surface, pix);
+            draw_pixel(surface, &pix);
         }
     }
 
@@ -252,15 +252,15 @@ void draw_line(Surface surface, Line line) {
                 pix.position.x++;
             }
 
-            draw_pixel(surface, pix);
+            draw_pixel(surface, &pix);
         }
     }
 }
 
-void draw_pixel(Surface surface, Pixel pixel) {
+void draw_pixel(Surface surface, Pixel* pixel) {
 
-    if (pixel.position.x > 0 && pixel.position.y > 0 && pixel.position.x < surface.surface->w && pixel.position.y < surface.surface->h) {
-        *((Uint32*) surface.surface->pixels + (surface.surface->h - pixel.position.y - 1) * surface.surface->w + pixel.position.x) = pixel.color;
+    if (pixel->position.x > 0 && pixel->position.y > 0 && pixel->position.x < surface.surface->w && pixel->position.y < surface.surface->h) {
+        *((Uint32*) surface.surface->pixels + (surface.surface->h - pixel->position.y - 1) * surface.surface->w + pixel->position.x) = pixel->color;
     }
 }
 
@@ -294,9 +294,9 @@ void draw_rectangle(Surface surface, Point a, Point b, Uint32 color) {
     n.color = color;
     o.color = color;
 
-    draw_line(surface, l);
-    draw_line(surface, m);
-    draw_line(surface, n);
-    draw_line(surface, o);
+    draw_line(surface, &l);
+    draw_line(surface, &m);
+    draw_line(surface, &n);
+    draw_line(surface, &o);
 
 }
