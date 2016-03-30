@@ -11,10 +11,9 @@ typedef struct {
     SDL_Window* window;
     char* title;
     Point position;
-    Point size;
 } Window;
 
-void load_window_img(Window window, char* pathToImg);
+Surface get_window_surface(Window window);
 
 void update_window(Window window);
 

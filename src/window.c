@@ -1,8 +1,18 @@
 #include "window.h"
 
-void load_window_img(Window window, char* pathToImg) {
+Surface get_window_surface(Window window) {
 
-    load_surface_img(window.surface, pathToImg);
+    Surface copyWindowSurface;
+
+    copyWindowSurface.parent = NULL;
+    copyWindowSurface.surface = window.surface.surface;
+    copyWindowSurface.origin.x = 0;
+    copyWindowSurface.origin.y = 0;
+    copyWindowSurface.size.x = copyWindowSurface.surface->w;
+    copyWindowSurface.size.y = copyWindowSurface.surface->h;
+
+    return copyWindowSurface;
+
 }
 
 void update_window(Window window) {
@@ -12,7 +22,7 @@ void update_window(Window window) {
 
 Window clear_window(Window window) {
 
-    SDL_FillRect(window.surface.surface, NULL, SDL_MapRGB(window.surface.surface->format, 0x00, 0x00, 0x00));
+    SDL_FillRect(window.surface.surface, NULL, 0x000000);
 
     return window;
 }
@@ -23,7 +33,6 @@ Window create_window(char* title, Point position, Point size, Uint32 flags) {
 
     newWindow.title = title;
     newWindow.position = position;
-    newWindow.size = size;
     newWindow.window = NULL;
 
     newWindow.window = SDL_CreateWindow(title, position.x, position.y, size.x, size.y, flags);
@@ -41,11 +50,6 @@ Window create_window(char* title, Point position, Point size, Uint32 flags) {
         fprintf(stderr, "\nWindow's surface could not be loaded! SDL_Error: %s\n", SDL_GetError());
         error_quit();
     }
-
-    newWindow.surface.size.x = newWindow.surface.surface->w;
-    newWindow.surface.size.y = newWindow.surface.surface->h;
-    newWindow.size.x = newWindow.surface.surface->w;
-    newWindow.size.y = newWindow.surface.surface->h;
 
     SDL_FillRect(newWindow.surface.surface, NULL, SDL_MapRGB(newWindow.surface.surface->format, 0x00, 0x00, 0x00));
 
