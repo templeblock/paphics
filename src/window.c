@@ -17,7 +17,7 @@ Window clear_window(Window window) {
     return window;
 }
 
-Window create_window(char* title, Point position, Point size) {
+Window create_window(char* title, Point position, Point size, Uint32 flags) {
 
     Window newWindow;
 
@@ -26,7 +26,7 @@ Window create_window(char* title, Point position, Point size) {
     newWindow.size = size;
     newWindow.window = NULL;
 
-    newWindow.window = SDL_CreateWindow(title, position.x, position.y, size.x, size.y, SDL_WINDOW_SHOWN);
+    newWindow.window = SDL_CreateWindow(title, position.x, position.y, size.x, size.y, flags);
 
     if (newWindow.window == NULL) {
         fprintf(stderr, "\nWindow could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -42,7 +42,10 @@ Window create_window(char* title, Point position, Point size) {
         error_quit();
     }
 
-    newWindow.surface.size = size;
+    newWindow.surface.size.x = newWindow.surface.surface->w;
+    newWindow.surface.size.y = newWindow.surface.surface->h;
+    newWindow.size.x = newWindow.surface.surface->w;
+    newWindow.size.y = newWindow.surface.surface->h;
 
     SDL_FillRect(newWindow.surface.surface, NULL, SDL_MapRGB(newWindow.surface.surface->format, 0x00, 0x00, 0x00));
 

@@ -20,7 +20,7 @@ void update_window(Window window);
 
 Window clear_window(Window window);
 
-Window create_window(char* title, Point position, Point size);
+Window create_window(char* title, Point position, Point size, Uint32 flags);
 
 Window destroy_window(Window window);
 
