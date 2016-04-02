@@ -27,6 +27,8 @@ void draw_line(Surface surface, Line* line);
 
 void draw_pixel(Surface surface, Pixel* pixel);
 
+void draw_quadrilateral(Surface surface, Point p1, Point p2, Point p3, Point p4, Uint32 color);
+
 void draw_rectangle(Surface surface, Point a, Point b, Uint32 color);
 
 #endif
