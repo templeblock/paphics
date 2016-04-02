@@ -74,7 +74,7 @@ void demo() {
     dy = 0;
     color = alea_int(0x000000, 0xFFFFFF);
 
-    radius = 47;
+    radius = 2 * window.size.x / plate.size.x;
     sphere1.radius = radius;
     sphere2.radius = radius;
     sphere3.radius = radius;
@@ -101,7 +101,7 @@ void demo() {
     count0 = 0;
     count1 = 0;
 
-    int dd;
+    //int dd;
     int maxvar = 30;
 
     while (!input.quit) {
@@ -197,8 +197,6 @@ void demo() {
         sphere4.center.x = plate.size.x - sphere1.center.x;
         sphere4.center.y = sphere1.center.y;
 
-        //color = alea_int(0x000000, 0xFFFFFF);
-
         sphere1.color = color;
         sphere2.color = color;
         sphere3.color = color;
@@ -217,8 +215,7 @@ void demo() {
 
         draw_borders_in(window, 0xFFFFFF);
 
-        draw_borders_in(plate, 0xFFFFFF);
-        draw_borders_out(plate, 0xFF2222);
+        draw_borders_out(plate, 0xFFFFFF);
 
         if (sphere1.center.x > plate.size.x / 2) {
             colorPrem = sphere1.center.x;
@@ -236,13 +233,10 @@ void demo() {
             color = color5;
         }  else if (colorPrem % 3 == 0) {
             color = color3;
-            //draw_quadrilateral(window, sphere1.center, sphere2.center, sphere3.center, sphere4.center, color3);
         }  else if (colorPrem % 2 == 0) {
             color = color2;
-            //draw_quadrilateral(window, sphere1.center, sphere2.center, sphere3.center, sphere4.center, color2);
         }  else {
             color = color1;
-            //draw_quadrilateral(window, sphere1.center, sphere2.center, sphere3.center, sphere4.center, color1);
         }
 
         pix1.color = color;
@@ -284,7 +278,7 @@ void demo() {
         blit_surface(plate);
 
         update_window(w_window);
-        // SDL_Delay(4);
+        SDL_Delay(4);
     }
 
     printf("0: %d ; 1: %d\n", count0, count1);
