@@ -7,6 +7,7 @@
 #include "window.h"
 #include "draw.h"
 #include "collision.h"
+#include "calc.h"
 
 void demo();
 
