@@ -8,6 +8,7 @@
 typedef struct {
     bool quit;
     Point arrows;
+    bool space;
 } Event;
 
 Event create_event();

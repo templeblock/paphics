@@ -7,6 +7,7 @@ Event create_event() {
     newEvent.quit = false;
     newEvent.arrows.x = 0;
     newEvent.arrows.y = 0;
+    newEvent.space = 0;
 
     return newEvent;
 }
@@ -32,8 +33,12 @@ Event update_event(Event event) {
             case SDLK_RIGHT:
                 event.arrows.x = 1;
                 break;
+            case SDLK_SPACE:
+                event.space = 1;
+                break;
             case SDLK_ESCAPE:
                 event.quit = 1;
+                break;
             default:
                 break;
             }
@@ -41,16 +46,18 @@ Event update_event(Event event) {
             switch (tmp.key.keysym.sym) {
             case SDLK_UP:
                 event.arrows.y = 0;
-                break;
+            //break;
             case SDLK_DOWN:
                 event.arrows.y = 0;
-                break;
+            //break;
             case SDLK_LEFT:
                 event.arrows.x = 0;
-                break;
+            //break;
             case SDLK_RIGHT:
                 event.arrows.x = 0;
-                break;
+            //break;
+            case SDLK_SPACE:
+                event.space = 0;
             default:
                 break;
             }
