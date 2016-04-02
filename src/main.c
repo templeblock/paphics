@@ -53,15 +53,15 @@ void demo() {
 
 
     input = create_event();
-    w_window = create_window("Démo", window_position, screen_size, SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_SHOWN);
+    w_window = create_window("Démo", window_position, screen_size, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
 
     window = get_window_surface(w_window);
 
-    plate_size = get_screen_size();
+    plate_size = window.size;
     plate_size.x /= 2;
     plate_size.y /= 2;
 
-    plate_origin = get_screen_size();
+    plate_origin = window.size;
     plate_origin.x /= 4;
     plate_origin.y /= 4;
 
@@ -276,7 +276,6 @@ void demo() {
         //draw_fill_sphere(window, &swindow4);
 
         blit_surface(plate);
-
         update_window(w_window);
         SDL_Delay(4);
     }
