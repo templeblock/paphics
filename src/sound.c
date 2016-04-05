@@ -7,24 +7,24 @@ void init_sound() {
     }
 }
 
-void load_sound(char* nomFichier, Mix_Music** sound) {
+void load_sound(char* nomFichier, Sound* sound) {
 
-    *sound = NULL;
+    sound->sound = NULL;
 
-    *sound = Mix_LoadMUS(nomFichier);
+    sound->sound = Mix_LoadMUS(nomFichier);
 
-    if (*sound == NULL) {
+    if (sound->sound == NULL) {
         fprintf(stderr, "Failed to load sound! SDL_mixer Error: %s\n", SDL_GetError());
         error_quit();
     }
 }
 
-void play_music(Mix_Music* music) {
+void play_music(Sound* music) {
     // on joue infiniment la musique
-    Mix_PlayMusic(music, -1);
+    Mix_PlayMusic(music->sound, -1);
 }
 
-void quit_mixer_SDL(Mix_Music* music) {
-    Mix_FreeMusic(music);
+void quit_mixer_SDL(Sound* sound) {
+    Mix_FreeMusic(sound->sound);
     Mix_CloseAudio();
 }
