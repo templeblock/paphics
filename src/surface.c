@@ -1,6 +1,6 @@
 #include "surface.h"
 
-Surface create_surface(Point size, Point origin, Surface parent) {
+Surface surface_create(Point size, Point origin, Surface parent) {
 
     Surface newSurface;
     SDL_Surface* newSDL_Surface;
@@ -25,7 +25,7 @@ Surface create_surface(Point size, Point origin, Surface parent) {
 
 }
 
-void blit_surface(Surface surface) {
+void surface_blit(Surface surface) {
 
     SDL_Rect dest_rect;
 
@@ -41,12 +41,48 @@ void blit_surface(Surface surface) {
 
 }
 
-void clear_surface(Surface surface) {
+void surface_clear(Surface surface) {
 
     SDL_FillRect(surface.surface, NULL, 0x000000);
 }
 
-void load_surface_img(Surface surface, char* pathToImg) {
+void surface_draw_borders_in(Surface surface, Uint32 color) {
+
+    Point a;
+    Point b;
+
+    a.x = 1;
+    a.y = 1;
+
+    b = surface.size;
+
+    b.x--;
+    b.y--;
+
+    rectangle_draw(surface, a, b, color);
+}
+
+void surface_draw_borders_out(Surface surface, Uint32 color) {
+
+    Surface tmp;
+    tmp.surface = surface.parent;
+
+    Point a;
+    Point b;
+
+    a = surface.origin;
+    b = a;
+
+    a.x--;
+    a.y--;
+
+    b.x += surface.size.x;
+    b.y += surface.size.y;
+
+    rectangle_draw(tmp, a, b, color);
+}
+
+void surface_load_img(Surface surface, char* pathToImg) {
 
     SDL_Surface* tmp;
 

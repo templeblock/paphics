@@ -13,12 +13,18 @@ typedef struct {
     void* parent;
 } Surface;
 
-Surface create_surface(Point size, Point origin, Surface parent);
+#include "rectangle.h"
 
-void blit_surface(Surface surface);
+Surface surface_create(Point size, Point origin, Surface parent);
 
-void clear_surface(Surface surface);
+void surface_blit(Surface surface);
 
-void load_surface_img(Surface surface, char* pathToImg);
+void surface_clear(Surface surface);
+
+void surface_load_img(Surface surface, char* pathToImg);
+
+void surface_draw_borders_in(Surface surface, Uint32 color);
+
+void surface_draw_borders_out(Surface surface, Uint32 color);
 
 #endif
