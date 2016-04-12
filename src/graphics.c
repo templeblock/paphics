@@ -53,7 +53,7 @@ Point graphics_get_screen_size() {
 
     if(SDL_GetDesktopDisplayMode(0, &tmp) != 0) {
         fprintf(stderr, "\nSDL_GetDesktopDisplayMode failed: %s\n", SDL_GetError());
-        graphics_aerror_quit();
+        graphics_error_quit();
     }
 
     screenSize.x = tmp.w;
