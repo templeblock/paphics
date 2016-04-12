@@ -5,6 +5,8 @@
 #include "surface.h"
 #include "point.h"
 
+bool is_out_of_surface(Surface surface, Point a, int radius);
+
 bool is_out_of_surface_x(Surface surface, int a, int radius);
 
 bool is_out_of_surface_y(Surface surface, int a, int radius);
