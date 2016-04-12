@@ -3,6 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include "point.h"
+#include "surface.h"
 
 typedef struct {
     Point position;
@@ -10,6 +11,8 @@ typedef struct {
     // void (*pDraw)(Surface, Pixel);
 } Pixel;
 
-Pixel create_pixel();
+Pixel pixel_create();
+
+void pixel_draw(Surface surface, Pixel* pixel);
 
 #endif
