@@ -11,6 +11,7 @@
 #include "window.h"
 #include "collision.h"
 #include "calc.h"
+#include "quadrilateral.h"
 
 void demo();
 

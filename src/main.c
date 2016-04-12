@@ -97,12 +97,26 @@ void demo() {
     Pixel pix4;
     int count0;
     int count1;
+    int radius_circle;
+
+    Circle circle1;
+    Circle circle2;
+    Circle circle3;
+    Circle circle4;
+
+    radius_circle = 1;
+
+    circle1.radius = radius_circle;
+    circle2.radius = radius_circle;
+    circle3.radius = radius_circle;
+    circle4.radius = radius_circle;
 
     count0 = 0;
     count1 = 0;
 
     int dd;
-    int maxvar = 30;
+    int maxvar = 5 * radius_circle;
+    int i_print = 0;
 
     while (!input.quit) {
 
@@ -165,8 +179,8 @@ void demo() {
         dx += input.arrows.x;
         dy += input.arrows.y;
 
-        dx++;
-        dy++;
+        //dx++;
+        //dy++;
 
         if (dy > maxvar) {
             dy = 0;
@@ -207,16 +221,6 @@ void demo() {
         pix3.position = sphere3.center;
         pix4.position = sphere4.center;
 
-        surface_clear(window);
-
-        if (input.space) {
-            surface_clear(plate);
-        }
-
-        surface_draw_borders_in(window, 0xFFFFFF);
-
-        surface_draw_borders_out(plate, 0xFFFFFF);
-
         if (sphere1.center.x > plate.size.x / 2) {
             colorPrem = sphere1.center.x;
         } else {
@@ -244,13 +248,18 @@ void demo() {
         pix3.color = color;
         pix4.color = color;
 
-        pixel_draw(plate, &pix1);
-        pixel_draw(plate, &pix2);
-        pixel_draw(plate, &pix3);
-        pixel_draw(plate, &pix4);
+        circle1.center = pix1.position;
+        circle2.center = pix2.position;
+        circle3.center = pix3.position;
+        circle4.center = pix4.position;
+
+        circle1.color = color;
+        circle2.color = color;
+        circle3.color = color;
+        circle4.color = color;
 
         //draw_quadrilateral(plate, sphere1.center, sphere2.center, sphere3.center, sphere4.center, color);
-        //color = alea_int(0x000000, 0xFFFFFF);
+        color = calc_alea_int(0x000000, 0xFFFFFF);
 
         swindow1 = sphere1;
         swindow2 = sphere2;
@@ -270,18 +279,69 @@ void demo() {
         swindow4.center.y *= 2;
         swindow4.radius *= 2;
 
+        surface_clear(window);
+
+        if (input.space) {
+            surface_clear(plate);
+        }
+
+
+        surface_draw_borders_in(window, 0xFFFFFF);
+        surface_draw_borders_out(plate, 0xFFFFFF);
+
+        pixel_draw(plate, &pix1);
+        pixel_draw(plate, &pix2);
+        pixel_draw(plate, &pix3);
+        pixel_draw(plate, &pix4);
+
+        circle_draw_fill(plate, circle1.center, circle1.radius, circle1.color);
+        circle_draw_fill(plate, circle2.center, circle2.radius, circle2.color);
+        circle_draw_fill(plate, circle3.center, circle3.radius, circle3.color);
+        circle_draw_fill(plate, circle4.center, circle4.radius, circle4.color);
+
+        //  quadrilateral_draw(plate, pix1.position, pix2.position, pix3.position, pix4.position, pix1.color);
+
+
         sphere_draw_fill(window, &swindow1);
         //sphere_draw_fill(window, &swindow2);
         //sphere_draw_fill(window, &swindow3);
         //sphere_draw_fill(window, &swindow4);
 
-        surface_blit(plate);
-        update_window(w_window);
+        if (i_print == 0) {
+            surface_blit(plate);
+            update_window(w_window);
+
+            i_print++;
+        } else {
+            i_print++;
+            if (i_print == 3) {
+                i_print = 0;
+            }
+        }
         SDL_Delay(4);
     }
 
     printf("0: %d ; 1: %d\n", count0, count1);
     printf("dx: %d ; dy: %d\n", dx, dy);
+
+    Point a;
+    Point b;
+    Point c;
+    Point d;
+
+    a.x = 394;
+    b.x = 498;
+    c.x = 29;
+    d.x = 494;
+
+    a.y = 394;
+    b.y = 498;
+    c.y = 29;
+    d.y = 494;
+
+    quadrilateral_draw(window, a, b, c, d, 0xAE7263);
+
+    SDL_Delay(400);
 
     w_window = destroy_window(w_window);
 
