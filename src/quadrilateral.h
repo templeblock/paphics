@@ -1,6 +1,7 @@
 #ifndef DEF_QUADRILATERAL_H
 #define DEF_QUADRILATERAL_H
 
+#include <SDL2/SDL.h>
 #include "point.h"
 #include "surface.h"
 #include "line.h"

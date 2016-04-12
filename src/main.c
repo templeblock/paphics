@@ -101,72 +101,72 @@ void demo() {
     count0 = 0;
     count1 = 0;
 
-    //int dd;
+    int dd;
     int maxvar = 30;
 
     while (!input.quit) {
 
         input = update_event(input);
 
-        /*  dd = alea_int(1, 7);
-          if (dd == 7) {
-              dd = 13;
-          } else if (dd == 6) {
-              dd = 11;
-          } else if (dd == 5) {
-              dd = 7;
-          } else if (dd == 4) {
-              dd = 5;
-          } else if (dd == 3) {
-              dd = 3;
-          } else if (dd == 2) {
-              dd = 2;
-          } else if (dd == 1) {
-              dd = 1;
-          } else {
-              dd = 0;
-          }
+        dd = alea_int(1, 7);
+        if (dd == 7) {
+            dd = 13;
+        } else if (dd == 6) {
+            dd = 11;
+        } else if (dd == 5) {
+            dd = 7;
+        } else if (dd == 4) {
+            dd = 5;
+        } else if (dd == 3) {
+            dd = 3;
+        } else if (dd == 2) {
+            dd = 2;
+        } else if (dd == 1) {
+            dd = 1;
+        } else {
+            dd = 0;
+        }
 
-          if (alea_int(0, 1) == 0) {
-              dx += dd;
-              count0++;
-          } else {
-              dx -= dd;
-              count1++;;
-          }
+        if (alea_int(0, 1) == 0) {
+            dx += dd;
+            count0++;
+        } else {
+            dx -= dd;
+            count1++;;
+        }
 
-          dd = alea_int(1, 7);
-          if (dd == 7) {
-              dd = 13;
-          } else if (dd == 6) {
-              dd = 11;
-          } else if (dd == 5) {
-              dd = 7;
-          } else if (dd == 4) {
-              dd = 5;
-          } else if (dd == 3) {
-              dd = 3;
-          } else if (dd == 2) {
-              dd = 2;
-          } else if (dd == 1) {
-              dd = 1;
-          } else {
-              dd = 0;
-          }
+        dd = alea_int(1, 7);
+        if (dd == 7) {
+            dd = 13;
+        } else if (dd == 6) {
+            dd = 11;
+        } else if (dd == 5) {
+            dd = 7;
+        } else if (dd == 4) {
+            dd = 5;
+        } else if (dd == 3) {
+            dd = 3;
+        } else if (dd == 2) {
+            dd = 2;
+        } else if (dd == 1) {
+            dd = 1;
+        } else {
+            dd = 0;
+        }
 
-          if (alea_int(0, 1) == 0) {
-              dy += dd;
-              count0++;
-          } else {
-              dy -= dd;
-              count1++;
-          }*/
+        if (alea_int(0, 1) == 0) {
+            dy += dd;
+            count0++;
+        } else {
+            dy -= dd;
+            count1++;
+        }
 
         dx += input.arrows.x;
         dy += input.arrows.y;
 
-        //dx++;
-        //dy++;
+        dx++;
+        dy++;
 
         if (dy > maxvar) {
             dy = 0;
