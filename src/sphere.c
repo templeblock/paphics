@@ -16,7 +16,7 @@ void sphere_draw_fill(Surface surface, Sphere* sphere) {
     Point pointTmp;
     int radiusTmp;
 
-    color = translate_color(sphere->color);
+    color = graphics_translate_color(sphere->color);
 
     nb_step = sphere->radius * 0.5;
 

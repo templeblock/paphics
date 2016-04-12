@@ -10,7 +10,7 @@ Surface surface_create(Point size, Point origin, Surface parent) {
 
     if(newSDL_Surface == NULL) {
         fprintf(stderr, "CreateRGBSurface failed: %s\n", SDL_GetError());
-        error_quit();
+        graphics_error_quit();
     }
 
     newSurface.size = size;
@@ -36,7 +36,7 @@ void surface_blit(Surface surface) {
 
     if (SDL_BlitSurface(surface.surface, NULL, surface.parent, &dest_rect) < 0) {
         fprintf(stderr, "\nBlit failed: %s\n", SDL_GetError());
-        error_quit();
+        graphics_error_quit();
     }
 
 }
@@ -92,7 +92,7 @@ void surface_load_img(Surface surface, char* pathToImg) {
 
     if (tmp == NULL) {
         fprintf(stderr, "\nUnable to load image %s! SDL Error: %s\n", pathToImg, SDL_GetError());
-        error_quit();
+        graphics_error_quit();
     }
 
     SDL_BlitSurface(tmp, NULL, surface.surface, NULL );

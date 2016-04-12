@@ -1,6 +1,6 @@
 #include "calc.h"
 
-float alea_float() {
+float calc_alea_float() {
 
     float alea;
 
@@ -17,11 +17,11 @@ float alea_float() {
     return alea;
 }
 
-int alea_int(int min, int max) {
+int calc_alea_int(int min, int max) {
 
     int alea;
 
-    alea = (int) (min + (max - min + 1) * (alea_float()));
+    alea = (int) (min + (max - min + 1) * (calc_alea_float()));
 
     return alea;
 }

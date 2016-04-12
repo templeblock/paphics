@@ -18,10 +18,10 @@ int main(int argc, char** args) {
 
 void demo() {
 
-    init_graphics(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_AUDIO);
+    graphics_init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     atexit(SDL_Quit);
 
-    const Point screen_size = get_screen_size();
+    const Point screen_size = graphics_get_screen_size();
     int dx;
     int dy;
     int radius;
@@ -52,7 +52,7 @@ void demo() {
     Sphere swindow4;
 
 
-    input = create_event();
+    input = event_create();
     w_window = create_window("Démo", window_position, screen_size, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
 
     window = get_window_surface(w_window);
@@ -72,7 +72,7 @@ void demo() {
 
     dx = 0;
     dy = 0;
-    color = alea_int(0x000000, 0xFFFFFF);
+    color = calc_alea_int(0x000000, 0xFFFFFF);
 
     radius = 2 * window.size.x / plate.size.x;
     sphere1.radius = radius;
@@ -80,15 +80,15 @@ void demo() {
     sphere3.radius = radius;
     sphere4.radius = radius;
 
-    color1 = alea_int(0x000000, 0xFFFFFF);
-    color2 = alea_int(0x000000, 0xFFFFFF);
-    color3 = alea_int(0x000000, 0xFFFFFF);
-    color5 = alea_int(0x000000, 0xFFFFFF);
-    color7 = alea_int(0x000000, 0xFFFFFF);
-    color11 = alea_int(0x000000, 0xFFFFFF);
-    color13 = alea_int(0x000000, 0xFFFFFF);
+    color1 = calc_alea_int(0x000000, 0xFFFFFF);
+    color2 = calc_alea_int(0x000000, 0xFFFFFF);
+    color3 = calc_alea_int(0x000000, 0xFFFFFF);
+    color5 = calc_alea_int(0x000000, 0xFFFFFF);
+    color7 = calc_alea_int(0x000000, 0xFFFFFF);
+    color11 = calc_alea_int(0x000000, 0xFFFFFF);
+    color13 = calc_alea_int(0x000000, 0xFFFFFF);
 
-    color = alea_int(0x000000, 0xFFFFFF);
+    color = calc_alea_int(0x000000, 0xFFFFFF);
 
     int colorPrem;
     Pixel pix1;
@@ -106,9 +106,9 @@ void demo() {
 
     while (!input.quit) {
 
-        input = update_event(input);
+        input = event_update(input);
 
-        dd = alea_int(1, 7);
+        dd = calc_alea_int(1, 7);
         if (dd == 7) {
             dd = 13;
         } else if (dd == 6) {
@@ -127,7 +127,7 @@ void demo() {
             dd = 0;
         }
 
-        if (alea_int(0, 1) == 0) {
+        if (calc_alea_int(0, 1) == 0) {
             dx += dd;
             count0++;
         } else {
@@ -135,7 +135,7 @@ void demo() {
             count1++;;
         }
 
-        dd = alea_int(1, 7);
+        dd = calc_alea_int(1, 7);
         if (dd == 7) {
             dd = 13;
         } else if (dd == 6) {
@@ -154,7 +154,7 @@ void demo() {
             dd = 0;
         }
 
-        if (alea_int(0, 1) == 0) {
+        if (calc_alea_int(0, 1) == 0) {
             dy += dd;
             count0++;
         } else {
@@ -180,11 +180,11 @@ void demo() {
             dx = 0;
         }
 
-        if (is_out_of_surface_x(plate, sphere1.center.x + dx, sphere1.radius)) {
+        if (collision_is_out_of_surface_x(plate, sphere1.center.x + dx, sphere1.radius)) {
             dx = -dx;
         }
 
-        if (is_out_of_surface_y(plate,sphere1.center.y + dy, sphere1.radius)) {
+        if (collision_is_out_of_surface_y(plate,sphere1.center.y + dy, sphere1.radius)) {
             dy = -dy;
         }
 
@@ -285,6 +285,6 @@ void demo() {
 
     w_window = destroy_window(w_window);
 
-    quit_graphics();
+    graphics_quit();
 
 }

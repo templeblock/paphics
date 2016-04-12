@@ -1,6 +1,6 @@
 #include "event.h"
 
-Event create_event() {
+Event event_create() {
 
     Event newEvent;
 
@@ -12,7 +12,7 @@ Event create_event() {
     return newEvent;
 }
 
-Event update_event(Event event) {
+Event event_update(Event event) {
 
     SDL_Event tmp;
 

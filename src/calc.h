@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-float alea_float();
+float calc_alea_float();
 
-int alea_int(int min, int max);
+int calc_alea_int(int min, int max);
 
 #endif

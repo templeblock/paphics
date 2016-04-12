@@ -3,7 +3,7 @@
 void init_sound() {
     if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) < 0) {
         fprintf(stderr, "SDL_mixer could not initialize! SDL_mixer Error:: %s", Mix_GetError());
-        error_quit();
+        graphics_error_quit();
     }
 }
 
@@ -15,7 +15,7 @@ void load_sound(char* nomFichier, Sound* sound) {
 
     if (sound->sound == NULL) {
         fprintf(stderr, "Failed to load sound! SDL_mixer Error: %s\n", SDL_GetError());
-        error_quit();
+        graphics_error_quit();
     }
 }
 

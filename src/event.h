@@ -11,8 +11,8 @@ typedef struct {
     bool space;
 } Event;
 
-Event create_event();
+Event event_create();
 
-Event update_event(Event event);
+Event event_update(Event event);
 
 #endif

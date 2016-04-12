@@ -39,7 +39,7 @@ Window create_window(char* title, Point position, Point size, Uint32 flags) {
 
     if (newWindow.window == NULL) {
         fprintf(stderr, "\nWindow could not be created! SDL_Error: %s\n", SDL_GetError());
-        error_quit();
+        graphics_error_quit();
     }
 
     newWindow.surface.surface = NULL;
@@ -48,7 +48,7 @@ Window create_window(char* title, Point position, Point size, Uint32 flags) {
 
     if (newWindow.surface.surface == NULL) {
         fprintf(stderr, "\nWindow's surface could not be loaded! SDL_Error: %s\n", SDL_GetError());
-        error_quit();
+        graphics_error_quit();
     }
 
     SDL_FillRect(newWindow.surface.surface, NULL, SDL_MapRGB(newWindow.surface.surface->format, 0x00, 0x00, 0x00));
