@@ -65,7 +65,7 @@ void demo() {
     plate_origin.x /= 4;
     plate_origin.y /= 4;
 
-    plate = create_surface(plate_size, plate_origin, window);
+    plate = surface_create(plate_size, plate_origin, window);
 
     sphere1.center.x = plate.size.x / 2;
     sphere1.center.y = plate.size.y / 2;
@@ -207,15 +207,15 @@ void demo() {
         pix3.position = sphere3.center;
         pix4.position = sphere4.center;
 
-        clear_surface(window);
+        surface_clear(window);
 
         if (input.space) {
-            clear_surface(plate);
+            surface_clear(plate);
         }
 
-        draw_borders_in(window, 0xFFFFFF);
+        surface_draw_borders_in(window, 0xFFFFFF);
 
-        draw_borders_out(plate, 0xFFFFFF);
+        surface_draw_borders_out(plate, 0xFFFFFF);
 
         if (sphere1.center.x > plate.size.x / 2) {
             colorPrem = sphere1.center.x;
@@ -244,10 +244,10 @@ void demo() {
         pix3.color = color;
         pix4.color = color;
 
-        draw_pixel(plate, &pix1);
-        draw_pixel(plate, &pix2);
-        draw_pixel(plate, &pix3);
-        draw_pixel(plate, &pix4);
+        pixel_draw(plate, &pix1);
+        pixel_draw(plate, &pix2);
+        pixel_draw(plate, &pix3);
+        pixel_draw(plate, &pix4);
 
         //draw_quadrilateral(plate, sphere1.center, sphere2.center, sphere3.center, sphere4.center, color);
         //color = alea_int(0x000000, 0xFFFFFF);
@@ -270,12 +270,12 @@ void demo() {
         swindow4.center.y *= 2;
         swindow4.radius *= 2;
 
-        draw_fill_sphere(window, &swindow1);
-        //draw_fill_sphere(window, &swindow2);
-        //draw_fill_sphere(window, &swindow3);
-        //draw_fill_sphere(window, &swindow4);
+        sphere_draw_fill(window, &swindow1);
+        //sphere_draw_fill(window, &swindow2);
+        //sphere_draw_fill(window, &swindow3);
+        //sphere_draw_fill(window, &swindow4);
 
-        blit_surface(plate);
+        surface_blit(plate);
         update_window(w_window);
         SDL_Delay(4);
     }
