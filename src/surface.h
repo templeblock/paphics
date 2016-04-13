@@ -17,11 +17,11 @@ typedef struct {
 
 Surface surface_create(Point size, Point origin, Surface parent);
 
-void surface_blit(Surface surface);
+void surface_blit(Surface* surface);
 
-void surface_clear(Surface surface);
+void surface_clear(Surface* surface);
 
-void surface_load_img(Surface surface, char* pathToImg);
+void surface_load_img(Surface* surface, char* pathToImg);
 
 void surface_draw_borders_in(Surface* surface, Uint32 color);
 
