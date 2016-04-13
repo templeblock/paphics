@@ -12,6 +12,6 @@ typedef struct {
     Uint32 color;
 } Line;
 
-void line_draw(Surface surface, Line* line);
+void line_draw(Surface* surface, Line* line);
 
 #endif

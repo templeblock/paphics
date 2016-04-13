@@ -1,6 +1,6 @@
 #include "line.h"
 
-void line_draw(Surface surface, Line* line) {
+void line_draw(Surface* surface, Line* line) {
 
     Point min;
     Point max;
@@ -38,7 +38,7 @@ void line_draw(Surface surface, Line* line) {
         pix.position.x = min.x;
 
         for (pix.position.y = min.y; pix.position.y <= max.y; pix.position.y++) {
-            pixel_draw(surface, &pix);
+            pixel_draw(*surface, &pix);
         }
     }
 
@@ -46,7 +46,7 @@ void line_draw(Surface surface, Line* line) {
         pix.position.y = min.y;
 
         for (pix.position.x = min.x; pix.position.x < max.x; pix.position.x++) {
-            pixel_draw(surface, &pix);
+            pixel_draw(*surface, &pix);
         }
     }
 
@@ -60,11 +60,11 @@ void line_draw(Surface surface, Line* line) {
             k = c * pix.position.x + d;
             pix.position.y = k;
 
-            if (((k - pix.position.y) > 0.5) && (pix.position.y < surface.size.y - 1)) {
+            if (((k - pix.position.y) > 0.5) && (pix.position.y < surface->size.y - 1)) {
                 pix.position.y++;
             }
 
-            pixel_draw(surface, &pix);
+            pixel_draw(*surface, &pix);
         }
     }
 
@@ -78,11 +78,11 @@ void line_draw(Surface surface, Line* line) {
             k = (pix.position.y - d) / c;
             pix.position.x = k;
 
-            if (((k - pix.position.x) > 0.5) && (pix.position.x < surface.size.x - 1)) {
+            if (((k - pix.position.x) > 0.5) && (pix.position.x < surface->size.x - 1)) {
                 pix.position.x++;
             }
 
-            pixel_draw(surface, &pix);
+            pixel_draw(*surface, &pix);
         }
     }
 }
