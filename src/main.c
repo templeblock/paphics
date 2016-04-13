@@ -279,10 +279,10 @@ void demo() {
         swindow4.center.y *= 2;
         swindow4.radius *= 2;
 
-        surface_clear(window);
+        surface_clear(&window);
 
         if (input.space) {
-            surface_clear(plate);
+            surface_clear(&plate);
         }
 
 
@@ -308,7 +308,7 @@ void demo() {
         //sphere_draw_fill(&window, &swindow4);
 
         if (i_print == 0) {
-            surface_blit(plate);
+            surface_blit(&plate);
             update_window(w_window);
 
             i_print++;
