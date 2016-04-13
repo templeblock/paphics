@@ -11,8 +11,8 @@ typedef struct {
     Point size;
 } Rectangle;
 
-void rectangle_draw(Surface surface, Point a, Point b, Uint32 color);
+void rectangle_draw(Surface* surface, Point a, Point b, Uint32 color);
 
-void rectangle_draw_fill(Surface surface, Point a, Point b, Uint32 color);
+void rectangle_draw_fill(Surface* surface, Point a, Point b, Uint32 color);
 
 #endif

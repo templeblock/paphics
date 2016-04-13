@@ -1,6 +1,6 @@
 #include "rectangle.h"
 
-void rectangle_draw(Surface surface, Point a, Point b, Uint32 color) {
+void rectangle_draw(Surface* surface, Point a, Point b, Uint32 color) {
 
     Line l;
     Line m;
@@ -37,7 +37,7 @@ void rectangle_draw(Surface surface, Point a, Point b, Uint32 color) {
 
 }
 
-void rectangle_draw_fill(Surface surface, Point a, Point b, Uint32 color) {
+void rectangle_draw_fill(Surface* surface, Point a, Point b, Uint32 color) {
 
     int i;
     Point top_left;
