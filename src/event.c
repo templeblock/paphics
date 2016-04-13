@@ -12,32 +12,32 @@ Event event_create() {
     return newEvent;
 }
 
-Event event_update(Event event) {
+Event event_update(Event* event) {
 
     SDL_Event tmp;
 
     while (SDL_PollEvent(&tmp) != 0) {
         if (tmp.type == SDL_QUIT) {
-            event.quit = true;
+            event->quit = true;
         } else if (tmp.type == SDL_KEYDOWN) {
             switch (tmp.key.keysym.sym) {
             case SDLK_UP:
-                event.arrows.y = 1;
+                event->arrows.y = 1;
                 break;
             case SDLK_DOWN:
-                event.arrows.y = -1;
+                event->arrows.y = -1;
                 break;
             case SDLK_LEFT:
-                event.arrows.x = -1;
+                event->arrows.x = -1;
                 break;
             case SDLK_RIGHT:
-                event.arrows.x = 1;
+                event->arrows.x = 1;
                 break;
             case SDLK_SPACE:
-                event.space = 1;
+                event->space = 1;
                 break;
             case SDLK_ESCAPE:
-                event.quit = 1;
+                event->quit = 1;
                 break;
             default:
                 break;
@@ -45,24 +45,24 @@ Event event_update(Event event) {
         } else if (tmp.type == SDL_KEYUP) {
             switch (tmp.key.keysym.sym) {
             case SDLK_UP:
-                event.arrows.y = 0;
+                event->arrows.y = 0;
             //break;
             case SDLK_DOWN:
-                event.arrows.y = 0;
+                event->arrows.y = 0;
             //break;
             case SDLK_LEFT:
-                event.arrows.x = 0;
+                event->arrows.x = 0;
             //break;
             case SDLK_RIGHT:
-                event.arrows.x = 0;
+                event->arrows.x = 0;
             //break;
             case SDLK_SPACE:
-                event.space = 0;
+                event->space = 0;
             default:
                 break;
             }
         }
     }
 
-    return event;
+    return *event;
 }

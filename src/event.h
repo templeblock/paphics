@@ -13,6 +13,6 @@ typedef struct {
 
 Event event_create();
 
-Event event_update(Event event);
+Event event_update(Event* event);
 
 #endif
