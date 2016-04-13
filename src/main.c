@@ -120,7 +120,7 @@ void demo() {
 
     while (!input.quit) {
 
-        input = event_update(input);
+        input = event_update(&input);
 
         dd = calc_alea_int(1, 7);
         if (dd == 7) {
@@ -194,11 +194,11 @@ void demo() {
             dx = 0;
         }
 
-        if (collision_is_out_of_surface_x(plate, sphere1.center.x + dx, sphere1.radius)) {
+        if (collision_is_out_of_surface_x(&plate, sphere1.center.x + dx, sphere1.radius)) {
             dx = -dx;
         }
 
-        if (collision_is_out_of_surface_y(plate,sphere1.center.y + dy, sphere1.radius)) {
+        if (collision_is_out_of_surface_y(&plate,sphere1.center.y + dy, sphere1.radius)) {
             dy = -dy;
         }
 
@@ -286,26 +286,26 @@ void demo() {
         }
 
 
-        surface_draw_borders_in(window, 0xFFFFFF);
-        surface_draw_borders_out(plate, 0xFFFFFF);
+        surface_draw_borders_in(&window, 0xFFFFFF);
+        surface_draw_borders_out(&plate, 0xFFFFFF);
 
         pixel_draw(plate, &pix1);
         pixel_draw(plate, &pix2);
         pixel_draw(plate, &pix3);
         pixel_draw(plate, &pix4);
 
-        circle_draw_fill(plate, circle1.center, circle1.radius, circle1.color);
-        circle_draw_fill(plate, circle2.center, circle2.radius, circle2.color);
-        circle_draw_fill(plate, circle3.center, circle3.radius, circle3.color);
-        circle_draw_fill(plate, circle4.center, circle4.radius, circle4.color);
+        circle_draw_fill(&plate, circle1.center, circle1.radius, circle1.color);
+        circle_draw_fill(&plate, circle2.center, circle2.radius, circle2.color);
+        circle_draw_fill(&plate, circle3.center, circle3.radius, circle3.color);
+        circle_draw_fill(&plate, circle4.center, circle4.radius, circle4.color);
 
         //  quadrilateral_draw(plate, pix1.position, pix2.position, pix3.position, pix4.position, pix1.color);
 
 
-        sphere_draw_fill(window, &swindow1);
-        //sphere_draw_fill(window, &swindow2);
-        //sphere_draw_fill(window, &swindow3);
-        //sphere_draw_fill(window, &swindow4);
+        sphere_draw_fill(&window, &swindow1);
+        //sphere_draw_fill(&window, &swindow2);
+        //sphere_draw_fill(&window, &swindow3);
+        //sphere_draw_fill(&window, &swindow4);
 
         if (i_print == 0) {
             surface_blit(plate);
