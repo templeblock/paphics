@@ -46,7 +46,7 @@ void surface_clear(Surface surface) {
     SDL_FillRect(surface.surface, NULL, 0x000000);
 }
 
-void surface_draw_borders_in(Surface surface, Uint32 color) {
+void surface_draw_borders_in(Surface* surface, Uint32 color) {
 
     Point a;
     Point b;
@@ -54,7 +54,7 @@ void surface_draw_borders_in(Surface surface, Uint32 color) {
     a.x = 1;
     a.y = 1;
 
-    b = surface.size;
+    b = surface->size;
 
     b.x--;
     b.y--;
@@ -62,24 +62,24 @@ void surface_draw_borders_in(Surface surface, Uint32 color) {
     rectangle_draw(surface, a, b, color);
 }
 
-void surface_draw_borders_out(Surface surface, Uint32 color) {
+void surface_draw_borders_out(Surface* surface, Uint32 color) {
 
     Surface tmp;
-    tmp.surface = surface.parent;
+    tmp.surface = surface->parent;
 
     Point a;
     Point b;
 
-    a = surface.origin;
+    a = surface->origin;
     b = a;
 
     a.x--;
     a.y--;
 
-    b.x += surface.size.x;
-    b.y += surface.size.y;
+    b.x += surface->size.x;
+    b.y += surface->size.y;
 
-    rectangle_draw(tmp, a, b, color);
+    rectangle_draw(&tmp, a, b, color);
 }
 
 void surface_load_img(Surface surface, char* pathToImg) {
