@@ -12,6 +12,6 @@ typedef struct {
     Uint32 color;
 } Sphere;
 
-void sphere_draw_fill(Surface surface, Sphere* sphere);
+void sphere_draw_fill(Surface* surface, Sphere* sphere);
 
 #endif

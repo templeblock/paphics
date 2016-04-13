@@ -1,6 +1,6 @@
 #include "sphere.h"
 
-void sphere_draw_fill(Surface surface, Sphere* sphere) {
+void sphere_draw_fill(Surface* surface, Sphere* sphere) {
 
     int i;
     int nb_step;
@@ -37,7 +37,7 @@ void sphere_draw_fill(Surface surface, Sphere* sphere) {
 
         radiusTmp = sphere->radius - dradius * i;
 
-        newColor = SDL_MapRGB(surface.surface->format, colorTmp.r, colorTmp.g, colorTmp.b);
+        newColor = SDL_MapRGB(surface->surface->format, colorTmp.r, colorTmp.g, colorTmp.b);
 
         circle_draw_fill(surface, pointTmp, radiusTmp, newColor);
     }
