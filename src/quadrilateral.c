@@ -165,9 +165,9 @@ void quadrilateral_draw(Surface surface, Point p1, Point p2, Point p3, Point p4,
     line3.color = color;
     line4.color = color;
 
-    line_draw(surface, &line1);
-    line_draw(surface, &line2);
-    line_draw(surface, &line3);
-    line_draw(surface, &line4);
+    line_draw(&surface, &line1);
+    line_draw(&surface, &line2);
+    line_draw(&surface, &line3);
+    line_draw(&surface, &line4);
 
 }
