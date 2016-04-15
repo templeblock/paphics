@@ -9,13 +9,8 @@ void sphere_draw_fill(Surface* surface, Sphere* sphere) {
     int dgreen;
     int dblue;
     int dradius;
-
-    Uint32 newColor;
     SDL_Color color;
     SDL_Color colorTmp;
-    Point pointTmp;
-    int radiusTmp;
-    Circle tmp;
     Circle circle;
 
     color = graphics_translate_color(sphere->color);
@@ -34,17 +29,13 @@ void sphere_draw_fill(Surface* surface, Sphere* sphere) {
         colorTmp.g = color.g + dgreen * i;
         colorTmp.b = color.b + dblue * i;
 
-        pointTmp.x = sphere->center.x + i;
-        pointTmp.y = sphere->center.y + i;
+        circle.center.x = sphere->center.x + i;
+        circle.center.y = sphere->center.y + i;
 
-        radiusTmp = sphere->radius - dradius * i;
+        circle.radius = sphere->radius - dradius * i;
 
-        newColor = SDL_MapRGB(surface->surface->format, colorTmp.r, colorTmp.g, colorTmp.b);
+        circle.color = SDL_MapRGB(surface->surface->format, colorTmp.r, colorTmp.g, colorTmp.b);
 
-        tmp.center = pointTmp; // to clena later
-        tmp.radius = radiusTmp;
-        tmp.color = newColor;
-
-        circle_draw_fill(surface, &tmp);
+        circle_draw_fill(surface, &circle);
     }
 }
