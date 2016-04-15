@@ -38,7 +38,7 @@ void line_draw(Surface* surface, Line* line) {
         pix.position.x = min.x;
 
         for (pix.position.y = min.y; pix.position.y <= max.y; pix.position.y++) {
-            pixel_draw(*surface, &pix);
+            pixel_draw(surface, &pix);
         }
     }
 
@@ -46,7 +46,7 @@ void line_draw(Surface* surface, Line* line) {
         pix.position.y = min.y;
 
         for (pix.position.x = min.x; pix.position.x < max.x; pix.position.x++) {
-            pixel_draw(*surface, &pix);
+            pixel_draw(surface, &pix);
         }
     }
 
@@ -64,7 +64,7 @@ void line_draw(Surface* surface, Line* line) {
                 pix.position.y++;
             }
 
-            pixel_draw(*surface, &pix);
+            pixel_draw(surface, &pix);
         }
     }
 
@@ -82,7 +82,7 @@ void line_draw(Surface* surface, Line* line) {
                 pix.position.x++;
             }
 
-            pixel_draw(*surface, &pix);
+            pixel_draw(surface, &pix);
         }
     }
 }
