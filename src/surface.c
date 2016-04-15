@@ -1,30 +1,5 @@
 #include "surface.h"
 
-Surface surface_create(Point size, Point origin, Surface parent) {
-
-    Surface newSurface;
-    SDL_Surface* newSDL_Surface;
-
-    newSDL_Surface = NULL;
-    newSDL_Surface = SDL_CreateRGBSurface(0, size.x, size.y, 32, 0, 0, 0, 0);
-
-    if(newSDL_Surface == NULL) {
-        fprintf(stderr, "CreateRGBSurface failed: %s\n", SDL_GetError());
-        graphics_error_quit();
-    }
-
-    newSurface.size = size;
-    newSurface.parent = parent.surface;
-    newSurface.surface = newSDL_Surface;
-
-    newSurface.origin = origin;
-    //newSurface.origin.y = parent.size.y - origin.y - 2;
-
-
-    return newSurface;
-
-}
-
 void surface_blit(Surface* surface) {
 
     SDL_Rect dest_rect;
@@ -38,12 +13,39 @@ void surface_blit(Surface* surface) {
         fprintf(stderr, "\nBlit failed: %s\n", SDL_GetError());
         graphics_error_quit();
     }
-
 }
 
 void surface_clear(Surface* surface) {
 
     SDL_FillRect(surface->surface, NULL, 0x000000);
+}
+
+void surface_create(Surface* surface, Point* size, Point* origin, Surface* parent) {
+
+    surface->surface = NULL;
+    surface->surface = SDL_CreateRGBSurface(0, size->x, size->y, 32, 0, 0, 0, 0);
+
+    if(surface->surface == NULL) {
+        fprintf(stderr, "CreateRGBSurface failed: %s\n", SDL_GetError());
+        graphics_error_quit();
+    }
+
+    surface->size = *size;
+    surface->parent = parent->surface;
+    surface->origin = *origin;
+    //surface->origin.y = parent->size.y - origin->y - 2;
+
+}
+
+void surface_create_from_window(Surface* surface, Window* window) {
+
+    surface->parent = NULL;
+    surface->surface = SDL_GetWindowSurface(window->window);
+    surface->origin.x = 0;
+    surface->origin.y = 0;
+    surface->size.x = surface->surface->w;
+    surface->size.y = surface->surface->h;
+
 }
 
 void surface_draw_borders_in(Surface* surface, Uint32 color) {
