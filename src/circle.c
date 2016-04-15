@@ -22,9 +22,9 @@ void circle_draw(Surface* surface, Circle* circle) {
         pix.position.x = i;
 
         pix.position.y = circle->center.y + dy;
-        pixel_draw(*surface, &pix);
+        pixel_draw(surface, &pix);
         pix.position.y = circle->center.y - dy;
-        pixel_draw(*surface, &pix);
+        pixel_draw(surface, &pix);
     }
 
     for (i = min.y; i <= max.y; i++) {
@@ -33,9 +33,9 @@ void circle_draw(Surface* surface, Circle* circle) {
         pix.position.y = i;
 
         pix.position.x = circle->center.x + dx;
-        pixel_draw(*surface, &pix);
+        pixel_draw(surface, &pix);
         pix.position.x = circle->center.x - dx;
-        pixel_draw(*surface, &pix);
+        pixel_draw(surface, &pix);
     }
 }
 
@@ -63,7 +63,7 @@ void circle_draw_fill(Surface* surface, Circle* circle) {
             dy = pix.position.y - circle->center.y;
 
             if (dx * dx + dy * dy <= circle->radius * circle->radius) {
-                pixel_draw(*surface, &pix);
+                pixel_draw(surface, &pix);
             }
         }
     }
