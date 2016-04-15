@@ -12,8 +12,8 @@ typedef struct {
     Uint32 color;
 } Circle;
 
-void circle_draw(Surface* surface, Point center, int radius, Uint32 color);
+void circle_draw(Surface* surface, Circle* circle);
 
-void circle_draw_fill(Surface* surface, Point center, int radius, Uint32 color);
+void circle_draw_fill(Surface* surface, Circle* circle);
 
 #endif
