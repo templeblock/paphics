@@ -13,6 +13,6 @@ typedef struct {
 
 Pixel pixel_create();
 
-void pixel_draw(Surface surface, Pixel* pixel);
+void pixel_draw(Surface* surface, Pixel* pixel);
 
 #endif
