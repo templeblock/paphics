@@ -1,6 +1,7 @@
 #include "sound.h"
 
 void init_sound() {
+
     if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) < 0) {
         fprintf(stderr, "SDL_mixer could not initialize! SDL_mixer Error:: %s", Mix_GetError());
         graphics_error_quit();
