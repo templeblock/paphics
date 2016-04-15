@@ -21,7 +21,7 @@ void demo() {
     graphics_init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_AUDIO);
     atexit(SDL_Quit);
 
-    const Point screen_size = graphics_get_screen_size();
+    Point screen_size = graphics_get_screen_size();
     int dx;
     int dy;
     int radius;
@@ -53,9 +53,9 @@ void demo() {
 
 
     input = event_create();
-    w_window = create_window("Démo", window_position, screen_size, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
+    window_create(&w_window, "Démo", &window_position, &screen_size, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
 
-    window = get_window_surface(w_window);
+    surface_create_from_window(&window, &w_window);
 
     plate_size = window.size;
     plate_size.x /= 2;
@@ -65,7 +65,7 @@ void demo() {
     plate_origin.x /= 4;
     plate_origin.y /= 4;
 
-    plate = surface_create(plate_size, plate_origin, window);
+    surface_create(&plate, &plate_size, &plate_origin, &window);
 
     sphere1.center.x = plate.size.x / 2;
     sphere1.center.y = plate.size.y / 2;
@@ -299,14 +299,14 @@ void demo() {
         //sphere_draw_fill(&window, &swindow4);
 
         surface_blit(&plate);
-        update_window(w_window);
+        window_update(&w_window);
 
         SDL_Delay(4);
     }
 
     SDL_Delay(4);
 
-    w_window = destroy_window(w_window);
+    window_destroy(&w_window);
 
     graphics_quit();
 
