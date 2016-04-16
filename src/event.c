@@ -12,7 +12,7 @@ Event event_create() {
     return newEvent;
 }
 
-Event event_update(Event* event) {
+void event_update(Event* event) {
 
     SDL_Event tmp;
 
@@ -63,6 +63,4 @@ Event event_update(Event* event) {
             }
         }
     }
-
-    return *event;
 }

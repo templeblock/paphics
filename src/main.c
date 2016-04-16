@@ -80,7 +80,7 @@ void demo() {
 
     while (!input.quit) {
 
-        input = event_update(&input);
+        event_update(&input);
 
         dd = calc_alea_int(1, 7);
 
