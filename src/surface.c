@@ -70,6 +70,80 @@ bool surface_is_out_of_parent_y(Surface* surface) {
     return is_out;
 }
 
+bool surface_will_be_out_of_parent_bottom(Surface* surface, Point* d) {
+
+    bool is_out;
+
+    if (surface->origin.y + d->y < 0) {
+        is_out = true;
+    } else {
+        is_out = false;
+    }
+
+    return is_out;
+
+}
+
+bool surface_will_be_out_of_parent_left(Surface* surface, Point* d) {
+
+    bool is_out;
+
+    if (surface->origin.x + d->x < 0) {
+        is_out = true;
+    } else {
+        is_out = false;
+    }
+
+    return is_out;
+
+}
+
+bool surface_will_be_out_of_parent_right(Surface* surface, Point* d) {
+
+    bool is_out;
+
+    if (surface->origin.x + surface->size.x + d->x > surface->parent->size.x) {
+        is_out = true;
+    } else {
+        is_out = false;
+    }
+
+    return is_out;
+
+}
+
+bool surface_will_be_out_of_parent_top(Surface* surface, Point* d) {
+
+    bool is_out;
+
+    if (surface->origin.y + surface->size.y + d->y > surface->parent->size.y) {
+        is_out = true;
+    } else {
+        is_out = false;
+    }
+
+    return is_out;
+
+}
+
+bool surface_will_be_out_of_parent_x(Surface* surface, Point* d) {
+
+    bool is_out;
+
+    is_out = surface_will_be_out_of_parent_left(surface, d) || surface_will_be_out_of_parent_right(surface, d);
+
+    return is_out;
+}
+
+bool surface_will_be_out_of_parent_y(Surface* surface, Point* d) {
+
+    bool is_out;
+
+    is_out = surface_will_be_out_of_parent_bottom(surface, d) || surface_will_be_out_of_parent_top(surface, d);
+
+    return is_out;
+}
+
 void surface_blit(Surface* surface) {
 
     SDL_Rect dest_rect;

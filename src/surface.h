@@ -29,6 +29,18 @@ bool surface_is_out_of_parent_x(Surface* surface);
 
 bool surface_is_out_of_parent_y(Surface* surface);
 
+bool surface_will_be_out_of_parent_bottom(Surface* surface, Point* d);
+
+bool surface_will_be_out_of_parent_left(Surface* surface, Point* d);
+
+bool surface_will_be_out_of_parent_right(Surface* surface, Point* d);
+
+bool surface_will_be_out_of_parent_top(Surface* surface, Point* d);
+
+bool surface_will_be_out_of_parent_x(Surface* surface, Point* d);
+
+bool surface_will_be_out_of_parent_y(Surface* surface, Point* d);
+
 void surface_blit(Surface* surface);
 
 void surface_create(Surface* surface, Point* size, Point* origin, Surface* parent);
