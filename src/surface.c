@@ -1,5 +1,75 @@
 #include "surface.h"
 
+bool surface_is_out_of_parent_bottom(Surface* surface) {
+
+    bool is_out;
+
+    if (surface->origin.y < 0) {
+        is_out = true;
+    } else {
+        is_out = false;
+    }
+
+    return is_out;
+}
+
+bool surface_is_out_of_parent_left(Surface* surface) {
+
+    bool is_out;
+
+    if (surface->origin.x < 0) {
+        is_out = true;
+    } else {
+        is_out = false;
+    }
+
+    return is_out;
+}
+
+bool surface_is_out_of_parent_right(Surface* surface) {
+
+    bool is_out;
+
+    if (surface->origin.x + surface->size.x > surface->parent->size.x) {
+        is_out = true;
+    } else {
+        is_out = false;
+    }
+
+    return is_out;
+}
+
+bool surface_is_out_of_parent_top(Surface* surface) {
+
+    bool is_out;
+
+    if (surface->origin.y + surface->size.y > surface->parent->size.y) {
+        is_out = true;
+    } else {
+        is_out = false;
+    }
+
+    return is_out;
+}
+
+bool surface_is_out_of_parent_x(Surface* surface) {
+
+    bool is_out;
+
+    is_out = surface_is_out_of_parent_left(surface) || surface_is_out_of_parent_right(surface);
+
+    return is_out;
+}
+
+bool surface_is_out_of_parent_y(Surface* surface) {
+
+    bool is_out;
+
+    is_out = surface_is_out_of_parent_bottom(surface) || surface_is_out_of_parent_top(surface);
+
+    return is_out;
+}
+
 void surface_blit(Surface* surface) {
 
     SDL_Rect dest_rect;
@@ -9,7 +79,7 @@ void surface_blit(Surface* surface) {
     dest_rect.x = surface->origin.x;
     dest_rect.y = surface->origin.y;
 
-    if (SDL_BlitSurface(surface->surface, NULL, surface->parent, &dest_rect) < 0) {
+    if (SDL_BlitSurface(surface->surface, NULL, (surface->parent)->surface, &dest_rect) < 0) {
         fprintf(stderr, "\nBlit failed: %s\n", SDL_GetError());
         graphics_error_quit();
     }
@@ -31,7 +101,7 @@ void surface_create(Surface* surface, Point* size, Point* origin, Surface* paren
     }
 
     surface->size = *size;
-    surface->parent = parent->surface;
+    surface->parent = parent;
     surface->origin = *origin;
     //surface->origin.y = parent->size.y - origin->y - 2;
 
@@ -66,8 +136,8 @@ void surface_draw_borders_in(Surface* surface, Uint32 color) {
 
 void surface_draw_borders_out(Surface* surface, Uint32 color) {
 
-    Surface tmp;
-    tmp.surface = surface->parent;
+    //Surface tmp;
+    //tmp.surface = surface->parent->surface;
 
     Point a;
     Point b;
@@ -81,7 +151,7 @@ void surface_draw_borders_out(Surface* surface, Uint32 color) {
     b.x += surface->size.x;
     b.y += surface->size.y;
 
-    rectangle_draw(&tmp, a, b, color);
+    rectangle_draw(surface->parent, a, b, color);
 }
 
 void surface_load_img(Surface* surface, char* pathToImg) {
