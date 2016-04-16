@@ -1,5 +1,44 @@
 #include "surface.h"
 
+bool surface_collision_surface(Surface* surface1, Surface* surface2) {
+
+    bool collision;
+
+    collision = surface_collision_surface_x(surface1, surface2) || surface_collision_surface_y(surface1, surface2);
+
+    return collision;
+}
+
+bool surface_collision_surface_x(Surface* surface1, Surface* surface2) {
+
+    bool collision;
+
+    if (surface1->origin.x > surface2->origin.x && surface1->origin.x < surface2->origin.x + surface2->size.x ) {
+        collision = true;
+    } else if (surface2->origin.x > surface1->origin.x && surface2->origin.x < surface1->origin.x + surface1->size.x ) {
+        collision = true;
+    } else {
+        collision = false;
+    }
+
+    return collision;
+}
+
+bool surface_collision_surface_y(Surface* surface1, Surface* surface2) {
+
+    bool collision;
+
+    if (surface1->origin.y > surface2->origin.y && surface1->origin.y < surface2->origin.y + surface2->size.y ) {
+        collision = true;
+    } else if (surface2->origin.y > surface1->origin.y && surface2->origin.y < surface1->origin.y + surface1->size.y ) {
+        collision = true;
+    } else {
+        collision = false;
+    }
+
+    return collision;
+}
+
 bool surface_is_out_of_parent_bottom(Surface* surface) {
 
     bool is_out;

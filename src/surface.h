@@ -17,6 +17,12 @@ typedef struct Surface {
 
 #include "rectangle.h"
 
+bool surface_collision_surface(Surface* surface1, Surface* surface2);
+
+bool surface_collision_surface_x(Surface* surface1, Surface* surface2);
+
+bool surface_collision_surface_y(Surface* surface1, Surface* surface2);
+
 bool surface_is_out_of_parent_bottom(Surface* surface);
 
 bool surface_is_out_of_parent_left(Surface* surface);
