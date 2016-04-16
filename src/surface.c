@@ -191,6 +191,8 @@ void surface_blit(Surface* surface) {
     dest_rect.h = surface->size.y;
     dest_rect.x = surface->origin.x;
     dest_rect.y = surface->origin.y;
+    //dest_rect.y = surface->surface->origin.y;
+    // dest_rect.y = surface->parent->size.y - surface->origin.y + 2;
 
     if (SDL_BlitSurface(surface->surface, NULL, (surface->parent)->surface, &dest_rect) < 0) {
         fprintf(stderr, "\nBlit failed: %s\n", SDL_GetError());
@@ -216,7 +218,7 @@ void surface_create(Surface* surface, Point* size, Point* origin, Surface* paren
     surface->size = *size;
     surface->parent = parent;
     surface->origin = *origin;
-    //surface->origin.y = parent->size.y - origin->y - 2;
+    //surface->origin.y = (parent->size.y - origin->y);
 
 }
 
