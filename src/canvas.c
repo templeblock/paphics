@@ -43,7 +43,7 @@ bool canvas_is_out_of_parent_bottom(Canvas* canvas) {
 
     bool is_out;
 
-    if (canvas->origin.y < 0) {
+    if (canvas->origin.y + canvas->size.y > canvas->parent->size.y) {
         is_out = true;
     } else {
         is_out = false;
@@ -82,7 +82,7 @@ bool canvas_is_out_of_parent_top(Canvas* canvas) {
 
     bool is_out;
 
-    if (canvas->origin.y + canvas->size.y > canvas->parent->size.y) {
+    if (canvas->origin.y < 0) {
         is_out = true;
     } else {
         is_out = false;
@@ -113,7 +113,7 @@ bool canvas_will_be_out_of_parent_bottom(Canvas* canvas, Point* d) {
 
     bool is_out;
 
-    if (canvas->origin.y + d->y < 0) {
+    if (canvas->origin.y + canvas->size.y + d->y > canvas->parent->size.y) {
         is_out = true;
     } else {
         is_out = false;
@@ -155,7 +155,7 @@ bool canvas_will_be_out_of_parent_top(Canvas* canvas, Point* d) {
 
     bool is_out;
 
-    if (canvas->origin.y + canvas->size.y + d->y > canvas->parent->size.y) {
+    if (canvas->origin.y + d->y < 0) {
         is_out = true;
     } else {
         is_out = false;
