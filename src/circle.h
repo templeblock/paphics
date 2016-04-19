@@ -2,7 +2,7 @@
 #define DEF_CIRCLE_H
 
 #include <SDL2/SDL.h>
-#include "surface.h"
+#include "canvas.h"
 #include "point.h"
 #include "pixel.h"
 
@@ -12,8 +12,8 @@ typedef struct {
     Uint32 color;
 } Circle;
 
-void circle_draw(Surface* surface, Circle* circle);
+void circle_draw(Canvas* canvas, Circle* circle);
 
-void circle_draw_fill(Surface* surface, Circle* circle);
+void circle_draw_fill(Canvas* canvas, Circle* circle);
 
 #endif

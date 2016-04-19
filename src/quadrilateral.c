@@ -1,6 +1,6 @@
 #include "quadrilateral.h"
 
-/*void quadrilateral_draw_old(Surface surface, Point p1, Point p2, Point p3, Point p4, Uint32 color) {
+/*void quadrilateral_draw_old(Canvas canvas, Point p1, Point p2, Point p3, Point p4, Uint32 color) {
 
     Point max_left;
     Point max_right;
@@ -69,14 +69,14 @@
     line3.color = color;
     line4.color = color;
 
-    line_draw(surface, &line1);
-    line_draw(surface, &line2);
-    line_draw(surface, &line3);
-    line_draw(surface, &line4);
+    line_draw(canvas, &line1);
+    line_draw(canvas, &line2);
+    line_draw(canvas, &line3);
+    line_draw(canvas, &line4);
 
 }*/
 
-void quadrilateral_draw(Surface surface, Point p1, Point p2, Point p3, Point p4, Uint32 color) {
+void quadrilateral_draw(Canvas canvas, Point p1, Point p2, Point p3, Point p4, Uint32 color) {
 
     Point leftToRight[4];
     Point topToBottom[4];
@@ -165,9 +165,9 @@ void quadrilateral_draw(Surface surface, Point p1, Point p2, Point p3, Point p4,
     line3.color = color;
     line4.color = color;
 
-    line_draw(&surface, &line1);
-    line_draw(&surface, &line2);
-    line_draw(&surface, &line3);
-    line_draw(&surface, &line4);
+    line_draw(&canvas, &line1);
+    line_draw(&canvas, &line2);
+    line_draw(&canvas, &line3);
+    line_draw(&canvas, &line4);
 
 }

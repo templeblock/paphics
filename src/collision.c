@@ -1,26 +1,26 @@
 #include "collision.h"
 
-bool collision_is_out_of_surface(Surface* surface, Point a, int radius) {
+bool collision_is_out_of_canvas(Canvas* canvas, Point a, int radius) {
 
     bool is_out = false;
 
-    if (collision_is_out_of_surface_x(surface, a.x, radius)) {
+    if (collision_is_out_of_canvas_x(canvas, a.x, radius)) {
         is_out = true;
     }
-    if (collision_is_out_of_surface_y(surface, a.y, radius)) {
+    if (collision_is_out_of_canvas_y(canvas, a.y, radius)) {
         is_out = true;
     }
 
     return is_out;
 }
 
-bool collision_is_out_of_surface_x(Surface* surface, int a, int radius) {
+bool collision_is_out_of_canvas_x(Canvas* canvas, int a, int radius) {
 
     bool is_out;
 
     is_out = false;
 
-    if (a + radius > surface->size.x) {
+    if (a + radius > canvas->size.x) {
         is_out = true;
     } else if (a - radius < 0) {
         is_out = true;
@@ -29,13 +29,13 @@ bool collision_is_out_of_surface_x(Surface* surface, int a, int radius) {
     return is_out;
 }
 
-bool collision_is_out_of_surface_y(Surface* surface, int a, int radius) {
+bool collision_is_out_of_canvas_y(Canvas* canvas, int a, int radius) {
 
     bool is_out;
 
     is_out = false;
 
-    if (a + radius > surface->size.y) {
+    if (a + radius > canvas->size.y) {
         is_out = true;
     } else if (a - radius < 0) {
         is_out = true;

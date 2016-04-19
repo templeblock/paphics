@@ -2,13 +2,13 @@
 #define DEF_COLLISION_H
 
 #include <stdbool.h>
-#include "surface.h"
+#include "canvas.h"
 #include "point.h"
 
-bool collision_is_out_of_surface(Surface* surface, Point a, int radius);
+bool collision_is_out_of_canvas(Canvas* canvas, Point a, int radius);
 
-bool collision_is_out_of_surface_x(Surface* surface, int a, int radius);
+bool collision_is_out_of_canvas_x(Canvas* canvas, int a, int radius);
 
-bool collision_is_out_of_surface_y(Surface* surface, int a, int radius);
+bool collision_is_out_of_canvas_y(Canvas* canvas, int a, int radius);
 
 #endif

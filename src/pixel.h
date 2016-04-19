@@ -3,16 +3,16 @@
 
 #include <SDL2/SDL.h>
 #include "point.h"
-#include "surface.h"
+#include "canvas.h"
 
 typedef struct {
     Point position;
     Uint32 color;
-    // void (*pDraw)(Surface, Pixel);
+    // void (*pDraw)(Canvas, Pixel);
 } Pixel;
 
 Pixel pixel_create();
 
-void pixel_draw(Surface* surface, Pixel* pixel);
+void pixel_draw(Canvas* canvas, Pixel* pixel);
 
 #endif

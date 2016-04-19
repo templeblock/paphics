@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include "point.h"
 #include "pixel.h"
-#include "surface.h"
+#include "canvas.h"
 
 typedef struct {
     Point a;
@@ -12,6 +12,6 @@ typedef struct {
     Uint32 color;
 } Line;
 
-void line_draw(Surface* surface, Line* line);
+void line_draw(Canvas* canvas, Line* line);
 
 #endif

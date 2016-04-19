@@ -1,6 +1,6 @@
 #include "circle.h"
 
-void circle_draw(Surface* surface, Circle* circle) {
+void circle_draw(Canvas* canvas, Circle* circle) {
 
     int i;
     float dx;
@@ -22,9 +22,9 @@ void circle_draw(Surface* surface, Circle* circle) {
         pix.position.x = i;
 
         pix.position.y = circle->center.y + dy;
-        pixel_draw(surface, &pix);
+        pixel_draw(canvas, &pix);
         pix.position.y = circle->center.y - dy;
-        pixel_draw(surface, &pix);
+        pixel_draw(canvas, &pix);
     }
 
     for (i = min.y; i <= max.y; i++) {
@@ -33,13 +33,13 @@ void circle_draw(Surface* surface, Circle* circle) {
         pix.position.y = i;
 
         pix.position.x = circle->center.x + dx;
-        pixel_draw(surface, &pix);
+        pixel_draw(canvas, &pix);
         pix.position.x = circle->center.x - dx;
-        pixel_draw(surface, &pix);
+        pixel_draw(canvas, &pix);
     }
 }
 
-void circle_draw_fill(Surface* surface, Circle* circle) {
+void circle_draw_fill(Canvas* canvas, Circle* circle) {
 
     float dx;
     float dy;
@@ -63,7 +63,7 @@ void circle_draw_fill(Surface* surface, Circle* circle) {
             dy = pix.position.y - circle->center.y;
 
             if (dx * dx + dy * dy <= circle->radius * circle->radius) {
-                pixel_draw(surface, &pix);
+                pixel_draw(canvas, &pix);
             }
         }
     }

@@ -3,7 +3,7 @@
 
 #include <SDL2/SDL.h>
 #include "point.h"
-#include "surface.h"
+#include "canvas.h"
 #include "circle.h"
 
 typedef struct {
@@ -12,6 +12,6 @@ typedef struct {
     Uint32 color;
 } Sphere;
 
-void sphere_draw_fill(Surface* surface, Sphere* sphere);
+void sphere_draw_fill(Canvas* canvas, Sphere* sphere);
 
 #endif

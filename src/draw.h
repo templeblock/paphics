@@ -12,6 +12,6 @@ int tmp;
 #include "circle.h"
 #include "sphere.h"*/
 
-/*void draw(Surface surface, ...);*/
+/*void draw(Canvas canvas, ...);*/
 
 #endif

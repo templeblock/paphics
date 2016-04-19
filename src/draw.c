@@ -1,10 +1,10 @@
 #include "draw.h"
 
-/*void draw(Surface surface, ...) {
+/*void draw(Canvas canvas, ...) {
 
     va_list ap;
 
-    va_start(ap, surface);
+    va_start(ap, canvas);
 
 
     va_end(ap);

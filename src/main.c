@@ -27,9 +27,9 @@ void demo() {
 
     window_create(&w_window, "Démo", &window_position, &screen_size, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
 
-    Surface window;
+    Canvas window;
 
-    surface_create_from_window(&window, &w_window);
+    canvas_create_from_window(&window, &w_window);
 
     Point plate_size = window.size;
     plate_size.x /= 2;
@@ -39,9 +39,9 @@ void demo() {
     plate_origin.x /= 2;
     plate_origin.y /= 2;
 
-    Surface plate;
+    Canvas plate;
 
-    surface_create(&plate, &plate_size, &plate_origin, &window);
+    canvas_create(&plate, &plate_size, &plate_origin, &window);
 
     Event input = input = event_create();;
 
@@ -152,11 +152,11 @@ void demo() {
             dx++;
         }
 
-        if (collision_is_out_of_surface_x(&plate, circle1.center.x + dx, circle1.radius)) {
+        if (collision_is_out_of_canvas_x(&plate, circle1.center.x + dx, circle1.radius)) {
             dx = -dx;
         }
 
-        if (collision_is_out_of_surface_y(&plate, circle1.center.y + dy, circle1.radius)) {
+        if (collision_is_out_of_canvas_y(&plate, circle1.center.y + dy, circle1.radius)) {
             dy = -dy;
         }
 
@@ -201,14 +201,14 @@ void demo() {
         sphere1.center.x *= 2;
         sphere1.center.y *= 2;
 
-        surface_clear(&window);
+        canvas_clear(&window);
 
         if (input.space) {
-            surface_clear(&plate);
+            canvas_clear(&plate);
         }
 
-        surface_draw_borders_in(&window, 0xFFFFFF);
-        surface_draw_borders_out(&plate, 0xFFFFFF);
+        canvas_draw_borders_in(&window, 0xFFFFFF);
+        canvas_draw_borders_out(&plate, 0xFFFFFF);
 
         circle_draw_fill(&plate, &circle1);
         circle_draw_fill(&plate, &circle2);
@@ -217,7 +217,7 @@ void demo() {
 
         sphere_draw_fill(&window, &sphere1);
 
-        surface_blit(&plate);
+        canvas_blit(&plate);
         window_update(&w_window);
 
         SDL_Delay(4);

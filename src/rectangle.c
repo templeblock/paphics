@@ -1,6 +1,6 @@
 #include "rectangle.h"
 
-void rectangle_draw(Surface* surface, Point a, Point b, Uint32 color) {
+void rectangle_draw(Canvas* canvas, Point a, Point b, Uint32 color) {
 
     Line l;
     Line m;
@@ -30,14 +30,14 @@ void rectangle_draw(Surface* surface, Point a, Point b, Uint32 color) {
     n.color = color;
     o.color = color;
 
-    line_draw(surface, &l);
-    line_draw(surface, &m);
-    line_draw(surface, &n);
-    line_draw(surface, &o);
+    line_draw(canvas, &l);
+    line_draw(canvas, &m);
+    line_draw(canvas, &n);
+    line_draw(canvas, &o);
 
 }
 
-void rectangle_draw_fill(Surface* surface, Point a, Point b, Uint32 color) {
+void rectangle_draw_fill(Canvas* canvas, Point a, Point b, Uint32 color) {
 
     int i;
     Point top_left;
@@ -78,6 +78,6 @@ void rectangle_draw_fill(Surface* surface, Point a, Point b, Uint32 color) {
         top_tmp.x += 1;
         line.a = bottom_tmp;
         line.b = top_tmp;
-        line_draw(surface, &line);
+        line_draw(canvas, &line);
     }
 }
