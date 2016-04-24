@@ -1,7 +1,100 @@
 #include "line.h"
 
 void line_draw(Canvas* canvas, Line* line) {
-    line_draw_dda(canvas, line);
+
+    Point dist;
+
+    dist.x = line->b.x - line->a.x;
+    dist.y = line->b.y - line->a.y;
+
+    if (dist.x == 0) {
+        line_draw_noVarX(canvas, line);
+    } else if (dist.y == 0) {
+        line_draw_noVarY(canvas, line);
+    } else {
+
+        Point dist_abs;
+
+        dist_abs.x = abs(dist.x);
+        dist_abs.y = abs(dist.y);
+
+        /*if (dist_abs.x == dist_abs.y) {
+          line_draw_sameVarXY(canvas, line);
+        } else {*/
+        line_draw_dda(canvas, line, &dist, &dist_abs);
+        /*}*/
+    }
+}
+
+void line_draw_noVarX(Canvas* canvas, Line* line) {
+
+    Pixel pix;
+
+    pix.color = line->color;
+    pix.position.x = line->a.x;
+
+    if (line->a.y > line->b.y) {
+
+        for (pix.position.y = line->b.y; pix.position.y <= line->a.y; pix.position.y++) {
+            pixel_draw(canvas, &pix);
+        }
+    } else {
+
+        for (pix.position.y = line->a.y; pix.position.y <= line->b.y; pix.position.y++) {
+            pixel_draw(canvas, &pix);
+        }
+    }
+
+}
+
+void line_draw_noVarY(Canvas* canvas, Line* line) {
+
+    Pixel pix;
+
+    pix.color = line->color;
+    pix.position.y = line->a.y;
+
+    if (line->a.x > line->b.x) {
+
+        for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
+            pixel_draw(canvas, &pix);
+        }
+    } else {
+
+        for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
+            pixel_draw(canvas, &pix);
+        }
+    }
+
+}
+
+void line_draw_sameVarXY(Canvas* canvas, Line* line) {
+
+    Pixel pix;
+
+    pix.color = line-> color;
+
+    if (line->a.x < line->b.x) {
+
+        pix.position.y = line->a.x;
+
+        for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
+
+            pixel_draw(canvas, &pix);
+            pix.position.y++;
+        }
+
+    } else {
+
+        pix.position.y = line->b.x;
+
+        for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
+
+            pixel_draw(canvas, &pix);
+            pix.position.y++;
+        }
+    }
+
 }
 
 void line_draw_naive(Canvas* canvas, Line* line) {
@@ -11,37 +104,7 @@ void line_draw_naive(Canvas* canvas, Line* line) {
 
     pix.color = line->color;
 
-    if (line->a.x == line->b.x) {
-
-        pix.position.x = line->a.x;
-
-        if (line->a.y > line->b.y) {
-
-            for (pix.position.y = line->b.y; pix.position.y <= line->a.y; pix.position.y++) {
-                pixel_draw(canvas, &pix);
-            }
-        } else {
-
-            for (pix.position.y = line->a.y; pix.position.y <= line->b.y; pix.position.y++) {
-                pixel_draw(canvas, &pix);
-            }
-        }
-    } else if (line->a.y == line->b.y) {
-
-        pix.position.y = line->a.y;
-
-        if (line->a.x > line->b.x) {
-
-            for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
-                pixel_draw(canvas, &pix);
-            }
-        } else {
-
-            for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
-                pixel_draw(canvas, &pix);
-            }
-        }
-    } else if (line->a.x < line->b.x) {
+    if (line->a.x < line->b.x) {
 
         delta.x = line->b.x - line->a.x;
         delta.y = line->b.y - line->a.y;
@@ -64,10 +127,8 @@ void line_draw_naive(Canvas* canvas, Line* line) {
     }
 }
 
-void line_draw_dda(Canvas* canvas, Line* line) {
+void line_draw_dda(Canvas* canvas, Line* line, Point* dist, Point* dist_abs) {
 
-    Point dist;
-    Point dist_abs;
     int lenght;
     float dx;
     float dy;
@@ -76,22 +137,14 @@ void line_draw_dda(Canvas* canvas, Line* line) {
     int i;
     Pixel pix;
 
-    dist.x = line->b.x - line->a.x;
-    dist.y = line->b.y - line->a.y;
-
-    dist_abs.x = abs(dist.x);
-    dist_abs.y = abs(dist.y);
-
-    // si varX = 0 || varY = 0, ajouter un appel à une autre fonction plus adaptée/rapide (cf. naive)
-
-    if (dist_abs.x >= dist_abs.y) {
-        lenght = dist_abs.x;
+    if (dist_abs->x >= dist_abs->y) { // change to > when sameVarXY will be implemented
+        lenght = dist_abs->x;
     } else {
-        lenght = dist_abs.y;
+        lenght = dist_abs->y;
     }
 
-    dx = dist.x / lenght;
-    dy = dist.y / lenght;
+    dx = dist->x / lenght;
+    dy = dist->y / lenght;
 
     x = line->a.x + 0.5;
     y = line->a.y + 0.5;
