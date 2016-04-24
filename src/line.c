@@ -1,10 +1,116 @@
 #include "line.h"
 
 void line_draw(Canvas* canvas, Line* line) {
-    line_draw_naive(canvas, line);
+    line_draw_dda(canvas, line);
 }
 
 void line_draw_naive(Canvas* canvas, Line* line) {
+
+    Point delta;
+    Pixel pix;
+
+    pix.color = line->color;
+
+    if (line->a.x == line->b.x) {
+
+        pix.position.x = line->a.x;
+
+        if (line->a.y > line->b.y) {
+
+            for (pix.position.y = line->b.y; pix.position.y <= line->a.y; pix.position.y++) {
+                pixel_draw(canvas, &pix);
+            }
+        } else {
+
+            for (pix.position.y = line->a.y; pix.position.y <= line->b.y; pix.position.y++) {
+                pixel_draw(canvas, &pix);
+            }
+        }
+    } else if (line->a.y == line->b.y) {
+
+        pix.position.y = line->a.y;
+
+        if (line->a.x > line->b.x) {
+
+            for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
+                pixel_draw(canvas, &pix);
+            }
+        } else {
+
+            for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
+                pixel_draw(canvas, &pix);
+            }
+        }
+    } else if (line->a.x < line->b.x) {
+
+        delta.x = line->b.x - line->a.x;
+        delta.y = line->b.y - line->a.y;
+
+        for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
+            pix.position.y = line->a.y + delta.y * (pix.position.x - line->a.x) / delta.x;
+            pixel_draw(canvas, &pix);
+        }
+
+    } else {
+
+        delta.x = line->a.x - line->b.x;
+        delta.y = line->a.y - line->b.y;
+
+        for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
+            pix.position.y = line->b.y + delta.y * (pix.position.x - line->b.x) / delta.x;
+            pixel_draw(canvas, &pix);
+        }
+
+    }
+}
+
+void line_draw_dda(Canvas* canvas, Line* line) {
+
+    Point dist;
+    Point dist_abs;
+    int lenght;
+    float dx;
+    float dy;
+    float x;
+    float y;
+    int i;
+    Pixel pix;
+
+    dist.x = line->b.x - line->a.x;
+    dist.y = line->b.y - line->a.y;
+
+    dist_abs.x = abs(dist.x);
+    dist_abs.y = abs(dist.y);
+
+    // si varX = 0 || varY = 0, ajouter un appel à une autre fonction plus adaptée/rapide (cf. naive)
+
+    if (dist_abs.x >= dist_abs.y) {
+        lenght = dist_abs.x;
+    } else {
+        lenght = dist_abs.y;
+    }
+
+    dx = dist.x / lenght;
+    dy = dist.y / lenght;
+
+    x = line->a.x + 0.5;
+    y = line->a.y + 0.5;
+
+    pix.color = line->color;
+
+    for (i = 1; i <= lenght; i++) {
+
+        pix.position.x = (int) trunc(x);
+        pix.position.y = (int) trunc(y);
+
+        pixel_draw(canvas, &pix);
+
+        x += dx;
+        y += dy;
+    }
+}
+
+void line_draw_other(Canvas* canvas, Line* line) {
 
     Point min;
     Point max;

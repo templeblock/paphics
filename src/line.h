@@ -16,4 +16,8 @@ void line_draw(Canvas* canvas, Line* line);
 
 void line_draw_naive(Canvas* canvas, Line* line);
 
+void line_draw_dda(Canvas* canvas, Line* line);
+
+void line_draw_other(Canvas* canvas, Line* line);
+
 #endif
