@@ -14,4 +14,6 @@ typedef struct {
 
 void line_draw(Canvas* canvas, Line* line);
 
+void line_draw_naive(Canvas* canvas, Line* line);
+
 #endif

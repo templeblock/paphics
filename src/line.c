@@ -1,6 +1,10 @@
 #include "line.h"
 
 void line_draw(Canvas* canvas, Line* line) {
+    line_draw_naive(canvas, line);
+}
+
+void line_draw_naive(Canvas* canvas, Line* line) {
 
     Point min;
     Point max;
