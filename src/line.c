@@ -18,11 +18,11 @@ void line_draw(Canvas* canvas, Line* line) {
         dist_abs.x = abs(dist.x);
         dist_abs.y = abs(dist.y);
 
-        /*if (dist_abs.x == dist_abs.y) {
-          line_draw_sameVarXY(canvas, line);
-        } else {*/
-        line_draw_dda(canvas, line, &dist, &dist_abs);
-        /*}*/
+        if (dist_abs.x == dist_abs.y) {
+            line_draw_sameVarXY(canvas, line);
+        } else {
+            line_draw_dda(canvas, line, &dist, &dist_abs);
+        }
     }
 }
 
@@ -70,7 +70,14 @@ void line_draw_noVarY(Canvas* canvas, Line* line) {
 
 void line_draw_sameVarXY(Canvas* canvas, Line* line) {
 
+    short int dy;
     Pixel pix;
+
+    if (line->a.y < line->b.y) {
+        dy = 1;
+    } else {
+        dy = -1;
+    }
 
     pix.color = line-> color;
 
@@ -81,7 +88,7 @@ void line_draw_sameVarXY(Canvas* canvas, Line* line) {
         for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
 
             pixel_draw(canvas, &pix);
-            pix.position.y++;
+            pix.position.y += dy;
         }
 
     } else {
@@ -91,7 +98,7 @@ void line_draw_sameVarXY(Canvas* canvas, Line* line) {
         for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
 
             pixel_draw(canvas, &pix);
-            pix.position.y++;
+            pix.position.y += dy;
         }
     }
 
