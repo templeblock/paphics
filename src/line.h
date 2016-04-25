@@ -24,6 +24,8 @@ void line_draw_naive(Canvas* canvas, Line* line);
 
 void line_draw_dda(Canvas* canvas, Line* line, Point* dist, Point* dist_abs);
 
+void line_draw_bresenham(Canvas* canvas, Line* line, Point* dist);
+
 void line_draw_other(Canvas* canvas, Line* line);
 
 #endif

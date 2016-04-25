@@ -21,7 +21,9 @@ void line_draw(Canvas* canvas, Line* line) {
         if (dist_abs.x == dist_abs.y) {
             line_draw_sameVarXY(canvas, line);
         } else {
+            //line_draw_naive(canvas, line);
             line_draw_dda(canvas, line, &dist, &dist_abs);
+            //line_draw_bresenham(canvas, line, &dist); // still buggy...
         }
     }
 }
@@ -83,7 +85,7 @@ void line_draw_sameVarXY(Canvas* canvas, Line* line) {
 
     if (line->a.x < line->b.x) {
 
-        pix.position.y = line->a.x;
+        pix.position.y = line->a.y;
 
         for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
 
@@ -93,12 +95,12 @@ void line_draw_sameVarXY(Canvas* canvas, Line* line) {
 
     } else {
 
-        pix.position.y = line->b.x;
+        pix.position.y = line->b.y;
 
         for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
 
             pixel_draw(canvas, &pix);
-            pix.position.y += dy;
+            pix.position.y -= dy;
         }
     }
 
@@ -150,8 +152,8 @@ void line_draw_dda(Canvas* canvas, Line* line, Point* dist, Point* dist_abs) {
         lenght = dist_abs->y;
     }
 
-    dx = dist->x / lenght;
-    dy = dist->y / lenght;
+    dx = (float) dist->x / lenght;
+    dy = (float) dist->y / lenght;
 
     x = line->a.x + 0.5;
     y = line->a.y + 0.5;
@@ -167,6 +169,137 @@ void line_draw_dda(Canvas* canvas, Line* line, Point* dist, Point* dist_abs) {
 
         x += dx;
         y += dy;
+    }
+}
+
+void line_draw_bresenham(Canvas* canvas, Line* line, Point* dist) {
+
+    int dx;
+    int dy;
+    int error;
+    Pixel pix;
+
+    dx = dist->x;
+    dy = dist->y;
+
+    pix.color = line->color;
+
+    if (dx > 0) {
+        if (dy > 0) {
+            if (dx >= dy) {
+                error = dx;
+                dx *= 2;
+                dy *= 2;
+                pix.position.y = line->a.y;
+                for (pix.position.x = line->a.x; pix.position.x != line->b.x; pix.position.x++) {
+                    pixel_draw(canvas, &pix);
+                    error -= dy;
+                    if (error < 0) {
+                        pix.position.y++;
+                        error += dx;
+                    }
+                }
+            } else {
+                error = dy;
+                dx *= 2;
+                dy *= 2;
+                pix.position.x = line->a.x;
+                for (pix.position.y = line->a.y; pix.position.y != line->b.y; pix.position.y++) {
+                    pixel_draw(canvas, &pix);
+                    error -= dx;
+                    if (error < 0) {
+                        pix.position.x++;
+                        error += dy;
+                    }
+                }
+            }
+        } else {
+            if (dx >= -dy) {
+                error = dx;
+                dx *= 2;
+                dy *= 2;
+                pix.position.y = line->a.y;
+                for (pix.position.x = line->a.x; pix.position.x != line->b.x; pix.position.x++) {
+                    pixel_draw(canvas, &pix);
+                    error += dy;
+                    if (error < 0) {
+                        pix.position.y--;
+                        error += dx;
+                    }
+                }
+            } else {
+                error = dy;
+                dx *= 2;
+                dy *= 2;
+                pix.position.x = line->a.x;
+                for (pix.position.y = line->a.y; pix.position.y != line->b.y; pix.position.y--) {
+                    pixel_draw(canvas, &pix);
+                    error -= dx;
+                    if (error > 0) {
+                        pix.position.x++;
+                        error -= dy;
+                    }
+                }
+            }
+        }
+    } else {
+        if (dy > 0) {
+            if (-dx >= dy) {
+                error = dx;
+                dx *= 2;
+                dy *= 2;
+                pix.position.y = line->a.y;
+                for (pix.position.x = line->a.x; pix.position.x != line->b.x; pix.position.x--) {
+                    pixel_draw(canvas, &pix);
+                    error += dy;
+                    if (error >= 0) {
+                        pix.position.y++;
+                        error += dx;
+                    }
+                }
+            } else {
+                error = dy;
+                dx *= 2;
+                dy *= 2;
+                pix.position.x = line->a.x;
+                for (pix.position.y = line->a.y; pix.position.y != line->b.y; pix.position.y++) {
+                    pixel_draw(canvas, &pix);
+                    error += dx;
+                    if (error <= 0) {
+                        pix.position.x--;
+                        error += dy;
+                    }
+                }
+            }
+        } else {
+            if (dx <= dy) {
+                error = dx;
+                dx *= 2;
+                dy *= 2;
+                pix.position.y = line->a.y;
+                for (pix.position.x = line->a.x; pix.position.x != line->b.x; pix.position.x--) {
+                    pixel_draw(canvas, &pix);
+                    error -= dy;
+                    if (error >= 0) {
+                        pix.position.y--;
+                        error += dx;
+                    }
+                }
+            } else {
+                error = dy;
+                dx *= 2;
+                dy *= 2;
+                pix.position.x = line->a.x;
+                for (pix.position.y = line->a.y; pix.position.y != line->b.y; pix.position.y--) {
+                    pixel_draw(canvas, &pix);
+                    error -= dx;
+                    if (error >= 0) {
+                        pix.position.x--;
+                        error += dy;
+                    }
+                }
+            }
+        }
     }
 }
 
