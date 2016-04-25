@@ -144,7 +144,7 @@ void line_draw_dda(Canvas* canvas, Line* line, Point* dist, Point* dist_abs) {
     int i;
     Pixel pix;
 
-    if (dist_abs->x >= dist_abs->y) { // change to > when sameVarXY will be implemented
+    if (dist_abs->x > dist_abs->y) {
         lenght = dist_abs->x;
     } else {
         lenght = dist_abs->y;
