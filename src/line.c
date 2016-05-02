@@ -22,8 +22,8 @@ void line_draw(Canvas* canvas, Line* line) {
             line_draw_sameVarXY(canvas, line);
         } else {
             //line_draw_naive(canvas, line);
-            line_draw_dda(canvas, line, &dist, &dist_abs);
-            //line_draw_bresenham(canvas, line, &dist); // still buggy...
+            //line_draw_dda(canvas, line, &dist, &dist_abs);
+            line_draw_bresenham(canvas, line, &dist); // still buggy...
         }
     }
 }
@@ -234,10 +234,10 @@ void line_draw_bresenham(Canvas* canvas, Line* line, Point* dist) {
                 pix.position.x = line->a.x;
                 for (pix.position.y = line->a.y; pix.position.y != line->b.y; pix.position.y--) {
                     pixel_draw(canvas, &pix);
-                    error -= dx;
+                    error += dx;
                     if (error > 0) {
                         pix.position.x++;
-                        error -= dy;
+                        error += dy;
                     }
                 }
             }

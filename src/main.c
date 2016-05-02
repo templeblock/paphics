@@ -45,258 +45,68 @@ void demo() {
 
     Event input = input = event_create();;
 
-    int dx = 0;
-    int dy = 0;
+    Sphere ball;
 
-    Circle circle1;
-    Circle circle2;
-    Circle circle3;
-    Circle circle4;
+    ball.radius = 15;
+    ball.color = 0x123456;
 
-    circle1.center.x = plate.size.x / 2;
-    circle1.center.y = plate.size.y / 2;
+    Point bl;
+    Point br;
+    Point tl;
+    Point tr;
 
-    circle1.radius = 1;
-    circle2.radius = circle1.radius;
-    circle3.radius = circle1.radius;
-    circle4.radius = circle1.radius;
+    bl.x = plate.size.x / 4;
+    bl.y = plate.size.y / 4;
+    tl.x = plate.size.x / 4;
+    tl.y = plate.size.y - plate.size.y / 4;
+    tr.x = plate.size.x - plate.size.x / 4;
+    tr.y = tl.y;
+    br.x = tr.x;
+    br.y = bl.y;
 
-    Sphere sphere1;
+    ball.center = br;
 
-    sphere1.radius = 8 * window.size.x / plate.size.x;;
+    Line line;
 
-    int maxvar = (int) 8 * circle1.radius / (circle1.radius + circle1.radius);
-    int dd;
-    int colorPrem;
+    line.a.x = plate.size.x / 2;
+    line.a.y = plate.size.y / 2;
 
-    Uint32 color;
-    const Uint32 color1 = calc_alea_int(0x000000, 0xFFFFFF);
-    const Uint32 color2 = calc_alea_int(0x000000, 0xFFFFFF);
-    const Uint32 color3 = calc_alea_int(0x000000, 0xFFFFFF);
-    const Uint32 color5 = calc_alea_int(0x000000, 0xFFFFFF);
-    const Uint32 color7 = calc_alea_int(0x000000, 0xFFFFFF);
-    const Uint32 color11 = calc_alea_int(0x000000, 0xFFFFFF);
-    const Uint32 color13 = calc_alea_int(0x000000, 0xFFFFFF);
+    line.color = 0x987654;
 
-    Line line1;
-    Line line2;
-    Line line3;
-    Line line4;
+    canvas_draw_borders_out(&plate, 0xFFFFFF);
+
+    canvas_draw_borders_in(&window, 0xFFFFFF);
 
     while (!input.quit) {
 
         event_update(&input);
 
-        dd = calc_alea_int(1, 7);
-
-        switch (dd) {
-        case 7:
-            dd = 13;
-            break;
-        case 6:
-            dd = 11;
-            break;
-        case 5:
-            dd = 7;
-            break;
-        case 4:
-            dd = 5;
-            break;
-        default:
-            break; // in this case, it has the good value so...
-        }
-
-        if (calc_alea_int(0, 25) == 0) {
-            dx += dd;
-        } else if (calc_alea_int(0, 25) == 25) {
-            dx -= dd;
-        }
-
-        dd = calc_alea_int(1, 7);
-
-        switch (dd) {
-        case 7:
-            dd = 13;
-            break;
-        case 6:
-            dd = 11;
-            break;
-        case 5:
-            dd = 7;
-            break;
-        case 4:
-            dd = 5;
-            break;
-        default:
-            break; // in this case, it has the good value so...
-        }
-
-        if (calc_alea_int(0, 25) == 0) {
-            dy += dd;
-        } else if (calc_alea_int(0, 25) == 25) {
-            dy -= dd;
-        }
-
-        dx += 2 * input.arrows.x;
-        dy += 2 * input.arrows.y;
-
-        //dx++;
-        //dy++;
-
-        while (dy > maxvar) {
-            dy--;
-        }
-        while(dy < -maxvar) {
-            dy++;
-        }
-
-        while (dx > maxvar) {
-            dx--;
-        }
-        while (dx < -maxvar) {
-            dx++;
-        }
-
-        /*if (dx > 0) {
-            while (collision_is_out_of_canvas_x(&plate, circle1.center.x + dx, circle1.radius)) {
-                dx--;
-                circle1.center.x--;
-            }
-        } else {
-            while (collision_is_out_of_canvas_x(&plate, circle1.center.x - dx, circle1.radius)) {
-                dx++;
-                circle1.center.x++;
-            }
-        }
-
-        if (dy > 0) {
-            while (collision_is_out_of_canvas_y(&plate, circle1.center.y + dy, circle1.radius)) {
-                dy--;
-                circle1.center.y--;
-            }
-        } else {
-
-            while (collision_is_out_of_canvas_y(&plate, circle1.center.y - dy, circle1.radius)) {
-                dy++;
-                circle1.center.y++;
-            }
-        }*/
-
-        circle1.center.x += dx;
-        circle1.center.y += dy;
-        circle2.center.x = plate.size.x - circle1.center.x;
-        circle2.center.y = plate.size.y - circle1.center.y;
-        circle3.center.x = circle1.center.x;
-        circle3.center.y = plate.size.y - circle1.center.y;
-        circle4.center.x = plate.size.x - circle1.center.x;
-        circle4.center.y = circle1.center.y;
-
-        if (circle1.center.x > plate.size.x / 2) {
-            colorPrem = circle1.center.x;
-        } else {
-            colorPrem = circle2.center.x;
-        }
-
-        if (colorPrem % 13 == 0) {
-            color = color13;
-        } else if (colorPrem % 11 == 0) {
-            color = color11;
-        }  else if (colorPrem % 7 == 0) {
-            color = color7;
-        }  else if (colorPrem % 5 == 0) {
-            color = color5;
-        }  else if (colorPrem % 3 == 0) {
-            color = color3;
-        }  else if (colorPrem % 2 == 0) {
-            color = color2;
-        }  else {
-            color = color1;
-        }
-
-        circle1.color = color;
-        circle2.color = color;
-        circle3.color = color;
-        circle4.color = color;
-
-        /*sphere1.color = 0xFFFFFF;
-        sphere1.center = circle1.center;
-        sphere1.center.x *= 2;
-        sphere1.center.y *= 2;
-
-        while (sphere1.center.x + 2 * sphere1.radius >= window.size.x) {
-            sphere1.center.x -= 2;
-        }
-
-        while (sphere1.center.x - 2 * sphere1.radius - 2 <= 0) {
-            sphere1.center.x += 2;
-        }
-
-        while (sphere1.center.y + 2 * sphere1.radius + 2 >= window.size.y) {
-            sphere1.center.y -= 2;
-        }
-
-        while (sphere1.center.y - 2 * sphere1.radius - 2 <= 0) {
-            sphere1.center.y += 2;
-        }*/
-
-        canvas_clear(&window);
-
-        if (input.space) {
-            canvas_clear(&window);
-        }
-
-        /*line1.color = color;
-        line2.color = color;
-        line3.color = color;
-        line4.color = color;
-        //line1.color = calc_alea_int(0x000000, 0xFFFFFF);
-        line1.a = sphere1.center;
-        line2.a = sphere1.center;
-        line3.a = sphere1.center;
-        line4.a = sphere1.center;
-
-        line1.b = circle1.center;
-        line2.b = circle2.center;
-        line3.b = circle3.center;
-        line4.b = circle4.center;
-
-        line1.b.x += plate.origin.x;
-        line2.b.x += plate.origin.x;
-        line3.b.x += plate.origin.x;
-        line4.b.x += plate.origin.x;
-
-        line1.b.y += plate.origin.y;
-        line2.b.y += plate.origin.y;
-        line3.b.y += plate.origin.y;
-        line4.b.y += plate.origin.y;*/
-
-        canvas_draw_borders_out(&plate, 0xFFFFFF);
-
         if (input.space) {
             canvas_clear(&plate);
         }
 
-        circle_draw_fill(&plate, &circle1);
-        circle_draw_fill(&plate, &circle2);
-        circle_draw_fill(&plate, &circle3);
-        circle_draw_fill(&plate, &circle4);
+        if (ball.center.x > bl.x && ball.center.y == br.y) {
+            ball.center.x--;
+        } else if (ball.center.y < tl.y && ball.center.x == bl.x) {
+            ball.center.y++;
+        } else if (ball.center.x < tr.x && ball.center.y == tl.y) {
+            ball.center.x++;
+        } else {
+            ball.center.y--;
+        }
+
+        line.b = ball.center;
+
+        line_draw(&plate, &line);
+
+        sphere_draw_fill(&plate, &ball);
 
         canvas_blit(&plate);
-
-        canvas_draw_borders_in(&window, 0xFFFFFF);
-
-        /*line_draw(&window, &line1);
-        line_draw(&window, &line2);
-        line_draw(&window, &line3);
-        line_draw(&window, &line4);
-        sphere_draw_fill(&window, &sphere1);*/
 
         window_update(&w_window);
 
         SDL_Delay(4);
     }
-
-    SDL_Delay(4);
 
     window_destroy(&w_window);
 
