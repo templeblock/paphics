@@ -45,11 +45,6 @@ void demo() {
 
     Event input = input = event_create();;
 
-    Sphere ball;
-
-    ball.radius = 15;
-    ball.color = 0x123456;
-
     Point bl;
     Point br;
     Point tl;
@@ -64,18 +59,22 @@ void demo() {
     br.x = tr.x;
     br.y = bl.y;
 
-    ball.center = br;
-
     Line line;
+
+    line.b = br;
 
     line.a.x = plate.size.x / 2;
     line.a.y = plate.size.y / 2;
 
     line.color = 0x987654;
 
+    rectangle_draw(&plate, bl, tr, 0xFFFFFF);
+
     canvas_draw_borders_out(&plate, 0xFFFFFF);
 
     canvas_draw_borders_in(&window, 0xFFFFFF);
+
+    Point tmp;
 
     while (!input.quit) {
 
@@ -85,21 +84,25 @@ void demo() {
             canvas_clear(&plate);
         }
 
-        if (ball.center.x > bl.x && ball.center.y == br.y) {
-            ball.center.x--;
-        } else if (ball.center.y < tl.y && ball.center.x == bl.x) {
-            ball.center.y++;
-        } else if (ball.center.x < tr.x && ball.center.y == tl.y) {
-            ball.center.x++;
+        if (line.b.x > bl.x && line.b.y == br.y) {
+            line.b.x--;
+        } else if (line.b.y < tl.y && line.b.x == bl.x) {
+            line.b.y++;
+        } else if (line.b.x < tr.x && line.b.y == tl.y) {
+            line.b.x++;
         } else {
-            ball.center.y--;
+            line.b.y--;
         }
 
-        line.b = ball.center;
+        tmp = line.b;
+        line.b = line.a;
+        line.a = tmp;
 
         line_draw(&plate, &line);
 
-        sphere_draw_fill(&plate, &ball);
+        tmp = line.b;
+        line.b = line.a;
+        line.a = tmp;
 
         canvas_blit(&plate);
 

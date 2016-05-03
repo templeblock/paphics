@@ -191,7 +191,7 @@ void line_draw_bresenham(Canvas* canvas, Line* line, Point* dist) {
                 dx *= 2;
                 dy *= 2;
                 pix.position.y = line->a.y;
-                for (pix.position.x = line->a.x; pix.position.x != line->b.x; pix.position.x++) {
+                for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
                     pixel_draw(canvas, &pix);
                     error -= dy;
                     if (error < 0) {
@@ -204,7 +204,7 @@ void line_draw_bresenham(Canvas* canvas, Line* line, Point* dist) {
                 dx *= 2;
                 dy *= 2;
                 pix.position.x = line->a.x;
-                for (pix.position.y = line->a.y; pix.position.y != line->b.y; pix.position.y++) {
+                for (pix.position.y = line->a.y; pix.position.y <= line->b.y; pix.position.y++) {
                     pixel_draw(canvas, &pix);
                     error -= dx;
                     if (error < 0) {
@@ -219,7 +219,7 @@ void line_draw_bresenham(Canvas* canvas, Line* line, Point* dist) {
                 dx *= 2;
                 dy *= 2;
                 pix.position.y = line->a.y;
-                for (pix.position.x = line->a.x; pix.position.x != line->b.x; pix.position.x++) {
+                for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
                     pixel_draw(canvas, &pix);
                     error += dy;
                     if (error < 0) {
@@ -232,7 +232,7 @@ void line_draw_bresenham(Canvas* canvas, Line* line, Point* dist) {
                 dx *= 2;
                 dy *= 2;
                 pix.position.x = line->a.x;
-                for (pix.position.y = line->a.y; pix.position.y != line->b.y; pix.position.y--) {
+                for (pix.position.y = line->a.y; pix.position.y >= line->b.y; pix.position.y--) {
                     pixel_draw(canvas, &pix);
                     error += dx;
                     if (error > 0) {
@@ -249,7 +249,7 @@ void line_draw_bresenham(Canvas* canvas, Line* line, Point* dist) {
                 dx *= 2;
                 dy *= 2;
                 pix.position.y = line->a.y;
-                for (pix.position.x = line->a.x; pix.position.x != line->b.x; pix.position.x--) {
+                for (pix.position.x = line->a.x; pix.position.x >= line->b.x; pix.position.x--) {
                     pixel_draw(canvas, &pix);
                     error += dy;
                     if (error >= 0) {
@@ -262,7 +262,7 @@ void line_draw_bresenham(Canvas* canvas, Line* line, Point* dist) {
                 dx *= 2;
                 dy *= 2;
                 pix.position.x = line->a.x;
-                for (pix.position.y = line->a.y; pix.position.y != line->b.y; pix.position.y++) {
+                for (pix.position.y = line->a.y; pix.position.y <= line->b.y; pix.position.y++) {
                     pixel_draw(canvas, &pix);
                     error += dx;
                     if (error <= 0) {
@@ -277,7 +277,7 @@ void line_draw_bresenham(Canvas* canvas, Line* line, Point* dist) {
                 dx *= 2;
                 dy *= 2;
                 pix.position.y = line->a.y;
-                for (pix.position.x = line->a.x; pix.position.x != line->b.x; pix.position.x--) {
+                for (pix.position.x = line->a.x; pix.position.x >= line->b.x; pix.position.x--) {
                     pixel_draw(canvas, &pix);
                     error -= dy;
                     if (error >= 0) {
@@ -290,7 +290,7 @@ void line_draw_bresenham(Canvas* canvas, Line* line, Point* dist) {
                 dx *= 2;
                 dy *= 2;
                 pix.position.x = line->a.x;
-                for (pix.position.y = line->a.y; pix.position.y != line->b.y; pix.position.y--) {
+                for (pix.position.y = line->a.y; pix.position.y >= line->b.y; pix.position.y--) {
                     pixel_draw(canvas, &pix);
                     error -= dx;
                     if (error >= 0) {
