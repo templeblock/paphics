@@ -1,31 +1,37 @@
 #include "sound.h"
 
-void init_sound() {
+void sound_init() {
 
-    if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) < 0) {
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) < 0) {
         fprintf(stderr, "SDL_mixer could not initialize! SDL_mixer Error:: %s", Mix_GetError());
         graphics_error_quit();
     }
 }
 
-void load_sound(char* nomFichier, Sound* sound) {
+void sound_load(char* nomFichier, Sound* sound) {
 
-    sound->sound = NULL;
+    sound->content = NULL;
 
-    sound->sound = Mix_LoadMUS(nomFichier);
+    sound->content = Mix_LoadMUS(nomFichier);
 
-    if (sound->sound == NULL) {
+    if (sound->content == NULL) {
         fprintf(stderr, "Failed to load sound! SDL_mixer Error: %s\n", SDL_GetError());
         graphics_error_quit();
     }
 }
 
-void play_music(Sound* music) {
-    // on joue infiniment la musique
-    Mix_PlayMusic(music->sound, -1);
+void sound_play(Sound* sound) {
+    Mix_PlayMusic(sound->content, -1);
 }
 
-void quit_mixer_SDL(Sound* sound) {
-    Mix_FreeMusic(sound->sound);
+void sound_play_once(Sound* sound) {
+    Mix_PlayMusic(sound->content, 1);
+}
+
+void sound_free(Sound* sound) {
+    Mix_FreeMusic(sound->content);
+}
+
+void sound_quit() {
     Mix_CloseAudio();
 }

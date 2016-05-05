@@ -5,19 +5,19 @@
 #include "graphics.h"
 
 typedef struct {
-    Mix_Music* sound;
+    Mix_Music* content;
 } Sound;
 
-// initialise le son
-void init_sound();
+void sound_init();
 
-// charge un son
-void load_sound(char* nomFichier, Sound* sound);
+void sound_load(char* nomFichier, Sound* sound);
 
-// joue indéfiniment une musique
-void play_music(Sound* music);
+void sound_play(Sound* music);
 
-// libère la place prise par la musique et ferme l'audio
-void quit_mixer_SDL(Sound* sound);
+void sound_play_once(Sound* music);
+
+void sound_free(Sound* sound);
+
+void sound_quit();
 
 #endif
