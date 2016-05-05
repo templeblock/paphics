@@ -16,6 +16,17 @@ int main(int argc, char** args) {
     return EXIT_SUCCESS;
 }
 
+void psycheLine(Canvas* window, Line* line, int j) {
+
+    line_draw(window, line);
+
+    if (line->b.x != 0 || line->b.y != 0) {
+        if ((line->b.x + line->b.y) % j == 0) {
+            line->color = 0x008800 - line->color;
+        }
+    }
+}
+
 void demo() {
 
     graphics_init(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_AUDIO);
@@ -31,87 +42,55 @@ void demo() {
 
     canvas_create_from_window(&window, &w_window);
 
-    Point plate_size = window.size;
-    plate_size.x /= 2;
-    plate_size.y /= 2;
-
-    Point plate_origin = plate_size;
-    plate_origin.x /= 2;
-    plate_origin.y /= 2;
-
-    Canvas plate;
-
-    canvas_create(&plate, &plate_size, &plate_origin, &window);
-
-    Event input = input = event_create();;
+    Event input = event_create();;
 
     Point bl;
     Point br;
     Point tl;
     Point tr;
 
-    bl.x = plate.size.x / 4;
-    bl.y = plate.size.y / 4;
-    tl.x = plate.size.x / 4;
-    tl.y = plate.size.y - plate.size.y / 4;
-    tr.x = plate.size.x - plate.size.x / 4;
-    tr.y = tl.y;
-    br.x = tr.x;
-    br.y = bl.y;
+    bl.x = 0;
+    bl.y = 0;
+    tl.x = 0;
+    tl.y = screen_size.y - 1;
+    tr.x = screen_size.x - 1;
+    tr.y = screen_size.y - 1;
+    br.x = screen_size.x - 1;
+    br.y = 0;
 
     Line line;
 
+    line.a.x = screen_size.x / 2;
+    line.a.y = screen_size.y / 2;
+
+    line.color = 0x000000;
     line.b = br;
 
-    line.a.x = plate.size.x / 2;
-    line.a.y = plate.size.y / 2;
-
-    line.color = 0x987654;
-
-    rectangle_draw(&plate, bl, tr, 0xFFFFFF);
-
-    canvas_draw_borders_out(&plate, 0xFFFFFF);
-
-    canvas_draw_borders_in(&window, 0xFFFFFF);
-
-    Point tmp;
-
-    while (!input.quit) {
+    for (int j = 1; j < 10000 && !input.quit; j++) {
 
         event_update(&input);
 
-        if (input.space) {
-            canvas_clear(&plate);
+        for (line.b = br; line.b.x >= bl.x; line.b.x--) {
+            psycheLine(&window, &line, j);
         }
 
-        if (line.b.x > bl.x && line.b.y == br.y) {
-            line.b.x--;
-        } else if (line.b.y < tl.y && line.b.x == bl.x) {
-            line.b.y++;
-        } else if (line.b.x < tr.x && line.b.y == tl.y) {
-            line.b.x++;
-        } else {
-            line.b.y--;
+        for (line.b = bl; line.b.y <= tl.y; line.b.y++) {
+            psycheLine(&window, &line, j);
         }
 
-        tmp = line.b;
-        line.b = line.a;
-        line.a = tmp;
+        for (line.b = tl; line.b.x <= tr.x; line.b.x++) {
+            psycheLine(&window, &line, j);
+        }
 
-        line_draw(&plate, &line);
+        for (line.b = tr; line.b.y >= br.y; line.b.y--) {
+            psycheLine(&window, &line, j);
+        }
 
-        tmp = line.b;
-        line.b = line.a;
-        line.a = tmp;
-
-        canvas_blit(&plate);
+        // SDL_Delay(100);
 
         window_update(&w_window);
-
-        SDL_Delay(4);
     }
 
-    window_destroy(&w_window);
 
     graphics_quit();
 
