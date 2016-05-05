@@ -4,36 +4,20 @@ bool canvas_collision_canvas(Canvas* canvas1, Canvas* canvas2) {
 
     bool collision;
 
-    collision = canvas_collision_canvas_x(canvas1, canvas2) || canvas_collision_canvas_y(canvas1, canvas2);
-
-    return collision;
-}
-
-bool canvas_collision_canvas_x(Canvas* canvas1, Canvas* canvas2) {
-
-    bool collision;
-
-    if (canvas1->origin.x > canvas2->origin.x && canvas1->origin.x < canvas2->origin.x + canvas2->size.x ) {
+    if (canvas1->origin.x >= canvas2->origin.x && canvas1->origin.x < canvas2->origin.x + canvas2->size.x) {
+      if (canvas1->origin.y >= canvas2->origin.y && canvas1->origin.y < canvas2->origin.y + canvas2->size.y) {
         collision = true;
-    } else if (canvas2->origin.x > canvas1->origin.x && canvas2->origin.x < canvas1->origin.x + canvas1->size.x ) {
+      } else if (canvas1->origin.y + canvas1->size.y >= canvas2->origin.y && canvas1->origin.y + canvas1->size.y < canvas2->origin.y && canvas1->origin.y ) {
         collision = true;
+      }
+    } else if (canvas1->origin.x + canvas1->size.x >= canvas2->origin.x && canvas1->origin.x + canvas1->size.x < canvas2->origin.x + canvas2->size.x) {
+      if (canvas1->origin.y >= canvas2->origin.y && canvas1->origin.y < canvas2->origin.y + canvas2->size.y) {
+        collision = true;
+      } else if (canvas1->origin.y + canvas1->size.y >= canvas2->origin.y && canvas1->origin.y + canvas1->size.y < canvas2->origin.y && canvas1->origin.y ) {
+        collision = true;
+      }
     } else {
-        collision = false;
-    }
-
-    return collision;
-}
-
-bool canvas_collision_canvas_y(Canvas* canvas1, Canvas* canvas2) {
-
-    bool collision;
-
-    if (canvas1->origin.y > canvas2->origin.y && canvas1->origin.y < canvas2->origin.y + canvas2->size.y ) {
-        collision = true;
-    } else if (canvas2->origin.y > canvas1->origin.y && canvas2->origin.y < canvas1->origin.y + canvas1->size.y ) {
-        collision = true;
-    } else {
-        collision = false;
+      collision = false;
     }
 
     return collision;

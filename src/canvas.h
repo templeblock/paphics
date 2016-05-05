@@ -19,10 +19,6 @@ typedef struct Canvas {
 
 bool canvas_collision_canvas(Canvas* canvas1, Canvas* canvas2);
 
-bool canvas_collision_canvas_x(Canvas* canvas1, Canvas* canvas2);
-
-bool canvas_collision_canvas_y(Canvas* canvas1, Canvas* canvas2);
-
 bool canvas_is_out_of_parent_bottom(Canvas* canvas);
 
 bool canvas_is_out_of_parent_left(Canvas* canvas);
