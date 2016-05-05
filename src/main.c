@@ -20,7 +20,7 @@ void psycheLine(Canvas* window, Line* line, int j) {
 
     line_draw(window, line);
 
-    if (line->b.x != 0 || line->b.y != 0) {
+    if ((line->b.x != 0 || line->b.y != 0) && j != 0) {
         if ((line->b.x + line->b.y) % j == 0) {
             line->color = 0x008800 - line->color;
         }
@@ -66,7 +66,18 @@ void demo() {
     line.color = 0x000000;
     line.b = br;
 
-    for (int j = 1; j < 10000 && !input.quit; j++) {
+    int j = 0;
+    int i = 1;
+
+    while(!input.quit) {
+
+        canvas_clear(&window);
+
+        if(j > 60) {
+            i = -1;
+        } else if (j <= 1) {
+            i = 1;
+        }
 
         event_update(&input);
 
@@ -86,9 +97,13 @@ void demo() {
             psycheLine(&window, &line, j);
         }
 
-        // SDL_Delay(100);
+        j += i;
 
-        window_update(&w_window);
+        if ((line.b.x != 0 || line.b.y != 0) && j != 0) {
+            window_update(&w_window);
+        }
+
+        SDL_Delay(4);
     }
 
 
