@@ -55,6 +55,8 @@ void canvas_draw_borders_in(Canvas* canvas, Uint32 color);
 
 void canvas_draw_borders_out(Canvas* canvas, Uint32 color);
 
-void canvas_load_img(Canvas* canvas, char* pathToImg);
+void canvas_load_img_naive(Canvas* canvas, char* pathToImg);
+
+void canvas_load_img_scaled(Canvas* canvas, char* pathToImg);
 
 #endif
