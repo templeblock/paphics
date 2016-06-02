@@ -12,7 +12,7 @@ Dans un terminal, en tant que root:
 
 Puis, en tant qu'utilisateur lambda:
 
-    git clone https://github.com/Sancho-Panza/graphics.git
+    git clone https://github.com/zapashcanon/graphics.git
 
 Enfin, en tant que root, se placer dans le répertoire récupéré précedemment et:
 
