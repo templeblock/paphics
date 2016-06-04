@@ -9,12 +9,16 @@ bool canvas_collision_canvas(Canvas* canvas1, Canvas* canvas2) {
             collision = true;
         } else if (canvas1->origin.y + canvas1->size.y >= canvas2->origin.y && canvas1->origin.y + canvas1->size.y < canvas2->origin.y && canvas1->origin.y ) {
             collision = true;
+        } else {
+          collision = false;
         }
     } else if (canvas1->origin.x + canvas1->size.x >= canvas2->origin.x && canvas1->origin.x + canvas1->size.x < canvas2->origin.x + canvas2->size.x) {
         if (canvas1->origin.y >= canvas2->origin.y && canvas1->origin.y < canvas2->origin.y + canvas2->size.y) {
             collision = true;
         } else if (canvas1->origin.y + canvas1->size.y >= canvas2->origin.y && canvas1->origin.y + canvas1->size.y < canvas2->origin.y && canvas1->origin.y ) {
             collision = true;
+        } else {
+          collision = false;
         }
     } else {
         collision = false;
