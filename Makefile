@@ -18,7 +18,7 @@ FORMATTERFLAGS := --style=java --indent=spaces=4 -xn -xc -S -N -L -w -xw -Y -m2 
 
 INCLUDE	:= -I$(SRC_DIR) -I$(HEAD_DIR) -I/usr/include
 
-LIBS := -L/usr/lib -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL2_mixer-2.0
+LIBS := -L/usr/lib -L/usr/local/lib -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL2_mixer-2.0
 
 TARGET := $(NAME).out
 TARGET_STATIC := lib$(NAME).a
@@ -34,6 +34,8 @@ DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-m
 default: all
 
 all: format build-static-lib build-dynamic-lib run clean
+
+install: copy-dynamic-lib mrproper
 
 install-dep-debian:
 	apt-get install $(DEP_DEBIAN)
@@ -67,6 +69,9 @@ build-dynamic-lib: $(TARGET_DYNAMIC)
 
 $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
 	$(CC) -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS) -shared -fPIC
+
+copy-dynamic-lib:
+	cp $(TARGET_DYNAMIC) /usr/local/lib/
 
 run:
 	./$(TARGET)
