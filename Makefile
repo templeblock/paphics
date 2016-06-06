@@ -68,7 +68,7 @@ $(TARGET_STATIC): build
 build-dynamic-lib: $(TARGET_DYNAMIC)
 
 $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
-	$(CC) -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS) -shared -fPIC
+	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
 
 copy-dynamic-lib:
 	cp $(TARGET_DYNAMIC) /usr/local/lib/
