@@ -37,6 +37,8 @@ all: format build-dynamic-lib clean
 
 install: copy-dynamic-lib mrproper
 
+install-dev: copy-headers
+
 install-dep-debian:
 	apt-get install $(DEP_DEBIAN)
 
@@ -75,6 +77,10 @@ copy-dynamic-lib:
 
 export-lib-path:
 	echo export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH >> ~/.profile
+
+copy-headers:
+	mkdir -p /usr/local/include/$(NAME)/
+	cp $(H_FILES) /usr/local/include/$(NAME)/
 
 run:
 	./$(TARGET)
