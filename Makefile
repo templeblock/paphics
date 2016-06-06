@@ -77,4 +77,4 @@ clean:
 	-rm -rf $(LOG_DIR)/*
 
 mrproper: clean
-	-rm -rf $(TARGET)
+	-rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC)
