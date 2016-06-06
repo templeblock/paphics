@@ -46,7 +46,7 @@ Pour utiliser la bibliothèque dans un projet annexe, il suffit d'ajouter le fla
 
 Puis d'inclure le fichier contenant tous les headers:
 
-    <graphics/graphics.h>
+    #include <graphics/graphics.h>
 
 Il est possible que les fichiers ne soient pas trouvés, il faut alors ajouter ceci au moment de la compilation:
 
