@@ -48,3 +48,11 @@ Puis d'inclure les fichiers nécessaires, par exemple:
 
     <graphics/graphics.h>
     <graphics/screen.h>
+
+Il est possible que les fichiers ne soient pas trouvés, il faut alors ajouter ceci au moment de la compilation:
+
+    -I/usr/local/lib
+
+Et ceci au moment de l'édition de liens:
+
+    -L/usr/local/lib
