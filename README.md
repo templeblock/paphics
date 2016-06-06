@@ -36,6 +36,7 @@ Puis installer les dépendances.
 ## Installation
 
     # make install
+    # make install-dev
 
 ## Utilisation
 
@@ -43,6 +44,7 @@ Pour utiliser la bibliothèque dans un projet annexe, il suffit d'ajouter le fla
 
     -lgraphics
 
-Puis d'inclure le fichier suivant dans les fichiers faisant appel à la bibliothèque:
+Puis d'inclure les fichiers nécessaires, par exemple:
 
-    <graphics.h>
+    <graphics/graphics.h>
+    <graphics/screen.h>
