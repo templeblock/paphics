@@ -13,6 +13,8 @@
 #include "calc.h"
 #include "quadrilateral.h"
 
-void demo();
+void demo(void);
+
+void psycheLine(Canvas* window, Line* line, int j);
 
 #endif

@@ -6,16 +6,16 @@ void rectangle_draw(Canvas* canvas, Point a, Point b, Uint32 color) {
     Line m;
     Line n;
     Line o;
-
+    
     Point c;
     Point d;
-
+    
     c.x = a.x;
     c.y = b.y;
-
+    
     d.x = b.x;
     d.y = a.y;
-
+    
     l.a = a;
     l.b = c;
     m.a = b;
@@ -24,17 +24,17 @@ void rectangle_draw(Canvas* canvas, Point a, Point b, Uint32 color) {
     n.b = d;
     o.a = b;
     o.b = d;
-
+    
     l.color = color;
     m.color = color;
     n.color = color;
     o.color = color;
-
+    
     line_draw(canvas, &l);
     line_draw(canvas, &m);
     line_draw(canvas, &n);
     line_draw(canvas, &o);
-
+    
 }
 
 void rectangle_draw_fill(Canvas* canvas, Point a, Point b, Uint32 color) {
@@ -45,11 +45,11 @@ void rectangle_draw_fill(Canvas* canvas, Point a, Point b, Uint32 color) {
     Point top_right;
     Point bottom_tmp;
     Point top_tmp;
-
+    
     Line line;
-
+    
     line.color = color;
-
+    
     if (a.x <= b.x) {
         bottom_left.x = a.x;
         top_left.x = a.x;
@@ -59,7 +59,7 @@ void rectangle_draw_fill(Canvas* canvas, Point a, Point b, Uint32 color) {
         top_left.x = b.x;
         top_right.x = a.x;
     }
-
+    
     if (a.y <= b.y) {
         bottom_left.y = a.y;
         top_right.y = b.y;
@@ -69,10 +69,10 @@ void rectangle_draw_fill(Canvas* canvas, Point a, Point b, Uint32 color) {
         top_right.y = a.y;
         top_left.y = a.y;
     }
-
+    
     top_tmp = top_left;
     bottom_tmp = bottom_left;
-
+    
     for (i = 0; i < top_right.x - bottom_left.x; i++) {
         bottom_tmp.x += 1; // replacing 1 per i gives a funny effect
         top_tmp.x += 1;

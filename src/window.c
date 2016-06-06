@@ -5,14 +5,14 @@ void window_create(Window* window, char* title, Point* position, Point* size, Ui
     window->title = title;
     window->position = *position;
     window->window = NULL;
-
+    
     window->window = SDL_CreateWindow(title, position->x, position->y, size->x, size->y, flags);
-
+    
     if (window->window == NULL) {
         fprintf(stderr, "\nWindow could not be created! SDL_Error: %s\n", SDL_GetError());
         graphics_error_quit();
     }
-
+    
 }
 
 void window_destroy(Window* window) {

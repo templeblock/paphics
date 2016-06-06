@@ -85,89 +85,89 @@ void quadrilateral_draw(Canvas canvas, Point p1, Point p2, Point p3, Point p4, U
     Line line2;
     Line line3;
     Line line4;
-
+    
     point_sort_leftToRight(4, leftToRight, p1, p2, p3, p4);
     point_sort_topToBottom(4, topToBottom, p1, p2, p3, p4);
-
+    
     printf("\nGauche[0]: (%d, %d)", leftToRight[0].x, leftToRight[0].y);
     printf("\nGauche[1]: (%d, %d)", leftToRight[1].x, leftToRight[1].y);
     printf("\nGauche[2]: (%d, %d)", leftToRight[2].x, leftToRight[2].y);
     printf("\nGauche[3]: (%d, %d)\n", leftToRight[3].x, leftToRight[3].y);
-
+    
     printf("\nHaut[0]: (%d, %d)", topToBottom[0].x, topToBottom[0].y);
     printf("\nHaut[1]: (%d, %d)", topToBottom[1].x, topToBottom[1].y);
     printf("\nHaut[2]: (%d, %d)", topToBottom[2].x, topToBottom[2].y);
     printf("\nHaut[3]: (%d, %d)\n", topToBottom[3].x, topToBottom[3].y);
-
+    
     if (equals(leftToRight[0], topToBottom[3])) {
-
+    
         line1.a = leftToRight[0];
         line1.b = leftToRight[1];
-
+        
         line2.a = leftToRight[0];
         line2.b = topToBottom[2];
-
+        
         if (equals(line1.a, leftToRight[2]) || equals(line1.b, leftToRight[2]) || equals(line2.b, leftToRight[2])) {
             tmp = leftToRight[3];
         } else {
             tmp = leftToRight[4];
         }
-
+        
         line3.a = topToBottom[2];
         line3.b = tmp;
-
+        
         line4.a = leftToRight[1];
         line4.b = tmp;
-
+        
     } else if (equals(leftToRight[0], topToBottom[0])) {
-
+    
         line1.a = leftToRight[0];
         line1.b = leftToRight[1];
-
+        
         line2.a = leftToRight[0];
         line2.b = topToBottom[1];
-
+        
         if (equals(line1.a, leftToRight[2]) || equals(line1.b, leftToRight[2]) || equals(line2.b, leftToRight[2])) {
             tmp = leftToRight[3];
         } else {
             tmp = leftToRight[4];
         }
-
+        
         line3.a = topToBottom[1];
         line3.b = tmp;
-
+        
         line4.a = leftToRight[1];
         line4.b = tmp;
-
+        
     } else {
-
+    
         line1.a = leftToRight[0];
         line1.b = topToBottom[0];
-
+        
         line2.a = leftToRight[0];
         line2.b = topToBottom[3];
-
+        
         if (equals(line1.a, topToBottom[1])) {
             tmp = topToBottom[2];
         } else {
             tmp = topToBottom[1];
         }
-
+        
         line3.a = tmp;
         line3.b = topToBottom[0];
-
+        
         line4.a = tmp;
         line4.b = topToBottom[3];
     }
-
+    
     line1.color = color;
     line2.color = color;
     line3.color = color;
     line4.color = color;
-
+    
     line_draw(&canvas, &line1);
     line_draw(&canvas, &line2);
     line_draw(&canvas, &line3);
     line_draw(&canvas, &line4);
-
+    
 }

@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-float calc_alea_float();
+float calc_alea_float(void);
 
 int calc_alea_int(int min, int max);
 

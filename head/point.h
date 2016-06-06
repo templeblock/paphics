@@ -10,7 +10,7 @@ typedef struct {
     int y;
 } Point;
 
-bool equals(Point p1, Point p2);
+bool equals(Point p1, Point p2) __attribute__((const));
 
 int point_distance(Point a, Point b);
 

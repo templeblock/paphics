@@ -8,10 +8,7 @@
 typedef struct {
     Point position;
     Uint32 color;
-    // void (*pDraw)(Canvas, Pixel);
 } Pixel;
-
-Pixel pixel_create();
 
 void pixel_draw(Canvas* canvas, Pixel* pixel);
 

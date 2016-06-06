@@ -11,9 +11,9 @@ void sound_init() {
 void sound_load(char* nomFichier, Sound* sound) {
 
     sound->content = NULL;
-
+    
     sound->content = Mix_LoadMUS(nomFichier);
-
+    
     if (sound->content == NULL) {
         fprintf(stderr, "Failed to load sound! SDL_mixer Error: %s\n", SDL_GetError());
         graphics_error_quit();
