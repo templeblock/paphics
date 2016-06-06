@@ -6,12 +6,25 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-void graphics_error_quit(void);
+#include "error.h"
+#include "point.h"
+#include "pixel.h"
+#include "canvas.h"
+#include "line.h"
+#include "window.h"
+#include "collision.h"
+#include "screen.h"
+#include "color.h"
+#include "circle.h"
+#include "sound.h"
+#include "calc.h"
+#include "rectangle.h"
+#include "quadrilateral.h"
+#include "event.h"
+#include "sphere.h"
 
 void graphics_init(Uint32 flags);
 
 void graphics_quit(void);
-
-void graphics_translate_color(Uint32 int_color, SDL_Color* color);
 
 #endif
