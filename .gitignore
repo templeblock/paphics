@@ -33,3 +33,7 @@
 
 # Astyle
 *.orig
+
+# Logs
+*.log
+./log/*
