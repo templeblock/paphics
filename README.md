@@ -2,30 +2,47 @@
 
 Graphics library written in C and based on SDL 2.0
 
-## Debian et dérivés
+## Récupérer le code source
 
-### Récupérer le code et installer les dépendances
+### Installation de git
 
-Dans un terminal, en tant que root:
+Pour récupérer le code et pouvoir contribuer au projet, il faut installer git.
 
-    apt-get install git make
+#### Sous Debian et distributions dérivées (Ubuntu, Mint, etc.)
 
-Puis, en tant qu'utilisateur lambda:
+    # apt-get install git
 
-    git clone https://github.com/zapashcanon/graphics.git
+### Cloner le projet avec git
 
-Enfin, en tant que root, se placer dans le répertoire récupéré précedemment et:
+    $ git clone https://github.com/zapashcanon/graphics.git
 
-    make install
+## Installation des dépendances
 
-### Compilation
+Il faut se placer dans le répertoire récupéré précedemment.
 
-#### En ligne de commande
+    $ cd graphics/
 
-En tant qu'utilisateur lambda dans un terminal, se placer dans le répertoire récupéré précedemment et:
+Puis installer les dépendances.
 
-    make all
+### Sous Debian et distributions dérivées (Ubuntu, Mint, etc.)
+
+    # make install-dep-debian
+    # make install-dep-dev-debian
+
+## Compilation
+
+    $ make
+
+## Installation
+
+    # make install
 
 ## Utilisation
 
-Le moyen le plus simple d'utiliser la bibliothèque est de remplacer le contenu des fichiers main.c et main.h en faisant juste en sorte de garder les fichiers inclus, puis d'ajouter ses propres fichiers - toujours dans le répertoire src. Pour changer le nom de l'exécutable produit, il suffit de remplacer la valeur de NAME dans le Makefile.
+Pour utiliser la bibliothèque dans un projet annexe, il suffit d'ajouter le flag suivant au moment de la compilation:
+
+    -lgraphics
+
+Puis d'inclure le fichier suivant dans les fichiers faisant appel à la bibliothèque:
+
+    <graphics.h>
