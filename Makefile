@@ -22,7 +22,7 @@ LIBS := -L/usr/lib -L/usr/local/lib -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL2_mixer
 
 TARGET := $(NAME).out
 TARGET_STATIC := lib$(NAME).a
-TARGET_DYNAMIC := lib$(NAME).so.$(VERSION)
+TARGET_DYNAMIC := lib$(NAME).so
 H_FILES	:= $(wildcard $(HEAD_DIR)/*.h)
 C_FILES	:= $(wildcard $(SRC_DIR)/*.c)
 O_FILES := $(C_FILES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
@@ -33,7 +33,7 @@ DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-m
 
 default: all
 
-all: format build-static-lib build-dynamic-lib run clean
+all: format build-dynamic-lib clean
 
 install: copy-dynamic-lib mrproper
 
