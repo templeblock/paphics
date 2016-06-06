@@ -48,7 +48,10 @@ install-dep-dev-debian:
 format:
 	$(FORMATTER) $(FORMATTERFLAGS) $(C_FILES) $(H_FILES)
 
-build: $(TARGET)
+build: $(LOG_DIR) $(TARGET)
+
+$(LOG_DIR):
+	mkdir -p $(LOG_DIR)
 
 $(BUILD_DIR)/%.a:
 	cd $(SRC_DIR)/$* && $(MAKE) all
@@ -62,12 +65,12 @@ $(BUILD_DIR):
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c Makefile $(BUILD_DIR)
 	$(CC) -o $@ -x c -c $< $(CFLAGS) $(INCLUDE)
 
-build-static-lib: $(TARGET_STATIC)
+build-static-lib: $(LOG_DIR) $(TARGET_STATIC)
 
 $(TARGET_STATIC): build
 	ar -q lib$(NAME).a $(TARGET)
 
-build-dynamic-lib: $(TARGET_DYNAMIC)
+build-dynamic-lib: $(LOG_DIR) $(TARGET_DYNAMIC)
 
 $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
 	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
@@ -85,7 +88,7 @@ run:
 clean:
 	-rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig
 	-rm -rf $(BUILD_DIR) *.tgz
-	-rm -rf $(LOG_DIR)/*
+	-rm -rf $(LOG_DIR)
 
 mrproper: clean
 	-rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC)
