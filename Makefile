@@ -73,6 +73,9 @@ $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
 copy-dynamic-lib:
 	cp $(TARGET_DYNAMIC) /usr/local/lib/
 
+export-lib-path:
+	echo export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH >> ~/.profile
+
 run:
 	./$(TARGET)
 
