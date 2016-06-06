@@ -2,7 +2,7 @@
 #define DEF_WINDOW_H
 
 #include <SDL2/SDL.h>
-#include "graphics.h"
+#include "error.h"
 #include "point.h"
 
 typedef struct {

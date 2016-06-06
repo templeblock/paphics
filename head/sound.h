@@ -2,7 +2,7 @@
 #define DEF_SOUND_H
 
 #include <SDL2/SDL_mixer.h>
-#include "graphics.h"
+#include "error.h"
 
 typedef struct {
     Mix_Music* content;

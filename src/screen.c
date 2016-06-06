@@ -6,7 +6,7 @@ void screen_get_size(Point* screenSize) {
     
     if (SDL_GetDesktopDisplayMode(0, &tmp) != 0) {
         fprintf(stderr, "\nSDL_GetDesktopDisplayMode failed: %s\n", SDL_GetError());
-        graphics_error_quit();
+        error_quit();
     }
     
     screenSize->x = tmp.w;

@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "graphics.h"
+#include "error.h"
 #include "window.h"
 #include "point.h"
 

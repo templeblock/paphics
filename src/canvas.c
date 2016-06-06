@@ -182,7 +182,7 @@ void canvas_blit(Canvas* canvas) {
     
     if (SDL_BlitSurface(canvas->surface, NULL, (canvas->parent)->surface, &dest_rect) < 0) {
         fprintf(stderr, "\nBlit failed: %s\n", SDL_GetError());
-        graphics_error_quit();
+        error_quit();
     }
     
     if (canvas->origin.x < 0 || canvas->origin.x + canvas->size.x >= canvas->parent->size.x) {
@@ -206,7 +206,7 @@ void canvas_create(Canvas* canvas, Point* size, Point* origin, Canvas* parent) {
     
     if (canvas->surface == NULL) {
         fprintf(stderr, "CreateRGBSurface failed: %s\n", SDL_GetError());
-        graphics_error_quit();
+        error_quit();
     }
     
     canvas->size = *size;
@@ -279,7 +279,7 @@ void canvas_load_img_naive(Canvas* canvas, char* pathToImg) {
     
     if (tmp == NULL) {
         fprintf(stderr, "\nUnable to load image %s! SDL Error: %s\n", pathToImg, SDL_GetError());
-        graphics_error_quit();
+        error_quit();
     }
     
     SDL_BlitSurface(tmp, NULL, canvas->surface, NULL );
@@ -298,7 +298,7 @@ void canvas_load_img_scaled(Canvas* canvas, char* pathToImg) {
     
     if (tmp == NULL) {
         fprintf(stderr, "\nUnable to load image %s! SDL Error: %s\n", pathToImg, SDL_GetError());
-        graphics_error_quit();
+        error_quit();
     }
     
     SDL_BlitScaled(tmp, NULL, canvas->surface, NULL );

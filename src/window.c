@@ -10,7 +10,7 @@ void window_create(Window* window, char* title, Point* position, Point* size, Ui
     
     if (window->window == NULL) {
         fprintf(stderr, "\nWindow could not be created! SDL_Error: %s\n", SDL_GetError());
-        graphics_error_quit();
+        error_quit();
     }
     
 }
