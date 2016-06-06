@@ -44,10 +44,9 @@ Pour utiliser la bibliothèque dans un projet annexe, il suffit d'ajouter le fla
 
     -lgraphics
 
-Puis d'inclure les fichiers nécessaires, par exemple:
+Puis d'inclure le fichier contenant tous les headers:
 
     <graphics/graphics.h>
-    <graphics/screen.h>
 
 Il est possible que les fichiers ne soient pas trouvés, il faut alors ajouter ceci au moment de la compilation:
 
