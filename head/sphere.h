@@ -5,6 +5,7 @@
 #include "point.h"
 #include "canvas.h"
 #include "circle.h"
+#include "color.h"
 
 typedef struct {
     Point center;

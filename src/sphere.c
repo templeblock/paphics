@@ -13,7 +13,7 @@ void sphere_draw_fill(Canvas* canvas, Sphere* sphere) {
     SDL_Color colorTmp;
     Circle circle;
     
-    graphics_translate_color(sphere->color, &color);
+    color_translate(sphere->color, &color);
     
     nb_step = (int) (((float) sphere->radius) * 0.5f);
     
