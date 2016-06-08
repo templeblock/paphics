@@ -9,7 +9,7 @@ void window_create(Window* window, char* title, Point* position, Point* size, Ui
     window->window = SDL_CreateWindow(title, position->x, position->y, size->x, size->y, flags);
     
     if (window->window == NULL) {
-        fprintf(stderr, "\nWindow could not be created! SDL_Error: %s\n", SDL_GetError());
+        fprintf(stderr, "\nWindow can not be created! SDL_Error: %s\n", SDL_GetError());
         error_quit();
     }
     
@@ -27,5 +27,8 @@ void window_destroy(Window* window) {
 
 void window_update(Window* window) {
 
-    SDL_UpdateWindowSurface(window->window);
+    if (SDL_UpdateWindowSurface(window->window) != 0) {
+        fprintf(stderr, "\nWindow can not be updated! SDL_Error: %s\n", SDL_GetError());
+        error_quit();
+    }
 }
