@@ -12,7 +12,12 @@ void graphics_start(Uint32 flags) {
             error_quit();
         }
         
-        IMG_Init(IMG_INIT_JPG);
+        const int imgFlags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
+        
+        if ((IMG_Init(imgFlags) & imgFlags) != imgFlags) {
+            fprintf(stderr, "\nUnable to initialize SDL_IMAGE: %s\n", IMG_GetError());
+            error_quit();
+        }
     }
     
 }
