@@ -22,6 +22,7 @@
 #include "quadrilateral.h"
 #include "event.h"
 #include "sphere.h"
+#include "image.h"
 
 void graphics_init(Uint32 flags);
 
