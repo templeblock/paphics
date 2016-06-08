@@ -3,7 +3,6 @@
 
 #include <stdbool.h>
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include "error.h"
 #include "window.h"
 #include "point.h"
@@ -54,9 +53,5 @@ void canvas_create_from_window(Canvas* canvas, Window* window);
 void canvas_draw_borders_in(Canvas* canvas, Uint32 color);
 
 void canvas_draw_borders_out(Canvas* canvas, Uint32 color);
-
-void canvas_load_img_naive(Canvas* canvas, char* pathToImg);
-
-void canvas_load_img_scaled(Canvas* canvas, char* pathToImg);
 
 #endif
