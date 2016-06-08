@@ -17,8 +17,12 @@ void window_create(Window* window, char* title, Point* position, Point* size, Ui
 
 void window_destroy(Window* window) {
 
-    SDL_DestroyWindow(window->window);
-    window->window = NULL;
+    if (window->window == NULL) {
+        fprintf(stderr, "\nWarning: trying to destroy a NULL window.\n");
+    } else {
+        SDL_DestroyWindow(window->window);
+        window->window = NULL;
+    }
 }
 
 void window_update(Window* window) {
