@@ -35,7 +35,9 @@ default: all
 
 all: format build-dynamic-lib clean
 
-install: copy-dynamic-lib mrproper
+install-all: install install-dev
+
+install: copy-dynamic-lib
 
 install-dev: copy-headers
 
@@ -76,9 +78,11 @@ $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
 	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
 
 copy-dynamic-lib:
+	rm -rf /usr/local/lib/$(TARGET_DYNAMIC)
 	cp $(TARGET_DYNAMIC) /usr/local/lib/
 
 copy-headers:
+	rm -rf /usr/local/include/$(NAME)/*
 	mkdir -p /usr/local/include/$(NAME)/
 	cp $(H_FILES) /usr/local/include/$(NAME)/
 
