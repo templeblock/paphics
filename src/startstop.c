@@ -7,8 +7,6 @@ void graphics_start(Uint32 flags) {
         error_quit();
     } else {
     
-        SDL_SetMainReady();
-        
         if (SDL_Init(flags) == -1) {
             fprintf(stderr, "\nUnable to initialize SDL: %s\n", SDL_GetError());
             error_quit();
