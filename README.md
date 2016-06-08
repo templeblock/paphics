@@ -35,8 +35,7 @@ Puis installer les dépendances.
 
 ## Installation
 
-    # make install
-    # make install-dev
+    # make install-all
 
 ## Utilisation
 
