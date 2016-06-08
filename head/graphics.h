@@ -1,12 +1,16 @@
 #ifndef DEF_GRAPHICS_H
 #define DEF_GRAPHICS_H
 
-#include <stdio.h>
 #include <stdarg.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 
-#include "error.h"
 #include "point.h"
 #include "pixel.h"
 #include "canvas.h"
@@ -23,9 +27,7 @@
 #include "event.h"
 #include "sphere.h"
 #include "image.h"
-
-void graphics_init(Uint32 flags);
-
-void graphics_quit(void);
+#include "error.h"
+#include "startstop.h"
 
 #endif

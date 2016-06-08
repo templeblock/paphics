@@ -1,8 +1,6 @@
 #ifndef DEF_IMAGE_H
 #define DEF_IMAGE_H
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include "graphics.h"
 
 typedef struct {

@@ -1,11 +1,7 @@
 #ifndef DEF_CANVAS_H
 #define DEF_CANVAS_H
 
-#include <stdbool.h>
-#include <SDL2/SDL.h>
-#include "error.h"
 #include "window.h"
-#include "point.h"
 
 typedef struct Canvas {
     SDL_Surface* surface;

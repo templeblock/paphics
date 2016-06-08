@@ -2,6 +2,7 @@
 #define DEF_ERROR_H
 
 #include <SDL2/SDL_image.h>
+#include "startstop.h"
 
 void error_quit(void);
 

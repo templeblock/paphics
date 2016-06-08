@@ -1,7 +1,6 @@
 #ifndef DEF_EVENT_H
 #define DEF_EVENT_H
 
-#include <stdbool.h>
 #include <SDL2/SDL.h>
 #include "point.h"
 

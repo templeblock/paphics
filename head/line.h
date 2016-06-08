@@ -1,10 +1,7 @@
 #ifndef DEF_LINE_H
 #define DEF_LINE_H
 
-#include <SDL2/SDL.h>
-#include "point.h"
 #include "pixel.h"
-#include "canvas.h"
 
 typedef struct {
     Point a;

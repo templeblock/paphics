@@ -1,8 +1,6 @@
 #ifndef DEF_RECTANGLE_H
 #define DEF_RECTANGLE_H
 
-#include <SDL2/SDL.h>
-#include "canvas.h"
 #include "point.h"
 #include "line.h"
 

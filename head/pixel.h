@@ -1,8 +1,6 @@
 #ifndef DEF_PIXEL_H
 #define DEF_PIXEL_H
 
-#include <SDL2/SDL.h>
-#include "point.h"
 #include "canvas.h"
 
 typedef struct {

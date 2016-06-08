@@ -1,7 +1,6 @@
 #ifndef DEF_WINDOW_H
 #define DEF_WINDOW_H
 
-#include <SDL2/SDL.h>
 #include "error.h"
 #include "point.h"
 

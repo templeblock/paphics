@@ -1,7 +1,6 @@
 #include "error.h"
 
 void error_quit() {
-    IMG_Quit();
-    SDL_Quit();
+    graphics_stop();
     exit(EXIT_FAILURE);
 }

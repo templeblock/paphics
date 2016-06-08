@@ -1,7 +1,6 @@
 #ifndef DEF_SCREEN_H
 #define DEF_SCREEN_H
 
-#include <SDL2/SDL.h>
 #include "error.h"
 #include "point.h"
 
