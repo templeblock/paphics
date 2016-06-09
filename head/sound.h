@@ -8,8 +8,6 @@ typedef struct {
     Mix_Music* content;
 } Sound;
 
-void sound_init(void);
-
 void sound_load(char* nomFichier, Sound* sound);
 
 void sound_play(Sound* music);
@@ -17,7 +15,5 @@ void sound_play(Sound* music);
 void sound_play_once(Sound* music);
 
 void sound_free(Sound* sound);
-
-void sound_quit(void);
 
 #endif
