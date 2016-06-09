@@ -9,6 +9,8 @@ void graphics_start(Uint32 flags) {
         start_SDL(flags);
         start_SDL_image();
         start_SDL_mixer();
+        // not sure if it's a good idea to call atexit() inside a dynamic lib...
+        atexit(graphics_stop());
     }
 }
 
@@ -29,7 +31,7 @@ void start_SDL(Uint32 flags) {
 void start_SDL_image() {
 
     const int imgFlags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
-    
+
     if ((IMG_Init(imgFlags) & imgFlags) != imgFlags) {
         fprintf(stderr, "\nUnable to initialize SDL_IMAGE: %s\n", IMG_GetError());
         error_quit();
