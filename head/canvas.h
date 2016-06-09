@@ -50,4 +50,6 @@ void canvas_draw_borders_in(Canvas* canvas, Uint32 color);
 
 void canvas_draw_borders_out(Canvas* canvas, Uint32 color);
 
+void canvas_fill(Canvas* canvas, Uint32 color);
+
 #endif

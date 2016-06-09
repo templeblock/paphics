@@ -268,3 +268,8 @@ void canvas_draw_borders_out(Canvas* canvas, Uint32 color) {
     
     rectangle_draw(canvas->parent, a, b, color);
 }
+
+void canvas_fill(Canvas* canvas, Uint32 color) {
+
+    SDL_FillRect(canvas->surface, NULL, color);
+}
