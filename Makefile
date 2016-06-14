@@ -14,12 +14,6 @@ CC := gcc
 CFLAGS_BASE := -Wall -Wextra -Wdouble-promotion -Wformat -Winit-self  -Wmissing-include-dirs -Wswitch-default  -Wswitch-enum -Wunused -Wunused-parameter -Wuninitialized -Wunknown-pragmas -fstrict-overflow -Wstrict-overflow=2 -Wsuggest-attribute=const -Wmissing-format-attribute -Wstrict-aliasing -Wtrampolines -Wfloat-equal -Wundef -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wconversion -Wjump-misses-init -Wlogical-op -Wstrict-prototypes -Wmissing-declarations -Wredundant-decls -Wpacked -Wpadded -Wnested-externs -Winline -Wvla -Wdisabled-optimization -Wstack-protector -Wunsuffixed-float-constants -Wabi -Winvalid-pch -Wshadow -pedantic-errors --pedantic -g -Werror -O6 -pass-exit-codes -pipe -aux-info $(LOG_DIR)/aux-info.log -fsigned-char -fsigned-bitfields -fPIC
 CFLAGS_LOCAL := -std=c11 -Wno-aggressive-loop-optimizations -fdiagnostics-color=auto
 
-ifdef $(TRAVIS)
-CFLAGS := $(CFLAGS_BASE)
-else
-CFLAGS := $(CFLAGS_LOCAL) $(CFLAGS_BASE)
-endif
-
 FORMATTER := astyle
 FORMATTERFLAGS := --style=java --indent=spaces=4 -xn -xc -S -N -L -w -xw -Y -m2 -M120 -f -p -H -E -k1 -W3 -j -v -z2
 
@@ -72,7 +66,11 @@ $(BUILD_DIR):
 	mkdir $(BUILD_DIR)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c Makefile $(BUILD_DIR)
-	$(CC) -o $@ -x c -c $< $(CFLAGS) $(INCLUDE)
+ifeq ($(TRAVIS),)
+	$(CC) -o $@ -x c -c $< $(CFLAGS_LOCAL) $(CFLAGS_BASE) $(INCLUDE)
+else
+	$(CC) -o $@ -x c -c $< $(CFLAGS_BASE) $(INCLUDE)
+endif
 
 build-static-lib: $(LOG_DIR) $(TARGET_STATIC)
 
