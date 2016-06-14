@@ -18,7 +18,7 @@ CFLAGS_TRAVIS := -std=c99
 FORMATTER := astyle
 FORMATTERFLAGS := --style=java --indent=spaces=4 -xn -xc -S -N -L -w -xw -Y -m2 -M120 -f -p -H -E -k1 -W3 -j -v -z2
 
-INCLUDE	:= -I$(SRC_DIR) -I$(HEAD_DIR) -I/usr/include -I/usr/local/include
+INCLUDE	:= -I$(SRC_DIR) -I$(HEAD_DIR) -I/usr/include -I/usr/local/include -I/usr/include/SDL/ -I/usr/local/include/SDL
 
 LIBS := -L/usr/lib -L/usr/local/lib -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL2_mixer-2.0
 
