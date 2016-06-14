@@ -2,6 +2,8 @@
 
 Graphics library written in C and based on SDL 2.0
 
+[![Build Status](https://travis-ci.org/zapashcanon/graphics.png?branch=master)](https://travis-ci.org/zapashcanon/graphics)
+
 ## Récupérer le code source
 
 ### Installation de git
