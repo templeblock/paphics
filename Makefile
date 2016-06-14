@@ -22,6 +22,8 @@ INCLUDE	:= -I$(SRC_DIR) -I$(HEAD_DIR) -I/usr/include -I/usr/local/include -I/usr
 
 LIBS := -L/usr/lib -L/usr/local/lib -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL2_mixer-2.0
 
+LD_FLAGS_TRAVIS := -Wl,-rpath -Wl,LIBDIR
+
 TARGET := $(NAME).out
 TARGET_STATIC := lib$(NAME).a
 TARGET_DYNAMIC := lib$(NAME).so
@@ -81,7 +83,11 @@ $(TARGET_STATIC): build
 build-dynamic-lib: $(LOG_DIR) $(TARGET_DYNAMIC)
 
 $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
+ifeq ($(TRAVIS),)
 	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
+else
+	$(CC) $(LD_FLAGS_TRAVIS) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
+endif
 
 copy-dynamic-lib:
 	sudo rm -rf /usr/local/lib/$(TARGET_DYNAMIC)
