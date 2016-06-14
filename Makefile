@@ -41,10 +41,10 @@ install: copy-dynamic-lib
 
 install-dev: copy-headers
 
-install-dep-debian:
+get-dep-debian:
 	sudo apt-get install $(DEP_DEBIAN)
 
-install-dep-dev-debian:
+get-dep-dev-debian:
 	sudo apt-get install $(DEP_DEV_DEBIAN)
 
 format:
