@@ -18,7 +18,7 @@ CFLAGS_TRAVIS := -std=c99
 FORMATTER := astyle
 FORMATTERFLAGS := --style=java --indent=spaces=4 -xn -xc -S -N -L -w -xw -Y -m2 -M120 -f -p -H -E -k1 -W3 -j -v -z2
 
-INCLUDE	:= -I$(SRC_DIR) -I$(HEAD_DIR) -I/usr/include
+INCLUDE	:= -I$(SRC_DIR) -I$(HEAD_DIR) -I/usr/include -I/usr/local/include
 
 LIBS := -L/usr/lib -L/usr/local/lib -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL2_mixer-2.0
 
@@ -68,7 +68,7 @@ $(BUILD_DIR):
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c Makefile $(BUILD_DIR)
 ifeq ($(TRAVIS),)
-	$(CC) -o $@ -x c -c $< $(CFLAGS_LOCAL) $(CFLAGS_BASE) $(INCLUDE) $(LIBS)
+	$(CC) -o $@ -x c -c $< $(CFLAGS_LOCAL) $(CFLAGS_BASE) $(INCLUDE)
 else
 	$(CC) -o $@ -x c -c $< $(CFLAGS_TRAVIS) $(CFLAGS_BASE) $(INCLUDE)
 endif
