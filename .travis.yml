@@ -21,4 +21,6 @@ before_install:
   - ./configure && make && sudo make install
   - cd -
 
-install: make install-all
+install:
+  - make build-dynamic-lib
+  - make install-all
