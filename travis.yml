@@ -1,0 +1,7 @@
+---
+
+language: c
+
+compiler: gcc
+
+install: make install-dep-debian && make install-dep-dev-debian
