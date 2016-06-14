@@ -7,6 +7,7 @@ sudo: required
 
 
 before_install:
+  - sudo apt-get dist-upgrade gcc
   - sudo add-apt-repository ppa:zoogie/sdl2-snapshots -y
   - sudo apt-get update -qq -y
   - sudo apt-get install libsdl2 libsdl2-dev
