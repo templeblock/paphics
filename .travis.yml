@@ -1,9 +1,10 @@
 ---
 
 language: c
-
 compiler: gcc
 
-install: make install-dep-debian && make install-dep-dev-debian
-
 sudo: required
+
+
+before_install: make install-dep-debian && make install-dep-dev-debian
+install: make install-all

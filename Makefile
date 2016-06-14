@@ -42,10 +42,10 @@ install: copy-dynamic-lib
 install-dev: copy-headers
 
 install-dep-debian:
-	apt-get install $(DEP_DEBIAN)
+	sudo apt-get install $(DEP_DEBIAN)
 
 install-dep-dev-debian:
-	apt-get install $(DEP_DEV_DEBIAN)
+	sudo apt-get install $(DEP_DEV_DEBIAN)
 
 format:
 	$(FORMATTER) $(FORMATTERFLAGS) $(C_FILES) $(H_FILES)
@@ -78,13 +78,13 @@ $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
 	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
 
 copy-dynamic-lib:
-	rm -rf /usr/local/lib/$(TARGET_DYNAMIC)
-	cp $(TARGET_DYNAMIC) /usr/local/lib/
+	sudo rm -rf /usr/local/lib/$(TARGET_DYNAMIC)
+	sudo cp $(TARGET_DYNAMIC) /usr/local/lib/
 
 copy-headers:
-	rm -rf /usr/local/include/$(NAME)/*
-	mkdir -p /usr/local/include/$(NAME)/
-	cp $(H_FILES) /usr/local/include/$(NAME)/
+	sudo rm -rf /usr/local/include/$(NAME)/*
+	sudo mkdir -p /usr/local/include/$(NAME)/
+	sudo cp $(H_FILES) /usr/local/include/$(NAME)/
 
 run:
 	./$(TARGET)
