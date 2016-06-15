@@ -1,34 +1,6 @@
 #include "line.h"
 
-void line_draw(Canvas* canvas, const Line* line) {
-
-    Point dist;
-    
-    dist.x = line->b.x - line->a.x;
-    dist.y = line->b.y - line->a.y;
-    
-    if (dist.x == 0) {
-        line_draw_noVarX(canvas, line);
-    } else if (dist.y == 0) {
-        line_draw_noVarY(canvas, line);
-    } else {
-    
-        Point dist_abs;
-        
-        dist_abs.x = abs(dist.x);
-        dist_abs.y = abs(dist.y);
-        
-        if (dist_abs.x == dist_abs.y) {
-            line_draw_sameVarXY(canvas, line);
-        } else {
-            //line_draw_naive(canvas, line);
-            //line_draw_dda(canvas, line, &dist, &dist_abs);
-            line_draw_bresenham(canvas, line, &dist);
-        }
-    }
-}
-
-void line_draw_noVarX(Canvas* canvas, const Line* line) {
+static void line_draw_noVarX(Canvas* canvas, const Line* line) {
 
     Pixel pix;
     
@@ -49,7 +21,7 @@ void line_draw_noVarX(Canvas* canvas, const Line* line) {
     
 }
 
-void line_draw_noVarY(Canvas* canvas, const Line* line) {
+static void line_draw_noVarY(Canvas* canvas, const Line* line) {
 
     Pixel pix;
     
@@ -70,7 +42,7 @@ void line_draw_noVarY(Canvas* canvas, const Line* line) {
     
 }
 
-void line_draw_sameVarXY(Canvas* canvas, const Line* line) {
+static void line_draw_sameVarXY(Canvas* canvas, const Line* line) {
 
     short int dy;
     Pixel pix;
@@ -106,7 +78,7 @@ void line_draw_sameVarXY(Canvas* canvas, const Line* line) {
     
 }
 
-void line_draw_naive(Canvas* canvas, const Line* line) {
+static void line_draw_naive(Canvas* canvas, const Line* line) {
 
     Point delta;
     Pixel pix;
@@ -136,7 +108,7 @@ void line_draw_naive(Canvas* canvas, const Line* line) {
     }
 }
 
-void line_draw_dda(Canvas* canvas, const Line* line, const Point* dist, const Point* dist_abs) {
+static void line_draw_dda(Canvas* canvas, const Line* line, const Point* dist, const Point* dist_abs) {
 
     int lenght;
     float dx;
@@ -172,7 +144,7 @@ void line_draw_dda(Canvas* canvas, const Line* line, const Point* dist, const Po
     }
 }
 
-void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* dist) {
+static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* dist) {
 
     int dx;
     int dy;
@@ -315,6 +287,84 @@ void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* dist) {
                     }
                 }
             }
+        }
+    }
+}
+
+void line_draw(Canvas* canvas, const Line* line) {
+
+    Point dist;
+    
+    dist.x = line->b.x - line->a.x;
+    dist.y = line->b.y - line->a.y;
+    
+    if (dist.x == 0) {
+        line_draw_noVarX(canvas, line);
+    } else if (dist.y == 0) {
+        line_draw_noVarY(canvas, line);
+    } else {
+    
+        Point dist_abs;
+        
+        dist_abs.x = abs(dist.x);
+        dist_abs.y = abs(dist.y);
+        
+        if (dist_abs.x == dist_abs.y) {
+            line_draw_sameVarXY(canvas, line);
+        } else {
+            line_draw_bresenham(canvas, line, &dist);
+        }
+    }
+}
+
+void line_draw_bis(Canvas* canvas, const Line* line) {
+
+    Point dist;
+    
+    dist.x = line->b.x - line->a.x;
+    dist.y = line->b.y - line->a.y;
+    
+    if (dist.x == 0) {
+        line_draw_noVarX(canvas, line);
+    } else if (dist.y == 0) {
+        line_draw_noVarY(canvas, line);
+    } else {
+    
+        Point dist_abs;
+        
+        dist_abs.x = abs(dist.x);
+        dist_abs.y = abs(dist.y);
+        
+        if (dist_abs.x == dist_abs.y) {
+            line_draw_sameVarXY(canvas, line);
+        } else {
+            line_draw_dda(canvas, line, &dist, &dist_abs);
+        }
+    }
+}
+
+void line_draw_ter(Canvas* canvas, const Line* line) {
+
+    Point dist;
+    
+    dist.x = line->b.x - line->a.x;
+    dist.y = line->b.y - line->a.y;
+    
+    if (dist.x == 0) {
+        line_draw_noVarX(canvas, line);
+    } else if (dist.y == 0) {
+        line_draw_noVarY(canvas, line);
+    } else {
+    
+        Point dist_abs;
+        
+        dist_abs.x = abs(dist.x);
+        dist_abs.y = abs(dist.y);
+        
+        if (dist_abs.x == dist_abs.y) {
+            line_draw_sameVarXY(canvas, line);
+        } else {
+            line_draw_naive(canvas, line);
         }
     }
 }

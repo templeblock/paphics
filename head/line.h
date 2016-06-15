@@ -11,16 +11,8 @@ typedef struct {
 
 void line_draw(Canvas* canvas, const Line* line);
 
-void line_draw_noVarX(Canvas* canvas, const Line* line);
+void line_draw_bis(Canvas* canvas, const Line* line);
 
-void line_draw_noVarY(Canvas* canvas, const Line* line);
-
-void line_draw_sameVarXY(Canvas* canvas, const Line* line);
-
-void line_draw_naive(Canvas* canvas, const Line* line);
-
-void line_draw_dda(Canvas* canvas, const Line* line, const Point* dist, const Point* dist_abs);
-
-void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* dist);
+void line_draw_ter(Canvas* canvas, const Line* line);
 
 #endif

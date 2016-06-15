@@ -8,10 +8,4 @@ void graphics_start(const Uint32 flags);
 
 void graphics_stop(void);
 
-void start_SDL(const Uint32 flags);
-
-void start_SDL_image(void);
-
-void start_SDL_mixer(void);
-
 #endif
