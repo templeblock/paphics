@@ -55,3 +55,7 @@ Il est possible que les fichiers ne soient pas trouvés, il faut alors ajouter c
 Et ceci au moment de l'édition de liens:
 
     -L/usr/local/lib
+
+Et éventuellement, ajouter la ligne suivante dans le Makefile de votre projet:
+
+    export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib:$LD_LIBRARY_PATH
