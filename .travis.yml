@@ -5,7 +5,6 @@ compiler: gcc
 
 sudo: required
 
-
 before_install:
   - sudo add-apt-repository ppa:zoogie/sdl2-snapshots -y
   - sudo apt-get update -qq -y
@@ -26,3 +25,6 @@ install:
   - make install-all
 
 script: true
+
+notifications:
+  email: false
