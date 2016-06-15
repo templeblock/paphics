@@ -52,10 +52,18 @@ install-dev: copy-headers
 get-dep-debian-all: get-dep-debian get-dep-dev-debian
 
 get-dep-debian:
+ifneq ($(TRAVIS),)
+	sudo apt-get -y install $(DEP_DEBIAN)
+else
 	sudo apt-get install $(DEP_DEBIAN)
+endif
 
 get-dep-dev-debian:
+ifneq ($(TRAVIS),)
+	sudo apt-get -y install $(DEP_DEV_DEBIAN)
+else
 	sudo apt-get install $(DEP_DEV_DEBIAN)
+endif
 
 format:
 	$(FORMATTER) $(FORMATTERFLAGS) $(C_FILES) $(H_FILES)
