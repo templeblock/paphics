@@ -9,8 +9,8 @@ typedef struct {
     Uint32 color;
 } Circle;
 
-void circle_draw(Canvas* canvas, Circle* circle);
+void circle_draw(Canvas* canvas, const Circle* circle);
 
-void circle_draw_fill(Canvas* canvas, Circle* circle);
+void circle_draw_fill(Canvas* canvas, const Circle* circle);
 
 #endif

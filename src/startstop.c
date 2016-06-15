@@ -1,6 +1,6 @@
 #include "startstop.h"
 
-void graphics_start(Uint32 flags) {
+void graphics_start(const Uint32 flags) {
 
     if (SDL_WasInit(flags)) {
         fprintf(stderr, "\nCall to init_graphics with at least one flag already initialized\n");
@@ -20,7 +20,7 @@ void graphics_stop() {
     Mix_CloseAudio();
 }
 
-void start_SDL(Uint32 flags) {
+void start_SDL(const Uint32 flags) {
 
     if (SDL_Init(flags) == -1) {
         fprintf(stderr, "\nUnable to initialize SDL: %s\n", SDL_GetError());

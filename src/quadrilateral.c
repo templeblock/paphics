@@ -76,7 +76,7 @@
 
 }*/
 
-void quadrilateral_draw(Canvas canvas, Point p1, Point p2, Point p3, Point p4, Uint32 color) {
+void quadrilateral_draw(Canvas canvas, const Point p1, const Point p2, const Point p3, const Point p4, const Uint32 color) {
 
     Point leftToRight[4];
     Point topToBottom[4];

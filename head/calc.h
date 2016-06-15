@@ -6,6 +6,6 @@
 
 float calc_alea_float(void);
 
-int calc_alea_int(int min, int max);
+int calc_alea_int(const int min, const int max);
 
 #endif

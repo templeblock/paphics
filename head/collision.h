@@ -3,10 +3,10 @@
 
 #include "canvas.h"
 
-bool collision_is_out_of_canvas(Canvas* canvas, Point a, int radius);
+bool collision_is_out_of_canvas(const Canvas* canvas, const Point a, const int radius);
 
-bool collision_is_out_of_canvas_x(Canvas* canvas, int a, int radius);
+bool collision_is_out_of_canvas_x(const Canvas* canvas, const int a, const int radius);
 
-bool collision_is_out_of_canvas_y(Canvas* canvas, int a, int radius);
+bool collision_is_out_of_canvas_y(const Canvas* canvas, const int a, const int radius);
 
 #endif

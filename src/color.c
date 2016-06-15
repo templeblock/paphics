@@ -1,6 +1,6 @@
 #include "color.h"
 
-void color_translate(Uint32 int_color, SDL_Color* color) {
+void color_translate(const Uint32 int_color, SDL_Color* color) {
 
     #if SDL_BYTEORDER == SDL_BIG_ENDIAN
     color->r = (int_color & 0x00ff0000) / 0x10000;

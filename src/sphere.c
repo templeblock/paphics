@@ -1,6 +1,6 @@
 #include "sphere.h"
 
-void sphere_draw_fill(Canvas* canvas, Sphere* sphere) {
+void sphere_draw_fill(Canvas* canvas, const Sphere* sphere) {
 
     int i;
     int nb_step;

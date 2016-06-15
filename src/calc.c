@@ -19,7 +19,7 @@ float calc_alea_float() {
     return alea;
 }
 
-int calc_alea_int(int min, int max) {
+int calc_alea_int(const int min, const int max) {
 
     int alea;
     float aleaFloat;

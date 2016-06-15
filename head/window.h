@@ -10,7 +10,7 @@ typedef struct {
     Point position;
 } Window;
 
-void window_create(Window* window, char* title, Point* position, Point* size, Uint32 flags);
+void window_create(Window* window, char* title, const Point* position, const Point* size, const Uint32 flags);
 
 void window_destroy(Window* window);
 

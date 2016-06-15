@@ -1,6 +1,6 @@
 #include "point.h"
 
-bool equals(Point p1, Point p2) {
+bool equals(const Point p1, const Point p2) {
 
     bool eq;
     
@@ -15,7 +15,7 @@ bool equals(Point p1, Point p2) {
     return eq;
 }
 
-int point_distance(Point a, Point b) {
+int point_distance(const Point a, const Point b) {
 
     int distance;
     
@@ -30,7 +30,7 @@ int point_distance(Point a, Point b) {
     return distance;
 }
 
-void point_sort_leftToRight(int nbOfPoints, Point* tab, ...) {
+void point_sort_leftToRight(const int nbOfPoints, Point* tab, ...) {
 
     int i;
     int j;
@@ -57,7 +57,7 @@ void point_sort_leftToRight(int nbOfPoints, Point* tab, ...) {
     }
 }
 
-void point_sort_topToBottom(int nbOfPoints, Point* tab, ...) {
+void point_sort_topToBottom(const int nbOfPoints, Point* tab, ...) {
 
     int i;
     int j;
@@ -85,7 +85,7 @@ void point_sort_topToBottom(int nbOfPoints, Point* tab, ...) {
     
 }
 
-Point point_max_x(Point a, Point b) {
+Point point_max_x(const Point a, const Point b) {
 
     Point max;
     
@@ -102,7 +102,7 @@ Point point_max_x(Point a, Point b) {
     return max;
 }
 
-Point point_max_y(Point a, Point b) {
+Point point_max_y(const Point a, const Point b) {
 
     Point max;
     
@@ -119,7 +119,7 @@ Point point_max_y(Point a, Point b) {
     return max;
 }
 
-Point point_min_x(Point a, Point b) {
+Point point_min_x(const Point a, const Point b) {
 
     Point min;
     
@@ -132,7 +132,7 @@ Point point_min_x(Point a, Point b) {
     return min;
 }
 
-Point point_min_y(Point a, Point b) {
+Point point_min_y(const Point a, const Point b) {
 
     Point min;
     
@@ -145,7 +145,7 @@ Point point_min_y(Point a, Point b) {
     return min;
 }
 
-bool point_is_greater_x(Point a, Point b) {
+bool point_is_greater_x(const Point a, const Point b) {
 
     bool is_greater;
     
@@ -158,7 +158,7 @@ bool point_is_greater_x(Point a, Point b) {
     return is_greater;
 }
 
-bool point_is_greater_y(Point a, Point b) {
+bool point_is_greater_y(const Point a, const Point b) {
 
     bool is_greater;
     

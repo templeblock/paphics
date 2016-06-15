@@ -9,8 +9,8 @@ typedef struct {
     Point size;
 } Rectangle;
 
-void rectangle_draw(Canvas* canvas, Point a, Point b, Uint32 color);
+void rectangle_draw(Canvas* canvas, const Point a, const Point b, const Uint32 color);
 
-void rectangle_draw_fill(Canvas* canvas, Point a, Point b, Uint32 color);
+void rectangle_draw_fill(Canvas* canvas, const Point a, const Point b, const Uint32 color);
 
 #endif

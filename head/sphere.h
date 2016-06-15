@@ -10,6 +10,6 @@ typedef struct {
     Uint32 color;
 } Sphere;
 
-void sphere_draw_fill(Canvas* canvas, Sphere* sphere);
+void sphere_draw_fill(Canvas* canvas, const Sphere* sphere);
 
 #endif

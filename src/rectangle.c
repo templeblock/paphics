@@ -1,6 +1,6 @@
 #include "rectangle.h"
 
-void rectangle_draw(Canvas* canvas, Point a, Point b, Uint32 color) {
+void rectangle_draw(Canvas* canvas, const Point a, const Point b, const Uint32 color) {
 
     Line l;
     Line m;
@@ -37,7 +37,7 @@ void rectangle_draw(Canvas* canvas, Point a, Point b, Uint32 color) {
     
 }
 
-void rectangle_draw_fill(Canvas* canvas, Point a, Point b, Uint32 color) {
+void rectangle_draw_fill(Canvas* canvas, const Point a, const Point b, const Uint32 color) {
 
     int i;
     Point top_left;

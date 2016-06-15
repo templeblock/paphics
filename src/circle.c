@@ -1,6 +1,6 @@
 #include "circle.h"
 
-void circle_draw(Canvas* canvas, Circle* circle) {
+void circle_draw(Canvas* canvas, const Circle* circle) {
 
     int i;
     float dx;
@@ -39,7 +39,7 @@ void circle_draw(Canvas* canvas, Circle* circle) {
     }
 }
 
-void circle_draw_fill(Canvas* canvas, Circle* circle) {
+void circle_draw_fill(Canvas* canvas, const Circle* circle) {
 
     float dx;
     float dy;

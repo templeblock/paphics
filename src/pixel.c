@@ -1,6 +1,6 @@
 #include "pixel.h"
 
-void pixel_draw(Canvas* canvas, Pixel* pixel) {
+void pixel_draw(Canvas* canvas, const Pixel* pixel) {
 
     if (pixel->position.x < 0 || pixel->position.y < 0 || pixel->position.x > canvas->size.x || pixel->position.y > canvas->size.y) {
         fprintf(stderr, "\nWarning: trying to draw a pixel outside of the canvas: pixel (%d, %d)\n", pixel->position.x, pixel->position.y);

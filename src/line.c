@@ -1,6 +1,6 @@
 #include "line.h"
 
-void line_draw(Canvas* canvas, Line* line) {
+void line_draw(Canvas* canvas, const Line* line) {
 
     Point dist;
     
@@ -28,7 +28,7 @@ void line_draw(Canvas* canvas, Line* line) {
     }
 }
 
-void line_draw_noVarX(Canvas* canvas, Line* line) {
+void line_draw_noVarX(Canvas* canvas, const Line* line) {
 
     Pixel pix;
     
@@ -49,7 +49,7 @@ void line_draw_noVarX(Canvas* canvas, Line* line) {
     
 }
 
-void line_draw_noVarY(Canvas* canvas, Line* line) {
+void line_draw_noVarY(Canvas* canvas, const Line* line) {
 
     Pixel pix;
     
@@ -70,7 +70,7 @@ void line_draw_noVarY(Canvas* canvas, Line* line) {
     
 }
 
-void line_draw_sameVarXY(Canvas* canvas, Line* line) {
+void line_draw_sameVarXY(Canvas* canvas, const Line* line) {
 
     short int dy;
     Pixel pix;
@@ -106,7 +106,7 @@ void line_draw_sameVarXY(Canvas* canvas, Line* line) {
     
 }
 
-void line_draw_naive(Canvas* canvas, Line* line) {
+void line_draw_naive(Canvas* canvas, const Line* line) {
 
     Point delta;
     Pixel pix;
@@ -136,7 +136,7 @@ void line_draw_naive(Canvas* canvas, Line* line) {
     }
 }
 
-void line_draw_dda(Canvas* canvas, Line* line, Point* dist, Point* dist_abs) {
+void line_draw_dda(Canvas* canvas, const Line* line, const Point* dist, const Point* dist_abs) {
 
     int lenght;
     float dx;
@@ -172,7 +172,7 @@ void line_draw_dda(Canvas* canvas, Line* line, Point* dist, Point* dist_abs) {
     }
 }
 
-void line_draw_bresenham(Canvas* canvas, Line* line, Point* dist) {
+void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* dist) {
 
     int dx;
     int dy;
