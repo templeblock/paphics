@@ -11,6 +11,7 @@ LIB_DIR := ./libs
 LOG_DIR := ./logs
 ifneq ($(TRAVIS),)
 export LD_RUN_PATH=/usr/local/lib:$LD_RUN_PATH
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 endif
 
 CC := gcc
