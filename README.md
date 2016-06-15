@@ -28,8 +28,7 @@ Puis installer les dépendances.
 
 ### Sous Debian et distributions dérivées (Ubuntu, Mint, etc.)
 
-    # make get-dep-debian
-    # make get-dep-dev-debian
+    # make get-dep-debian-all
 
 ## Compilation
 
