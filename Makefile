@@ -15,7 +15,8 @@ CFLAGS := -std=c11 -Wall -Wextra -Wdouble-promotion -Wformat -Winit-self  -Wmiss
 CFLAGS_LOCAL := -fdiagnostics-color=auto
 
 FORMATTER := astyle
-FORMATTERFLAGS := --style=java --indent=spaces=4 -xn -xc -S -N -L -w -xw -Y -m2 -M120 -f -p -H -E -k1 -W3 -j -v -z2
+FORMATTERFLAGS := --style=java --indent=spaces=4 -S -N -L -w -Y -m2 -M120 -f -p -H -E -k1 -W3 -j -v -z2
+FORMATTERFLAGS_LOCAL := -xn -xc -xw
 
 INCLUDE	:= -I$(SRC_DIR) -I$(HEAD_DIR) -I/usr/include -I/usr/local/include
 
@@ -59,7 +60,11 @@ else
 endif
 
 format:
+ifneq ($(TRAVIS),)
 	$(FORMATTER) $(FORMATTERFLAGS) $(C_FILES) $(H_FILES)
+else
+	$(FORMATTER) $(FORMATTERFLAGS) $(FORMATTERFLAGS_LOCAL) $(C_FILES) $(H_FILES)
+endif
 
 build: $(LOG_DIR) $(TARGET)
 
