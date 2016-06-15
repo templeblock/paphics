@@ -23,8 +23,7 @@ FORMATTERFLAGS := --style=java --indent=spaces=4 -xn -xc -S -N -L -w -xw -Y -m2 
 
 INCLUDE	:= -I$(SRC_DIR) -I$(HEAD_DIR) -I/usr/include -I/usr/local/include
 
-LIBS_BASE := -L/usr/lib -L/usr/local/lib -lm
-LIBS_LOCAL := -lSDL2-2.0 -lSDL2_image-2.0 -lSDL2_mixer-2.0
+LIBS := -L/usr/lib -L/usr/local/lib -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL2_mixer-2.0
 
 TARGET := $(NAME).out
 TARGET_STATIC := lib$(NAME).a
@@ -95,11 +94,7 @@ $(TARGET_STATIC): build
 build-dynamic-lib: $(LOG_DIR) $(TARGET_DYNAMIC)
 
 $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
-ifeq ($(TRAVIS),)
-	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS_BASE) $(LIBS_LOCAL)
-else
-	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS_BASE) $(LIBS_TRAVIS)
-endif
+	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
 
 copy-dynamic-lib:
 	sudo rm -rf /usr/local/lib/$(TARGET_DYNAMIC)

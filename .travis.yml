@@ -11,7 +11,7 @@ before_install:
   - make get-dep-debian-all
 
 install:
-  - make build-dynamic-lib TRAVIS=1
+  - make all TRAVIS=1
   - make install-all
 
 script: true
