@@ -82,9 +82,9 @@ $(BUILD_DIR):
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c Makefile $(BUILD_DIR)
 ifeq ($(TRAVIS),)
-	$(CC) -o $@ -x c -c $< $(CFLAGS_LOCAL) $(CFLAGS_BASE) $(INCLUDE)
+	$(CC) -o $@ -x c -c $< $(CFLAGS_LOCAL) $(CFLAGS) $(INCLUDE)
 else
-	$(CC) -o $@ -x c -c $< $(CFLAGS_BASE) $(INCLUDE)
+	$(CC) -o $@ -x c -c $< $(CFLAGS) $(INCLUDE)
 endif
 
 build-static-lib: $(LOG_DIR) $(TARGET_STATIC)
