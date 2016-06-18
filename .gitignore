@@ -37,3 +37,7 @@
 # Logs
 *.log
 ./log/*
+
+# Build dir
+./build/
+./build/*
