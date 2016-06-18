@@ -196,7 +196,10 @@ void canvas_blit(Canvas* canvas) {
 
 void canvas_clear(Canvas* canvas) {
 
-    SDL_FillRect(canvas->surface, NULL, 0x000000);
+    if (SDL_FillRect(canvas->surface, NULL, 0x000000) != 0) {
+        fprintf(stderr, "canvas_clear() failed: %s\n", SDL_GetError());
+        error_quit();
+    }
 }
 
 void canvas_create(Canvas* canvas, const Point* size, const Point* origin, Canvas* parent) {
