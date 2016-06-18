@@ -3,6 +3,8 @@
 Graphics library written in C and based on SDL 2.0
 
 [![Build Status](https://travis-ci.org/zapashcanon/graphics.png?branch=master)](https://travis-ci.org/zapashcanon/graphics)
+[![Latest stable release](https://img.shields.io/github/release/zapashcanon/graphics.svg?maxAge=3600)](https://github.com/zapashcanon/graphics/releases)
+[![Overall downloads on Github](https://img.shields.io/github/downloads/zapashcanon/graphics/total.svg?maxAge=3600)](https://github.com/zapashcanon/graphics/releases)
 
 ## Récupérer le code source
 
