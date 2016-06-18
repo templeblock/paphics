@@ -47,16 +47,16 @@ get-dep-debian-all: get-dep-debian get-dep-dev-debian
 
 get-dep-debian:
 ifneq ($(TRAVIS),)
-	sudo apt-get -y install $(DEP_DEBIAN)
+	apt-get -y install $(DEP_DEBIAN)
 else
-	sudo apt-get install $(DEP_DEBIAN)
+	apt-get install $(DEP_DEBIAN)
 endif
 
 get-dep-dev-debian:
 ifneq ($(TRAVIS),)
-	sudo apt-get -y install $(DEP_DEV_DEBIAN)
+	apt-get -y install $(DEP_DEV_DEBIAN)
 else
-	sudo apt-get install $(DEP_DEV_DEBIAN)
+	apt-get install $(DEP_DEV_DEBIAN)
 endif
 
 format:
@@ -102,9 +102,9 @@ copy-dynamic-lib:
 	sudo cp $(TARGET_DYNAMIC) /usr/local/lib/
 
 copy-headers:
-	sudo rm -rf /usr/local/include/$(NAME)/*
-	sudo mkdir -p /usr/local/include/$(NAME)/
-	sudo cp $(H_FILES) /usr/local/include/$(NAME)/
+	rm -rf /usr/local/include/$(NAME)/*
+	mkdir -p /usr/local/include/$(NAME)/
+	cp $(H_FILES) /usr/local/include/$(NAME)/
 
 run:
 	./$(TARGET)

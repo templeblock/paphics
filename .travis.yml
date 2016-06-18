@@ -8,11 +8,11 @@ sudo: required
 
 before_install:
   - sudo apt-get update
-  - make get-dep-debian-all
+  - sudo make get-dep-debian-all
 
 install:
   - make all TRAVIS=1
-  - make install-all
+  - sudo make install-all
 
 script: true
 
