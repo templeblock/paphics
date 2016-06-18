@@ -235,41 +235,33 @@ void canvas_create_from_window(Canvas* canvas, const Window* window) {
 
 void canvas_draw_borders_in(Canvas* canvas, const Uint32 color) {
 
-    Point a;
-    Point b;
+    Rectangle rectTmp;
     
-    a.x = 1;
-    a.y = 1;
+    rectTmp.size = canvas->size;
+    rectTmp.origin.x = 0;
+    rectTmp.origin.y = 0;
     
-    b = canvas->size;
-    
-    b.x--;
-    b.y--;
-    
-    rectangle_draw(canvas, a, b, color);
+    rectangle_draw(canvas, &rectTmp, color);
 }
 
 void canvas_draw_borders_out(Canvas* canvas, const Uint32 color) {
 
-    //Canvas tmp;
-    //tmp.canvas = canvas->parent->surface;
+    Rectangle rectTmp;
     
-    Point a;
-    Point b;
+    rectTmp.size = canvas->size;
+    rectTmp.size.x += 2;
+    rectTmp.size.y += 2;
+    rectTmp.origin = canvas->origin;
+    rectTmp.origin.x--;
+    rectTmp.origin.y--;
     
-    a = canvas->origin;
-    b = a;
-    
-    a.x--;
-    a.y--;
-    
-    b.x += canvas->size.x;
-    b.y += canvas->size.y;
-    
-    rectangle_draw(canvas->parent, a, b, color);
+    rectangle_draw(canvas->parent, &rectTmp, color);
 }
 
 void canvas_fill(Canvas* canvas, const Uint32 color) {
 
-    SDL_FillRect(canvas->surface, NULL, color);
+    if (SDL_FillRect(canvas->surface, NULL, color) != 0) {
+        fprintf(stderr, "canvas_fill() failed: %s\n", SDL_GetError());
+        error_quit();
+    }
 }
