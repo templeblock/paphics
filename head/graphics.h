@@ -16,7 +16,6 @@
 #include "canvas.h"
 #include "line.h"
 #include "window.h"
-#include "collision.h"
 #include "screen.h"
 #include "color.h"
 #include "circle.h"
