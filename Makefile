@@ -1,4 +1,4 @@
-.PHONY: default all install-dep-dev-debian format run clean mrproper libs
+.PHONY: default all install-all install install-dev get-dep-debian-all get-dep-debian get-dep-dev-debian build build-static-lib build-dynamic-lib copy-dynamic-lib copy-headers format run clean mrproper libs
 
 NAME := graphics
 
