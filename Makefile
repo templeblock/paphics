@@ -111,4 +111,4 @@ clean:
 	-rm -rf $(LOG_DIR)
 
 mrproper: clean
--rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC)
+	-rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC)
