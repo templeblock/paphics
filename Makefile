@@ -39,10 +39,6 @@ all: format build-dynamic-lib clean
 
 install-all: install install-dev
 
-install: copy-dynamic-lib
-
-install-dev: copy-headers
-
 get-dep-debian-all: get-dep-debian get-dep-dev-debian
 
 get-dep-debian:
@@ -97,11 +93,11 @@ build-dynamic-lib: $(LOG_DIR) $(TARGET_DYNAMIC)
 $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
 	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
 
-copy-dynamic-lib:
-	sudo rm -rf /usr/local/lib/$(TARGET_DYNAMIC)
-	sudo cp $(TARGET_DYNAMIC) /usr/local/lib/
+install:
+	rm -rf /usr/local/lib/$(TARGET_DYNAMIC)
+	cp $(TARGET_DYNAMIC) /usr/local/lib/
 
-copy-headers:
+install-dev:
 	rm -rf /usr/local/include/$(NAME)/*
 	mkdir -p /usr/local/include/$(NAME)/
 	cp $(H_FILES) /usr/local/include/$(NAME)/
@@ -115,4 +111,4 @@ clean:
 	-rm -rf $(LOG_DIR)
 
 mrproper: clean
-	-rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC)
+-rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC)
