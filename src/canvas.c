@@ -173,24 +173,30 @@ bool canvas_will_be_out_of_parent_y(const Canvas* canvas, const Point* d) {
 
 void canvas_blit(Canvas* canvas) {
 
-    SDL_Rect dest_rect;
+    if (canvas->parent != NULL) {
     
-    dest_rect.w = canvas->size.x;
-    dest_rect.h = canvas->size.y;
-    dest_rect.x = canvas->origin.x;
-    dest_rect.y = canvas->parent->size.y - canvas->origin.y - canvas->size.y;
+        SDL_Rect dest_rect;
+        
+        dest_rect.w = canvas->size.x;
+        dest_rect.h = canvas->size.y;
+        dest_rect.x = canvas->origin.x;
+        dest_rect.y = canvas->parent->size.y - canvas->origin.y - canvas->size.y;
+        
+        if (SDL_BlitSurface(canvas->surface, NULL, (canvas->parent)->surface, &dest_rect) < 0) {
+            fprintf(stderr, "\nBlit failed: %s\n", SDL_GetError());
+            error_quit();
+        }
+        
+        if (canvas->origin.x < 0 || canvas->origin.x + canvas->size.x >= canvas->parent->size.x) {
+            fprintf(stderr, "\nWarning: trying to blit canvas outside of parent on the X axis\n");
+        }
+        
+        if (canvas->origin.y < 0 || canvas->origin.y + canvas->size.y >= canvas->parent->size.y) {
+            fprintf(stderr, "\nWarning: trying to blit canvas outside of parent on the Y axis\n");
+        }
+    } else {
     
-    if (SDL_BlitSurface(canvas->surface, NULL, (canvas->parent)->surface, &dest_rect) < 0) {
-        fprintf(stderr, "\nBlit failed: %s\n", SDL_GetError());
-        error_quit();
-    }
-    
-    if (canvas->origin.x < 0 || canvas->origin.x + canvas->size.x >= canvas->parent->size.x) {
-        fprintf(stderr, "\nWarning: trying to blit canvas outside of parent on the X axis\n");
-    }
-    
-    if (canvas->origin.y < 0 || canvas->origin.y + canvas->size.y >= canvas->parent->size.y) {
-        fprintf(stderr, "\nWarning: trying to blit canvas outside of parent on the Y axis\n");
+        fprintf(stderr, "\nWarning: trying to blit a canvas with a NULL parent\n");
     }
 }
 
