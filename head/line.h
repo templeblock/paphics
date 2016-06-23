@@ -15,4 +15,6 @@ void line_draw_bis(Canvas* canvas, const Line* line);
 
 void line_draw_ter(Canvas* canvas, const Line* line);
 
+void line_draw_generic(Canvas* canvas, const Line* line, const short int algoNumber);
+
 #endif
