@@ -222,11 +222,11 @@ void canvas_create(Canvas* canvas, const Point* size, const Point* origin, Canva
     canvas->parent = parent;
     canvas->origin = *origin;
     
-    if (canvas->origin.x < 0 || canvas->origin.x + canvas->size.x >= canvas->parent->size.x) {
+    if (canvas_is_out_of_parent_x(canvas)) {
         fprintf(stderr, "\nWarning: trying to create canvas outside of parent on the X axis\n");
     }
     
-    if (canvas->origin.y < 0 || canvas->origin.y + canvas->size.y >= canvas->parent->size.y) {
+    if (canvas_is_out_of_parent_y(canvas)) {
         fprintf(stderr, "\nWarning: trying to create canvas outside of parent on the Y axis\n");
     }
 }
