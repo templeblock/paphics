@@ -292,19 +292,7 @@ static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* d
     }
 }
 
-void line_draw(Canvas* canvas, const Line* line) {
-    line_draw_generic(canvas, line, 1);
-}
-
-void line_draw_bis(Canvas* canvas, const Line* line) {
-    line_draw_generic(canvas, line, 2);
-}
-
-void line_draw_ter(Canvas* canvas, const Line* line) {
-    line_draw_generic(canvas, line, 3);
-}
-
-void line_draw_generic(Canvas* canvas, const Line* line, const short int algoNumber) {
+static void line_draw_generic(Canvas* canvas, const Line* line, const short int algoNumber) {
 
     Point dist;
     
@@ -333,4 +321,16 @@ void line_draw_generic(Canvas* canvas, const Line* line, const short int algoNum
         }
     }
     
+}
+
+void line_draw(Canvas* canvas, const Line* line) {
+    line_draw_generic(canvas, line, 1);
+}
+
+void line_draw_bis(Canvas* canvas, const Line* line) {
+    line_draw_generic(canvas, line, 2);
+}
+
+void line_draw_ter(Canvas* canvas, const Line* line) {
+    line_draw_generic(canvas, line, 3);
 }
