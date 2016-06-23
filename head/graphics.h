@@ -27,5 +27,6 @@
 #include "image.h"
 #include "error.h"
 #include "startstop.h"
+#include "mouse.h"
 
 #endif
