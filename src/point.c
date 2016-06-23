@@ -1,6 +1,6 @@
 #include "point.h"
 
-bool equals(const Point p1, const Point p2) {
+bool point_are_equals(const Point p1, const Point p2) {
 
     bool eq;
     
@@ -28,61 +28,6 @@ int point_distance(const Point a, const Point b) {
     distance = (int) distanceTmp;
     
     return distance;
-}
-
-void point_sort_leftToRight(const int nbOfPoints, Point* tab, ...) {
-
-    int i;
-    int j;
-    Point tmp;
-    va_list ap;
-    
-    va_start(ap, tab);
-    
-    for (i = 0; i < nbOfPoints; i++) {
-        tmp = va_arg(ap, Point);
-        tab[i] = tmp;
-    }
-    
-    va_end(ap);
-    
-    for (i = 1; i < nbOfPoints; i++) {
-        tmp = tab[i];
-        
-        for (j = i; j > 0 && point_is_greater_x(tab[j - 1], tmp); j--) {
-            tab[j] = tab[j - 1];
-        }
-        
-        tab[j] = tab[i];
-    }
-}
-
-void point_sort_topToBottom(const int nbOfPoints, Point* tab, ...) {
-
-    int i;
-    int j;
-    Point tmp;
-    va_list ap;
-    
-    va_start(ap, tab);
-    
-    for (i = 0; i < nbOfPoints; i++) {
-        tmp = va_arg(ap, Point);
-        tab[i] = tmp;
-    }
-    
-    va_end(ap);
-    
-    for (i = 1; i < nbOfPoints; i++) {
-        tmp = tab[i];
-        
-        for (j = i; j > 0 && point_is_greater_y(tab[j - 1], tmp); j--) {
-            tab[j] = tab[j - 1];
-        }
-        
-        tab[j] = tab[i];
-    }
-    
 }
 
 Point point_max_x(const Point a, const Point b) {
@@ -123,7 +68,7 @@ Point point_min_x(const Point a, const Point b) {
 
     Point min;
     
-    if (equals(point_max_x(a, b), a)) {
+    if (point_are_equals(point_max_x(a, b), a)) {
         min = b;
     } else {
         min = a;
@@ -136,7 +81,7 @@ Point point_min_y(const Point a, const Point b) {
 
     Point min;
     
-    if (equals(point_max_y(a, b), a)) {
+    if (point_are_equals(point_max_y(a, b), a)) {
         min = b;
     } else {
         min = a;
@@ -149,7 +94,7 @@ bool point_is_greater_x(const Point a, const Point b) {
 
     bool is_greater;
     
-    if (equals(point_max_x(a, b), a)) {
+    if (point_are_equals(point_max_x(a, b), a)) {
         is_greater = true;
     } else {
         is_greater = false;
@@ -162,7 +107,7 @@ bool point_is_greater_y(const Point a, const Point b) {
 
     bool is_greater;
     
-    if (equals(point_max_y(a, b), a)) {
+    if (point_are_equals(point_max_y(a, b), a)) {
         is_greater = true;
     } else {
         is_greater = false;

@@ -22,7 +22,6 @@
 #include "sound.h"
 #include "calc.h"
 #include "rectangle.h"
-#include "quadrilateral.h"
 #include "event.h"
 #include "sphere.h"
 #include "image.h"

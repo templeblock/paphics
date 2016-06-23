@@ -10,13 +10,9 @@ typedef struct {
     int y;
 } Point;
 
-bool equals(const Point p1, const Point p2) __attribute__((const));
+bool point_are_equals(const Point p1, const Point p2) __attribute__((const));
 
 int point_distance(const Point a, const Point b);
-
-void point_sort_leftToRight(const int nbOfPoints, Point* tab, ...);
-
-void point_sort_topToBottom(const int nbOfPoints, Point* tab, ...);
 
 Point point_max_x(const Point a, const Point b);
 

@@ -7,5 +7,4 @@ void pixel_draw(Canvas* canvas, const Pixel* pixel) {
     } else {
         *((Uint32*) canvas->surface->pixels + (canvas->size.y - pixel->position.y - 1) * canvas->size.x + pixel->position.x) = pixel->color;
     }
-    
 }
