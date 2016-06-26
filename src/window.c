@@ -4,6 +4,7 @@ void window_create(Window* window, char* title, const Point* position, const Poi
 
     window->title = title;
     window->position = *position;
+    window->size = *size;
     window->window = NULL;
     
     window->window = SDL_CreateWindow(title, position->x, position->y, size->x, size->y, flags);

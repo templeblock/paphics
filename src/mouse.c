@@ -43,3 +43,20 @@ bool mouse_is_shown(void) {
     
     return isShown;
 }
+
+void mouse_wait_click(Window* window, Point* click) {
+
+    bool wait;
+    wait = true;
+    
+    SDL_Event input;
+    
+    while (SDL_WaitEvent(&input) && wait) {
+        if (input.type == SDL_MOUSEBUTTONDOWN && input.button.button == SDL_BUTTON_LEFT) {
+            wait = false;
+            click->x = input.button.x;
+            click->y = window->size.y - input.button.y - 1; // not sure the -1 is correct here
+        }
+    }
+    
+}
