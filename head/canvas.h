@@ -52,4 +52,6 @@ void canvas_draw_borders_out(Canvas* canvas, const Uint32 color);
 
 void canvas_fill(Canvas* canvas, const Uint32 color);
 
+void canvas_get_absolute_origin(Canvas* canvas, Point* absoluteOrigin);
+
 #endif

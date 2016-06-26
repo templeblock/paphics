@@ -1,5 +1,14 @@
 #include "canvas.h"
 
+static void canvas_get_absolute_origin_private(Canvas* canvas, Point* absoluteOrigin) {
+
+    if (canvas->parent != NULL) {
+        absoluteOrigin->x += canvas->origin.x;
+        absoluteOrigin->y += canvas->origin.y;
+        canvas_get_absolute_origin_private(canvas->parent, absoluteOrigin);
+    }
+}
+
 bool canvas_collision_canvas(const Canvas* canvas1, const Canvas* canvas2) {
 
     bool collision;
@@ -273,4 +282,13 @@ void canvas_fill(Canvas* canvas, const Uint32 color) {
         fprintf(stderr, "canvas_fill() failed: %s\n", SDL_GetError());
         error_quit();
     }
+}
+
+void canvas_get_absolute_origin(Canvas* canvas, Point* absoluteOrigin) {
+
+    absoluteOrigin->x = 0;
+    absoluteOrigin->y = 0;
+    
+    canvas_get_absolute_origin_private(canvas, absoluteOrigin);
+    
 }
