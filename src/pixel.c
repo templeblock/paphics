@@ -1,10 +1,10 @@
 #include "pixel.h"
 
-void pixel_draw(Canvas* canvas, const Pixel* pixel) {
+void pixel_draw(const Pixel* pixel, const Uint32 color) {
 
-    if (pixel->position.x < 0 || pixel->position.y < 0 || pixel->position.x > canvas->size.x || pixel->position.y > canvas->size.y) {
+    if (pixel->position.x < 0 || pixel->position.y < 0 || pixel->position.x > pixel->canvas->size.x || pixel->position.y > pixel->canvas->size.y) {
         fprintf(stderr, "\nWarning: trying to draw a pixel outside of the canvas: pixel (%d, %d)\n", pixel->position.x, pixel->position.y);
     } else {
-        *((Uint32*) canvas->surface->pixels + (canvas->size.y - pixel->position.y - 1) * canvas->size.x + pixel->position.x) = pixel->color;
+        *((Uint32*) pixel->canvas->surface->pixels + (pixel->canvas->size.y - pixel->position.y - 1) * pixel->canvas->size.x + pixel->position.x) = color;
     }
 }

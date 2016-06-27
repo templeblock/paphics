@@ -5,9 +5,9 @@
 
 typedef struct {
     Point position;
-    Uint32 color;
+    Canvas* canvas;
 } Pixel;
 
-void pixel_draw(Canvas* canvas, const Pixel* pixel);
+void pixel_draw(const Pixel* pixel, const Uint32 color);
 
 #endif
