@@ -1,6 +1,6 @@
 #include "circle.h"
 
-void circle_draw(Canvas* canvas, const Circle* circle) {
+void circle_draw(const Circle* circle) {
 
     int i;
     float dx;
@@ -22,9 +22,9 @@ void circle_draw(Canvas* canvas, const Circle* circle) {
         pix.position.x = i;
         
         pix.position.y = (int) ((float) circle->center.y + dy);
-        pixel_draw(canvas, &pix);
+        pixel_draw(circle->canvas, &pix);
         pix.position.y = (int) ((float) circle->center.y - dy);
-        pixel_draw(canvas, &pix);
+        pixel_draw(circle->canvas, &pix);
     }
     
     for (i = min.y; i <= max.y; i++) {
@@ -33,13 +33,13 @@ void circle_draw(Canvas* canvas, const Circle* circle) {
         pix.position.y = i;
         
         pix.position.x = (int) ((float) circle->center.x + dx);
-        pixel_draw(canvas, &pix);
+        pixel_draw(circle->canvas, &pix);
         pix.position.x = (int) ((float) circle->center.x - dx);
-        pixel_draw(canvas, &pix);
+        pixel_draw(circle->canvas, &pix);
     }
 }
 
-void circle_draw_fill(Canvas* canvas, const Circle* circle) {
+void circle_draw_fill(const Circle* circle) {
 
     float dx;
     float dy;
@@ -63,7 +63,7 @@ void circle_draw_fill(Canvas* canvas, const Circle* circle) {
             dy = (float) (pix.position.y - circle->center.y);
             
             if (dx * dx + dy * dy <= circle->radius * circle->radius) {
-                pixel_draw(canvas, &pix);
+                pixel_draw(circle->canvas, &pix);
             }
         }
     }

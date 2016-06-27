@@ -1,6 +1,6 @@
 #include "sphere.h"
 
-void sphere_draw_fill(Canvas* canvas, const Sphere* sphere) {
+void sphere_draw_fill(const Sphere* sphere) {
 
     int i;
     int nb_step;
@@ -23,6 +23,8 @@ void sphere_draw_fill(Canvas* canvas, const Sphere* sphere) {
     
     dradius = sphere->radius / nb_step;
     
+    circle.canvas = sphere->canvas;
+    
     for (i = 0; i < nb_step; i++) {
     
         colorTmp.r = (Uint8) (color.r + dred * i);
@@ -34,8 +36,8 @@ void sphere_draw_fill(Canvas* canvas, const Sphere* sphere) {
         
         circle.radius = sphere->radius - dradius * i;
         
-        circle.color = SDL_MapRGB(canvas->surface->format, colorTmp.r, colorTmp.g, colorTmp.b);
+        circle.color = SDL_MapRGB(circle.canvas->surface->format, colorTmp.r, colorTmp.g, colorTmp.b);
         
-        circle_draw_fill(canvas, &circle);
+        circle_draw_fill(&circle);
     }
 }

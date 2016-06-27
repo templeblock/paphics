@@ -7,10 +7,11 @@ typedef struct {
     Point center;
     int radius;
     Uint32 color;
+    Canvas* canvas;
 } Circle;
 
-void circle_draw(Canvas* canvas, const Circle* circle);
+void circle_draw(const Circle* circle);
 
-void circle_draw_fill(Canvas* canvas, const Circle* circle);
+void circle_draw_fill(const Circle* circle);
 
 #endif

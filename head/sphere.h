@@ -8,8 +8,9 @@ typedef struct {
     Point center;
     int radius;
     Uint32 color;
+    Canvas* canvas;
 } Sphere;
 
-void sphere_draw_fill(Canvas* canvas, const Sphere* sphere);
+void sphere_draw_fill(const Sphere* sphere);
 
 #endif
