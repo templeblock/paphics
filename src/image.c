@@ -1,16 +1,16 @@
 #include "image.h"
 
-void image_blit_naive(Canvas* canvas, const Image* image) {
+void image_blit_naive(const Image* image) {
 
-    if (SDL_BlitSurface(image->surface, NULL, canvas->surface, NULL) != 0) {
+    if (SDL_BlitSurface(image->surface, NULL, image->canvas->surface, NULL) != 0) {
         fprintf(stderr, "\nUnable to blit image (naive) ! SDL Error: %s\n", SDL_GetError());
         error_quit();
     }
 }
 
-void image_blit_scaled(Canvas* canvas, const Image* image) {
+void image_blit_scaled(const Image* image) {
 
-    if (SDL_BlitScaled(image->surface, NULL, canvas->surface, NULL) != 0) {
+    if (SDL_BlitScaled(image->surface, NULL, image->canvas->surface, NULL) != 0) {
         fprintf(stderr, "\nUnable to blit image (scaled) ! SDL Error: %s\n", SDL_GetError());
         error_quit();
     }

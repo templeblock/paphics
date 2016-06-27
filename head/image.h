@@ -5,11 +5,12 @@
 
 typedef struct {
     SDL_Surface* surface;
+    Canvas* canvas;
 } Image;
 
-void image_blit_naive(Canvas* canvas, const Image* image);
+void image_blit_naive(const Image* image);
 
-void image_blit_scaled(Canvas* canvas, const Image* image);
+void image_blit_scaled(const Image* image);
 
 void image_load(Image* image, const char* pathToImg);
 
