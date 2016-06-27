@@ -7,10 +7,11 @@
 typedef struct {
     Point origin;
     Point size;
+    Canvas* canvas;
 } Rectangle;
 
-void rectangle_draw(Canvas* canvas, const Rectangle* rectangle, const Uint32 color);
+void rectangle_draw(const Rectangle* rectangle, const Uint32 color);
 
-void rectangle_draw_fill(Canvas* canvas, const Rectangle* rectangle, const Uint32 color);
+void rectangle_draw_fill(const Rectangle* rectangle, const Uint32 color);
 
 #endif

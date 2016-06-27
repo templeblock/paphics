@@ -1,6 +1,6 @@
 #include "rectangle.h"
 
-void rectangle_draw(Canvas* canvas, const Rectangle* rectangle, const Uint32 color) {
+void rectangle_draw(const Rectangle* rectangle, const Uint32 color) {
 
     Line l;
     Line m;
@@ -27,22 +27,22 @@ void rectangle_draw(Canvas* canvas, const Rectangle* rectangle, const Uint32 col
     o.a = n.b;
     o.b = l.a;
     
-    line_draw(canvas, &l);
-    line_draw(canvas, &m);
-    line_draw(canvas, &n);
-    line_draw(canvas, &o);
+    line_draw(rectangle->canvas, &l);
+    line_draw(rectangle->canvas, &m);
+    line_draw(rectangle->canvas, &n);
+    line_draw(rectangle->canvas, &o);
 }
 
-void rectangle_draw_fill(Canvas* canvas, const Rectangle* rectangle, const Uint32 color) {
+void rectangle_draw_fill(const Rectangle* rectangle, const Uint32 color) {
 
     SDL_Rect rectTmp;
     
     rectTmp.w = rectangle->size.x;
     rectTmp.h = rectangle->size.y;
     rectTmp.x = rectangle->origin.x;
-    rectTmp.y = canvas->size.y - rectangle->origin.y - rectangle->size.y;
+    rectTmp.y = rectangle->canvas->size.y - rectangle->origin.y - rectangle->size.y;
     
-    if (SDL_FillRect(canvas->surface, &rectTmp, color) != 0) {
+    if (SDL_FillRect(rectangle->canvas->surface, &rectTmp, color) != 0) {
         fprintf(stderr, "rectangle_draw_fill() failed: %s\n", SDL_GetError());
         error_quit();
     }
