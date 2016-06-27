@@ -1,6 +1,6 @@
 #include "sphere.h"
 
-void sphere_draw_fill(const Sphere* sphere) {
+void sphere_draw_fill(const Sphere* sphere, const Uint32 color) {
 
     int i;
     int nb_step;
@@ -9,17 +9,17 @@ void sphere_draw_fill(const Sphere* sphere) {
     int dgreen;
     int dblue;
     int dradius;
-    SDL_Color color;
+    SDL_Color colorSDL;
     SDL_Color colorTmp;
     Circle circle;
     
-    color_translate(sphere->color, &color);
+    color_translate(color, &colorSDL);
     
     nb_step = (int) (((float) sphere->radius) * 0.5f);
     
-    dred = (255 - color.r) / nb_step;
-    dgreen = (255 - color.g) / nb_step;
-    dblue = (255 - color.b) / nb_step;
+    dred = (255 - colorSDL.r) / nb_step;
+    dgreen = (255 - colorSDL.g) / nb_step;
+    dblue = (255 - colorSDL.b) / nb_step;
     
     dradius = sphere->radius / nb_step;
     
@@ -27,17 +27,15 @@ void sphere_draw_fill(const Sphere* sphere) {
     
     for (i = 0; i < nb_step; i++) {
     
-        colorTmp.r = (Uint8) (color.r + dred * i);
-        colorTmp.g = (Uint8) (color.g + dgreen * i);
-        colorTmp.b = (Uint8) (color.b + dblue * i);
+        colorTmp.r = (Uint8) (colorSDL.r + dred * i);
+        colorTmp.g = (Uint8) (colorSDL.g + dgreen * i);
+        colorTmp.b = (Uint8) (colorSDL.b + dblue * i);
         
         circle.center.x = sphere->center.x + i;
         circle.center.y = sphere->center.y + i;
         
         circle.radius = sphere->radius - dradius * i;
         
-        circle.color = SDL_MapRGB(circle.canvas->surface->format, colorTmp.r, colorTmp.g, colorTmp.b);
-        
-        circle_draw_fill(&circle);
+        circle_draw_fill(&circle, SDL_MapRGB(circle.canvas->surface->format, colorTmp.r, colorTmp.g, colorTmp.b));
     }
 }

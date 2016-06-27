@@ -1,6 +1,6 @@
 #include "circle.h"
 
-void circle_draw(const Circle* circle) {
+void circle_draw(const Circle* circle, const Uint32 color) {
 
     int i;
     float dx;
@@ -22,9 +22,9 @@ void circle_draw(const Circle* circle) {
         pix.position.x = i;
         
         pix.position.y = (int) ((float) circle->center.y + dy);
-        pixel_draw(&pix, circle->color);
+        pixel_draw(&pix, color);
         pix.position.y = (int) ((float) circle->center.y - dy);
-        pixel_draw(&pix, circle->color);
+        pixel_draw(&pix, color);
     }
     
     for (i = min.y; i <= max.y; i++) {
@@ -33,13 +33,13 @@ void circle_draw(const Circle* circle) {
         pix.position.y = i;
         
         pix.position.x = (int) ((float) circle->center.x + dx);
-        pixel_draw(&pix, circle->color);
+        pixel_draw(&pix, color);
         pix.position.x = (int) ((float) circle->center.x - dx);
-        pixel_draw(&pix, circle->color);
+        pixel_draw(&pix, color);
     }
 }
 
-void circle_draw_fill(const Circle* circle) {
+void circle_draw_fill(const Circle* circle, const Uint32 color) {
 
     float dx;
     float dy;
@@ -63,7 +63,7 @@ void circle_draw_fill(const Circle* circle) {
             dy = (float) (pix.position.y - circle->center.y);
             
             if (dx * dx + dy * dy <= circle->radius * circle->radius) {
-                pixel_draw(&pix, circle->color);
+                pixel_draw(&pix, color);
             }
         }
     }

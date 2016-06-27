@@ -4,13 +4,14 @@
 #include "circle.h"
 #include "color.h"
 
+#pragma pack(push, 1)
 typedef struct {
     Point center;
     int radius;
-    Uint32 color;
     Canvas* canvas;
 } Sphere;
+#pragma pack(pop)
 
-void sphere_draw_fill(const Sphere* sphere);
+void sphere_draw_fill(const Sphere* sphere, const Uint32 color);
 
 #endif
