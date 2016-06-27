@@ -7,11 +7,6 @@ void rectangle_draw(const Rectangle* rectangle, const Uint32 color) {
     Line n;
     Line o;
     
-    l.color = color;
-    m.color = color;
-    n.color = color;
-    o.color = color;
-    
     l.a = rectangle->origin;
     l.b = l.a;
     l.b.x += rectangle->size.x - 1;
@@ -27,10 +22,15 @@ void rectangle_draw(const Rectangle* rectangle, const Uint32 color) {
     o.a = n.b;
     o.b = l.a;
     
-    line_draw(rectangle->canvas, &l);
-    line_draw(rectangle->canvas, &m);
-    line_draw(rectangle->canvas, &n);
-    line_draw(rectangle->canvas, &o);
+    l.canvas = rectangle->canvas;
+    m.canvas = l.canvas;
+    n.canvas = l.canvas;
+    o.canvas = l.canvas;
+    
+    line_draw(&l, color);
+    line_draw(&m, color);
+    line_draw(&n, color);
+    line_draw(&o, color);
 }
 
 void rectangle_draw_fill(const Rectangle* rectangle, const Uint32 color) {

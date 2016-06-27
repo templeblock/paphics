@@ -6,13 +6,13 @@
 typedef struct {
     Point a;
     Point b;
-    Uint32 color;
+    Canvas* canvas;
 } Line;
 
-void line_draw(Canvas* canvas, const Line* line);
+void line_draw(const Line* line, const Uint32 color);
 
-void line_draw_bis(Canvas* canvas, const Line* line);
+void line_draw_bis(const Line* line, const Uint32 color);
 
-void line_draw_ter(Canvas* canvas, const Line* line);
+void line_draw_ter(const Line* line, const Uint32 color);
 
 #endif

@@ -1,48 +1,48 @@
 #include "line.h"
 
-static void line_draw_noVarX(Canvas* canvas, const Line* line) {
+static void line_draw_noVarX(const Line* line, const Uint32 color) {
 
     Pixel pix;
     
-    pix.color = line->color;
+    pix.color = color;
     pix.position.x = line->a.x;
     
     if (line->a.y > line->b.y) {
     
         for (pix.position.y = line->b.y; pix.position.y <= line->a.y; pix.position.y++) {
-            pixel_draw(canvas, &pix);
+            pixel_draw(line->canvas, &pix);
         }
     } else {
     
         for (pix.position.y = line->a.y; pix.position.y <= line->b.y; pix.position.y++) {
-            pixel_draw(canvas, &pix);
+            pixel_draw(line->canvas, &pix);
         }
     }
     
 }
 
-static void line_draw_noVarY(Canvas* canvas, const Line* line) {
+static void line_draw_noVarY(const Line* line, const Uint32 color) {
 
     Pixel pix;
     
-    pix.color = line->color;
+    pix.color = color;
     pix.position.y = line->a.y;
     
     if (line->a.x > line->b.x) {
     
         for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
-            pixel_draw(canvas, &pix);
+            pixel_draw(line->canvas, &pix);
         }
     } else {
     
         for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
-            pixel_draw(canvas, &pix);
+            pixel_draw(line->canvas, &pix);
         }
     }
     
 }
 
-static void line_draw_sameVarXY(Canvas* canvas, const Line* line) {
+static void line_draw_sameVarXY(const Line* line, const Uint32 color) {
 
     short int dy;
     Pixel pix;
@@ -53,7 +53,7 @@ static void line_draw_sameVarXY(Canvas* canvas, const Line* line) {
         dy = -1;
     }
     
-    pix.color = line-> color;
+    pix.color = color;
     
     if (line->a.x < line->b.x) {
     
@@ -61,7 +61,7 @@ static void line_draw_sameVarXY(Canvas* canvas, const Line* line) {
         
         for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
         
-            pixel_draw(canvas, &pix);
+            pixel_draw(line->canvas, &pix);
             pix.position.y += dy;
         }
         
@@ -71,19 +71,19 @@ static void line_draw_sameVarXY(Canvas* canvas, const Line* line) {
         
         for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
         
-            pixel_draw(canvas, &pix);
+            pixel_draw(line->canvas, &pix);
             pix.position.y -= dy;
         }
     }
     
 }
 
-static void line_draw_naive(Canvas* canvas, const Line* line) {
+static void line_draw_naive(const Line* line, const Uint32 color) {
 
     Point delta;
     Pixel pix;
     
-    pix.color = line->color;
+    pix.color = color;
     
     if (line->a.x < line->b.x) {
     
@@ -92,7 +92,7 @@ static void line_draw_naive(Canvas* canvas, const Line* line) {
         
         for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
             pix.position.y = line->a.y + delta.y * (pix.position.x - line->a.x) / delta.x;
-            pixel_draw(canvas, &pix);
+            pixel_draw(line->canvas, &pix);
         }
         
     } else {
@@ -102,13 +102,13 @@ static void line_draw_naive(Canvas* canvas, const Line* line) {
         
         for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
             pix.position.y = line->b.y + delta.y * (pix.position.x - line->b.x) / delta.x;
-            pixel_draw(canvas, &pix);
+            pixel_draw(line->canvas, &pix);
         }
         
     }
 }
 
-static void line_draw_dda(Canvas* canvas, const Line* line, const Point* dist, const Point* dist_abs) {
+static void line_draw_dda(const Line* line, const Point* dist, const Point* dist_abs, const Uint32 color) {
 
     unsigned int lenght;
     float dx;
@@ -129,14 +129,14 @@ static void line_draw_dda(Canvas* canvas, const Line* line, const Point* dist, c
     x = (float) line->a.x + 0.5f;
     y = (float) line->a.y + 0.5f;
     
-    pix.color = line->color;
+    pix.color = color;
     
     while (lenght > 0) {
     
         pix.position.x = (int) lround(x);
         pix.position.y = (int) lround(y);
         
-        pixel_draw(canvas, &pix);
+        pixel_draw(line->canvas, &pix);
         
         x += dx;
         y += dy;
@@ -145,7 +145,7 @@ static void line_draw_dda(Canvas* canvas, const Line* line, const Point* dist, c
     }
 }
 
-static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* dist) {
+static void line_draw_bresenham(const Line* line, const Point* dist, const Uint32 color) {
 
     int dx;
     int dy;
@@ -155,7 +155,7 @@ static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* d
     dx = dist->x;
     dy = dist->y;
     
-    pix.color = line->color;
+    pix.color = color;
     
     if (dx > 0) {
         if (dy > 0) {
@@ -166,7 +166,7 @@ static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* d
                 pix.position.y = line->a.y;
                 
                 for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
-                    pixel_draw(canvas, &pix);
+                    pixel_draw(line->canvas, &pix);
                     error -= dy;
                     
                     if (error < 0) {
@@ -181,7 +181,7 @@ static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* d
                 pix.position.x = line->a.x;
                 
                 for (pix.position.y = line->a.y; pix.position.y <= line->b.y; pix.position.y++) {
-                    pixel_draw(canvas, &pix);
+                    pixel_draw(line->canvas, &pix);
                     error -= dx;
                     
                     if (error < 0) {
@@ -198,7 +198,7 @@ static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* d
                 pix.position.y = line->a.y;
                 
                 for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
-                    pixel_draw(canvas, &pix);
+                    pixel_draw(line->canvas, &pix);
                     error += dy;
                     
                     if (error < 0) {
@@ -213,7 +213,7 @@ static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* d
                 pix.position.x = line->a.x;
                 
                 for (pix.position.y = line->a.y; pix.position.y >= line->b.y; pix.position.y--) {
-                    pixel_draw(canvas, &pix);
+                    pixel_draw(line->canvas, &pix);
                     error += dx;
                     
                     if (error > 0) {
@@ -232,7 +232,7 @@ static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* d
                 pix.position.y = line->a.y;
                 
                 for (pix.position.x = line->a.x; pix.position.x >= line->b.x; pix.position.x--) {
-                    pixel_draw(canvas, &pix);
+                    pixel_draw(line->canvas, &pix);
                     error += dy;
                     
                     if (error >= 0) {
@@ -247,7 +247,7 @@ static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* d
                 pix.position.x = line->a.x;
                 
                 for (pix.position.y = line->a.y; pix.position.y <= line->b.y; pix.position.y++) {
-                    pixel_draw(canvas, &pix);
+                    pixel_draw(line->canvas, &pix);
                     error += dx;
                     
                     if (error <= 0) {
@@ -264,7 +264,7 @@ static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* d
                 pix.position.y = line->a.y;
                 
                 for (pix.position.x = line->a.x; pix.position.x >= line->b.x; pix.position.x--) {
-                    pixel_draw(canvas, &pix);
+                    pixel_draw(line->canvas, &pix);
                     error -= dy;
                     
                     if (error >= 0) {
@@ -279,7 +279,7 @@ static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* d
                 pix.position.x = line->a.x;
                 
                 for (pix.position.y = line->a.y; pix.position.y >= line->b.y; pix.position.y--) {
-                    pixel_draw(canvas, &pix);
+                    pixel_draw(line->canvas, &pix);
                     error -= dx;
                     
                     if (error >= 0) {
@@ -292,7 +292,7 @@ static void line_draw_bresenham(Canvas* canvas, const Line* line, const Point* d
     }
 }
 
-static void line_draw_generic(Canvas* canvas, const Line* line, const short int algoNumber) {
+static void line_draw_generic(const Line* line, const short int algoNumber, const Uint32 color) {
 
     Point dist;
     
@@ -300,9 +300,9 @@ static void line_draw_generic(Canvas* canvas, const Line* line, const short int 
     dist.y = line->b.y - line->a.y;
     
     if (dist.x == 0) {
-        line_draw_noVarX(canvas, line);
+        line_draw_noVarX(line, color);
     } else if (dist.y == 0) {
-        line_draw_noVarY(canvas, line);
+        line_draw_noVarY(line, color);
     } else {
     
         Point dist_abs;
@@ -311,26 +311,26 @@ static void line_draw_generic(Canvas* canvas, const Line* line, const short int 
         dist_abs.y = abs(dist.y);
         
         if (dist_abs.x == dist_abs.y) {
-            line_draw_sameVarXY(canvas, line);
+            line_draw_sameVarXY(line, color);
         } else if (algoNumber == 1) {
-            line_draw_bresenham(canvas, line, &dist);
+            line_draw_bresenham(line, &dist, color);
         } else if (algoNumber == 2) {
-            line_draw_dda(canvas, line, &dist, &dist_abs);
+            line_draw_dda(line, &dist, &dist_abs, color);
         } else {
-            line_draw_naive(canvas, line);
+            line_draw_naive(line, color);
         }
     }
     
 }
 
-void line_draw(Canvas* canvas, const Line* line) {
-    line_draw_generic(canvas, line, 1);
+void line_draw(const Line* line, const Uint32 color) {
+    line_draw_generic(line, 1, color);
 }
 
-void line_draw_bis(Canvas* canvas, const Line* line) {
-    line_draw_generic(canvas, line, 2);
+void line_draw_bis(const Line* line, const Uint32 color) {
+    line_draw_generic(line, 2, color);
 }
 
-void line_draw_ter(Canvas* canvas, const Line* line) {
-    line_draw_generic(canvas, line, 3);
+void line_draw_ter(const Line* line, const Uint32 color) {
+    line_draw_generic(line, 3, color);
 }
