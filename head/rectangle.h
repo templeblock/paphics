@@ -14,4 +14,6 @@ void rectangle_draw(const Rectangle* rectangle, const Uint32 color);
 
 void rectangle_draw_fill(const Rectangle* rectangle, const Uint32 color);
 
+bool rectangle_contains_point(const Rectangle* rect, const Point p);
+
 #endif

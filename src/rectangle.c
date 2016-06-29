@@ -48,3 +48,16 @@ void rectangle_draw_fill(const Rectangle* rectangle, const Uint32 color) {
     }
     
 }
+
+bool rectangle_contains_point(const Rectangle* rect, const Point p) {
+
+    bool isIn;
+    
+    if (p.x >= rect->origin.x && p.x < rect->origin.x + rect->size.x && p.y >= rect->origin.y && p.y < rect->origin.y + rect->size.y) {
+        isIn = true;
+    } else {
+        isIn = false;
+    }
+    
+    return isIn;
+}
