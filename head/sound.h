@@ -16,4 +16,10 @@ void sound_play_once(const Sound* music);
 
 void sound_free(Sound* sound);
 
+void sound_stop(void);
+
+void sound_pause(void);
+
+void sound_resume(void);
+
 #endif

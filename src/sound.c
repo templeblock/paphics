@@ -23,3 +23,15 @@ void sound_play_once(const Sound* sound) {
 void sound_free(Sound* sound) {
     Mix_FreeMusic(sound->content);
 }
+
+void sound_stop() {
+    Mix_HaltMusic();
+}
+
+void sound_pause() {
+    Mix_Pause(-1);
+}
+
+void sound_resume() {
+    Mix_Resume(-1);
+}
