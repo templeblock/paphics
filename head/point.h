@@ -22,8 +22,4 @@ Point point_min_x(const Point a, const Point b);
 
 Point point_min_y(const Point a, const Point b);
 
-bool point_is_greater_x(const Point a, const Point b);
-
-bool point_is_greater_y(const Point a, const Point b);
-
 #endif

@@ -4,6 +4,6 @@
 #include <SDL2/SDL_image.h>
 #include "startstop.h"
 
-void error_quit(void);
+void error_quit(void) __attribute__ ((noreturn));
 
 #endif

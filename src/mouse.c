@@ -44,7 +44,7 @@ bool mouse_is_shown(void) {
     return isShown;
 }
 
-void mouse_wait_click(Window* window, Point* click) {
+void mouse_wait_click(const Window* window, Point* click) {
 
     bool wait;
     wait = true;

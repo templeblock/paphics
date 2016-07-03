@@ -89,29 +89,3 @@ Point point_min_y(const Point a, const Point b) {
     
     return min;
 }
-
-bool point_is_greater_x(const Point a, const Point b) {
-
-    bool is_greater;
-    
-    if (point_are_equals(point_max_x(a, b), a)) {
-        is_greater = true;
-    } else {
-        is_greater = false;
-    }
-    
-    return is_greater;
-}
-
-bool point_is_greater_y(const Point a, const Point b) {
-
-    bool is_greater;
-    
-    if (point_are_equals(point_max_y(a, b), a)) {
-        is_greater = true;
-    } else {
-        is_greater = false;
-    }
-    
-    return is_greater;
-}

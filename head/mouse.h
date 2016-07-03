@@ -11,7 +11,7 @@ void mouse_hide(void);
 
 void mouse_show(void);
 
-void mouse_wait_click(Window* window, Point* click);
+void mouse_wait_click(const Window* window, Point* click);
 
 bool mouse_is_hidden(void);
 
