@@ -251,7 +251,7 @@ void canvas_create_from_window(Canvas* canvas, const Window* window) {
     
 }
 
-void canvas_draw_borders_in(Canvas* canvas, const Uint32 color) {
+void canvas_draw_borders_in(Canvas* canvas, const Color* color) {
 
     Rectangle rectTmp;
     
@@ -263,7 +263,7 @@ void canvas_draw_borders_in(Canvas* canvas, const Uint32 color) {
     rectangle_draw(&rectTmp, color);
 }
 
-void canvas_draw_borders_out(Canvas* canvas, const Uint32 color) {
+void canvas_draw_borders_out(Canvas* canvas, const Color* color) {
 
     Rectangle rectTmp;
     
@@ -278,9 +278,9 @@ void canvas_draw_borders_out(Canvas* canvas, const Uint32 color) {
     rectangle_draw(&rectTmp, color);
 }
 
-void canvas_fill(Canvas* canvas, const Uint32 color) {
+void canvas_fill(Canvas* canvas, const Color* color) {
 
-    if (SDL_FillRect(canvas->surface, NULL, color) != 0) {
+    if (SDL_FillRect(canvas->surface, NULL, color->rgb) != 0) {
         fprintf(stderr, "canvas_fill() failed: %s\n", SDL_GetError());
         error_quit();
     }

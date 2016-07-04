@@ -1,37 +1,37 @@
 #include "color.h"
 
-void color_translate(const Uint32 int_color, SDL_Color* color) {
+void color_translate(const Color* color, SDL_Color* sdlColor) {
 
-    color->r = color_get_red(int_color);
-    color->g = color_get_green(int_color);
-    color->b = color_get_blue(int_color);
-    color->a = 0;
+    sdlColor->r = color_get_red(color);
+    sdlColor->g = color_get_green(color);
+    sdlColor->b = color_get_blue(color);
+    sdlColor->a = color->alpha;
     
 }
 
-Uint8 color_get_red(const Uint32 color) {
+Uint8 color_get_red(const Color* color) {
 
     Uint8 red;
     
-    red = (Uint8) ((color % 256) << 16);
+    red = (Uint8) ((color->rgb % 256) << 16);
     
     return red;
 }
 
-Uint8 color_get_green(const Uint32 color) {
+Uint8 color_get_green(const Color* color) {
 
     Uint8 green;
     
-    green = (Uint8) ((color % 256) << 8);
+    green = (Uint8) ((color->rgb % 256) << 8);
     
     return green;
 }
 
-Uint8 color_get_blue(const Uint32 color) {
+Uint8 color_get_blue(const Color* color) {
 
     Uint8 blue;
     
-    blue = color % 256;
+    blue = color->rgb % 256;
     
     return blue;
 }

@@ -9,10 +9,10 @@ typedef struct {
     Canvas* canvas;
 } Line;
 
-void line_draw(const Line* line, const Uint32 color);
+void line_draw(const Line* line, const Color* color);
 
-void line_draw_bis(const Line* line, const Uint32 color);
+void line_draw_bis(const Line* line, const Color* color);
 
-void line_draw_ter(const Line* line, const Uint32 color);
+void line_draw_ter(const Line* line, const Color* color);
 
 #endif

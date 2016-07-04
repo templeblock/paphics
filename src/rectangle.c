@@ -1,6 +1,6 @@
 #include "rectangle.h"
 
-void rectangle_draw(const Rectangle* rectangle, const Uint32 color) {
+void rectangle_draw(const Rectangle* rectangle, const Color* color) {
 
     Line l;
     Line m;
@@ -33,7 +33,7 @@ void rectangle_draw(const Rectangle* rectangle, const Uint32 color) {
     line_draw(&o, color);
 }
 
-void rectangle_draw_fill(const Rectangle* rectangle, const Uint32 color) {
+void rectangle_draw_fill(const Rectangle* rectangle, const Color* color) {
 
     SDL_Rect rectTmp;
     
@@ -42,7 +42,7 @@ void rectangle_draw_fill(const Rectangle* rectangle, const Uint32 color) {
     rectTmp.x = rectangle->origin.x;
     rectTmp.y = rectangle->canvas->size.y - rectangle->origin.y - rectangle->size.y;
     
-    if (SDL_FillRect(rectangle->canvas->surface, &rectTmp, color) != 0) {
+    if (SDL_FillRect(rectangle->canvas->surface, &rectTmp, color->rgb) != 0) {
         fprintf(stderr, "rectangle_draw_fill() failed: %s\n", SDL_GetError());
         error_quit();
     }

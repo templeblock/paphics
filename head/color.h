@@ -3,12 +3,19 @@
 
 #include <SDL2/SDL.h>
 
-void color_translate(const Uint32 int_color, SDL_Color* color);
+#pragma pack(push, 1)
+typedef struct {
+    Uint32 rgb;
+    Uint8 alpha;
+} Color;
+#pragma pack(pop)
 
-Uint8 color_get_red(const Uint32 color) __attribute__((const));
+void color_translate(const Color* color, SDL_Color* sdlColor);
 
-Uint8 color_get_green(const Uint32 color) __attribute__((const));
+Uint8 color_get_red(const Color* color) __attribute__((const));
 
-Uint8 color_get_blue(const Uint32 color) __attribute__((const));
+Uint8 color_get_green(const Color* color) __attribute__((const));
+
+Uint8 color_get_blue(const Color* color) __attribute__((const));
 
 #endif

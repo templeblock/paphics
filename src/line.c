@@ -1,6 +1,6 @@
 #include "line.h"
 
-static void line_draw_noVarX(const Line* line, const Uint32 color) {
+static void line_draw_noVarX(const Line* line, const Color* color) {
 
     Pixel pix;
     
@@ -21,7 +21,7 @@ static void line_draw_noVarX(const Line* line, const Uint32 color) {
     
 }
 
-static void line_draw_noVarY(const Line* line, const Uint32 color) {
+static void line_draw_noVarY(const Line* line, const Color* color) {
 
     Pixel pix;
     
@@ -42,7 +42,7 @@ static void line_draw_noVarY(const Line* line, const Uint32 color) {
     
 }
 
-static void line_draw_sameVarXY(const Line* line, const Uint32 color) {
+static void line_draw_sameVarXY(const Line* line, const Color* color) {
 
     short int dy;
     Pixel pix;
@@ -78,7 +78,7 @@ static void line_draw_sameVarXY(const Line* line, const Uint32 color) {
     
 }
 
-static void line_draw_naive(const Line* line, const Uint32 color) {
+static void line_draw_naive(const Line* line, const Color* color) {
 
     Point delta;
     Pixel pix;
@@ -108,7 +108,7 @@ static void line_draw_naive(const Line* line, const Uint32 color) {
     }
 }
 
-static void line_draw_dda(const Line* line, const Point* dist, const Point* dist_abs, const Uint32 color) {
+static void line_draw_dda(const Line* line, const Point* dist, const Point* dist_abs, const Color* color) {
 
     unsigned int lenght;
     float dx;
@@ -145,7 +145,7 @@ static void line_draw_dda(const Line* line, const Point* dist, const Point* dist
     }
 }
 
-static void line_draw_bresenham(const Line* line, const Point* dist, const Uint32 color) {
+static void line_draw_bresenham(const Line* line, const Point* dist, const Color* color) {
 
     int dx;
     int dy;
@@ -292,7 +292,7 @@ static void line_draw_bresenham(const Line* line, const Point* dist, const Uint3
     }
 }
 
-static void line_draw_generic(const Line* line, const short int algoNumber, const Uint32 color) {
+static void line_draw_generic(const Line* line, const short int algoNumber, const Color* color) {
 
     Point dist;
     
@@ -323,14 +323,14 @@ static void line_draw_generic(const Line* line, const short int algoNumber, cons
     
 }
 
-void line_draw(const Line* line, const Uint32 color) {
+void line_draw(const Line* line, const Color* color) {
     line_draw_generic(line, 1, color);
 }
 
-void line_draw_bis(const Line* line, const Uint32 color) {
+void line_draw_bis(const Line* line, const Color* color) {
     line_draw_generic(line, 2, color);
 }
 
-void line_draw_ter(const Line* line, const Uint32 color) {
+void line_draw_ter(const Line* line, const Color* color) {
     line_draw_generic(line, 3, color);
 }

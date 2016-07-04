@@ -12,6 +12,6 @@ typedef struct {
 } Sphere;
 #pragma pack(pop)
 
-void sphere_draw_fill(const Sphere* sphere, const Uint32 color);
+void sphere_draw_fill(const Sphere* sphere, const Color* color);
 
 #endif

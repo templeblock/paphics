@@ -2,6 +2,7 @@
 #define DEF_CANVAS_H
 
 #include "window.h"
+#include "color.h"
 
 typedef struct Canvas {
     SDL_Surface* surface;
@@ -46,11 +47,11 @@ void canvas_clear(Canvas* canvas);
 
 void canvas_create_from_window(Canvas* canvas, const Window* window);
 
-void canvas_draw_borders_in(Canvas* canvas, const Uint32 color);
+void canvas_draw_borders_in(Canvas* canvas, const Color* color);
 
-void canvas_draw_borders_out(Canvas* canvas, const Uint32 color);
+void canvas_draw_borders_out(Canvas* canvas, const Color* color);
 
-void canvas_fill(Canvas* canvas, const Uint32 color);
+void canvas_fill(Canvas* canvas, const Color* color);
 
 void canvas_get_absolute_origin(const Canvas* canvas, Point* absoluteOrigin);
 

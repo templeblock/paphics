@@ -8,6 +8,6 @@ typedef struct {
     Canvas* canvas;
 } Pixel;
 
-void pixel_draw(const Pixel* pixel, const Uint32 color);
+void pixel_draw(const Pixel* pixel, const Color* color);
 
 #endif

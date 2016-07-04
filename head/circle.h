@@ -11,8 +11,8 @@ typedef struct {
 } Circle;
 #pragma pack(pop)
 
-void circle_draw(const Circle* circle, const Uint32 color);
+void circle_draw(const Circle* circle, const Color* color);
 
-void circle_draw_fill(const Circle* circle, const Uint32 color);
+void circle_draw_fill(const Circle* circle, const Color* color);
 
 #endif
