@@ -16,6 +16,6 @@ Uint8 color_get_red(const Color* color) __attribute__((const));
 
 Uint8 color_get_green(const Color* color) __attribute__((const));
 
-Uint8 color_get_blue(const Color* color) __attribute__((const));
+Uint8 color_get_blue(const Color* color) __attribute__((pure));
 
 #endif
