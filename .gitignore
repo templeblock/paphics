@@ -41,3 +41,7 @@
 # Build dir
 ./build/
 ./build/*
+
+# Doc dir
+./doc/
+./doc/*
