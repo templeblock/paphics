@@ -9,6 +9,7 @@ HEAD_DIR := ./head
 export BUILD_DIR=$(PWD)/build
 LIB_DIR := ./libs
 LOG_DIR := ./logs
+DOC_DIR := ./doc
 
 CC := gcc
 CFLAGS := -std=c11 -Wall -Wextra -Wdouble-promotion -Wformat -Winit-self  -Wmissing-include-dirs -Wswitch-default  -Wswitch-enum -Wunused -Wunused-parameter -Wuninitialized -Wunknown-pragmas -fstrict-overflow -Wstrict-overflow=2 -Wsuggest-attribute=const -Wsuggest-attribute=pure -Wmissing-format-attribute -Wstrict-aliasing -Wtrampolines -Wfloat-equal -Wundef -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wconversion -Wjump-misses-init -Wlogical-op -Wno-aggressive-loop-optimizations -Wstrict-prototypes -Wmissing-declarations -Wredundant-decls -Wpacked -Wpadded -Wnested-externs -Winline -Wvla -Wdisabled-optimization -Wstack-protector -Wunsuffixed-float-constants -Wabi -Winvalid-pch -Wshadow -pedantic-errors --pedantic -g -Werror -O6 -pass-exit-codes -pipe -aux-info $(LOG_DIR)/aux-info.log -fsigned-char -fsigned-bitfields -fPIC
@@ -35,7 +36,7 @@ DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-m
 
 default: all
 
-all: format build-dynamic-lib clean
+all: format build-dynamic-lib build-documentation clean
 
 install-all: install install-dev
 
@@ -93,6 +94,10 @@ build-dynamic-lib: $(LOG_DIR) $(TARGET_DYNAMIC)
 $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
 	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
 
+build-documentation:
+	mkdir -p $(DOC_DIR)
+	doxygen Doxyfile
+
 install:
 	rm -rf /usr/local/lib/$(TARGET_DYNAMIC)
 	cp $(TARGET_DYNAMIC) /usr/local/lib/
@@ -109,6 +114,7 @@ clean:
 	-rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig
 	-rm -rf $(BUILD_DIR) *.tgz
 	-rm -rf $(LOG_DIR)
+	cd $(DOC_DIR)/latex && rm -rf *.tex *.sty Makefile *.md5
 
 mrproper: clean
-	-rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC)
+	-rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC) $(DOC_DIR)
