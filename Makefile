@@ -32,11 +32,11 @@ O_FILES := $(C_FILES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 STATIC_LIBS := $(wildcard $(LIB_DIR)/*.a)
 
 DEP_DEBIAN := libsdl2-2.0-0 libsdl2-image-2.0-0 libsdl2-mixer-2.0-0
-DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev doxygen graphviz
+DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev doxygen graphviz dblatex
 
 default: all
 
-all: format build-dynamic-lib build-documentation clean
+all: format build-dynamic-lib build-doc clean
 
 install-all: install install-dev
 
@@ -94,11 +94,12 @@ build-dynamic-lib: $(LOG_DIR) $(TARGET_DYNAMIC)
 $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
 	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
 
-build-documentation:
+build-doc:
 	rm -f $(LOG_DIR)/doxygen.txt
 	touch $(LOG_DIR)/doxygen.txt
-	mkdir -p $(DOC_DIR)
+	rm -rf $(DOC_DIR)/*
 	doxygen Doxyfile
+	dblatex $(DOC_DIR)/docbok/index.xml -o $(DOC_DIR)/doc.pdf
 
 install:
 	rm -rf /usr/local/lib/$(TARGET_DYNAMIC)
@@ -113,10 +114,10 @@ run:
 	./$(TARGET)
 
 clean:
-	-rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig
-	-rm -rf $(BUILD_DIR) *.tgz
-	-rm -rf $(LOG_DIR)
-	cd $(DOC_DIR)/latex && rm -rf *.tex *.sty Makefile *.md5
+	rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig
+	rm -rf $(BUILD_DIR) *.tgz
+	rm -rf $(LOG_DIR)
+	rm -rf $(DOC_DIR)/docbok
 
 mrproper: clean
-	-rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC) $(DOC_DIR)
+	rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC) $(DOC_DIR)

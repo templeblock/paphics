@@ -43,5 +43,4 @@
 ./build/*
 
 # Doc dir
-./doc/
-./doc/*
+./doc/docbook/
