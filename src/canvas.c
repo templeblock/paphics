@@ -106,11 +106,11 @@ bool canvas_is_out_of_parent_y(const Canvas* canvas) {
     return is_out;
 }
 
-bool canvas_will_be_out_of_parent_bottom(const Canvas* canvas, const Point* d) {
+bool canvas_will_be_out_of_parent_bottom(const Canvas* canvas, const Point* move) {
 
     bool is_out;
     
-    if (canvas->origin.y + d->y < 0) {
+    if (canvas->origin.y + move->y < 0) {
         is_out = true;
     } else {
         is_out = false;
@@ -120,11 +120,11 @@ bool canvas_will_be_out_of_parent_bottom(const Canvas* canvas, const Point* d) {
     
 }
 
-bool canvas_will_be_out_of_parent_left(const Canvas* canvas, const Point* d) {
+bool canvas_will_be_out_of_parent_left(const Canvas* canvas, const Point* move) {
 
     bool is_out;
     
-    if (canvas->origin.x + d->x < 0) {
+    if (canvas->origin.x + move->x < 0) {
         is_out = true;
     } else {
         is_out = false;
@@ -134,11 +134,11 @@ bool canvas_will_be_out_of_parent_left(const Canvas* canvas, const Point* d) {
     
 }
 
-bool canvas_will_be_out_of_parent_right(const Canvas* canvas, const Point* d) {
+bool canvas_will_be_out_of_parent_right(const Canvas* canvas, const Point* move) {
 
     bool is_out;
     
-    if (canvas->origin.x + canvas->size.x + d->x >= canvas->parent->size.x) {
+    if (canvas->origin.x + canvas->size.x + move->x >= canvas->parent->size.x) {
         is_out = true;
     } else {
         is_out = false;
@@ -148,11 +148,11 @@ bool canvas_will_be_out_of_parent_right(const Canvas* canvas, const Point* d) {
     
 }
 
-bool canvas_will_be_out_of_parent_top(const Canvas* canvas, const Point* d) {
+bool canvas_will_be_out_of_parent_top(const Canvas* canvas, const Point* move) {
 
     bool is_out;
     
-    if (canvas->origin.y + canvas->size.y + d->y >= canvas->parent->size.y) {
+    if (canvas->origin.y + canvas->size.y + move->y >= canvas->parent->size.y) {
         is_out = true;
     } else {
         is_out = false;
@@ -162,20 +162,20 @@ bool canvas_will_be_out_of_parent_top(const Canvas* canvas, const Point* d) {
     
 }
 
-bool canvas_will_be_out_of_parent_x(const Canvas* canvas, const Point* d) {
+bool canvas_will_be_out_of_parent_x(const Canvas* canvas, const Point* move) {
 
     bool is_out;
     
-    is_out = canvas_will_be_out_of_parent_left(canvas, d) || canvas_will_be_out_of_parent_right(canvas, d);
+    is_out = canvas_will_be_out_of_parent_left(canvas, move) || canvas_will_be_out_of_parent_right(canvas, move);
     
     return is_out;
 }
 
-bool canvas_will_be_out_of_parent_y(const Canvas* canvas, const Point* d) {
+bool canvas_will_be_out_of_parent_y(const Canvas* canvas, const Point* move) {
 
     bool is_out;
     
-    is_out = canvas_will_be_out_of_parent_bottom(canvas, d) || canvas_will_be_out_of_parent_top(canvas, d);
+    is_out = canvas_will_be_out_of_parent_bottom(canvas, move) || canvas_will_be_out_of_parent_top(canvas, move);
     
     return is_out;
 }
