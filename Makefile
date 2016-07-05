@@ -95,6 +95,8 @@ $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
 	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
 
 build-documentation:
+	rm -f $(LOG_DIR)/doxygen.txt
+	touch $(LOG_DIR)/doxygen.txt
 	mkdir -p $(DOC_DIR)
 	doxygen Doxyfile
 
