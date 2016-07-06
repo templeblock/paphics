@@ -99,7 +99,14 @@ build-doc: $(LOG_DIR)
 	touch $(LOG_DIR)/doxygen.txt
 	rm -rf $(DOC_DIR)/*
 	doxygen Doxyfile
-	dblatex $(DOC_DIR)/docbook/index.xml -o $(DOC_DIR)/doc.dvi
+	make doc-pdf
+
+doc-pdf:
+	cd $(DOC_DIR)/latex/ && make pdf
+	mv $(DOC_DIR)/latex/refman.pdf $(DOC_DIR)/doc.pdf
+
+docbook-pdf:
+	dblatex $(DOC_DIR)/docbook/index.xml -o $(DOC_DIR)/docbook.pdf
 
 install:
 	rm -rf /usr/local/lib/$(TARGET_DYNAMIC)
@@ -117,7 +124,7 @@ clean:
 	rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig
 	rm -rf $(BUILD_DIR) *.tgz
 	rm -rf $(LOG_DIR)
-	rm -rf $(DOC_DIR)/docbook
+	rm -rf $(DOC_DIR)/docbook $(DOC_DIR)/latex
 
 mrproper: clean
 	rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC) $(DOC_DIR)
