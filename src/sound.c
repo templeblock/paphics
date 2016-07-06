@@ -1,11 +1,11 @@
 #include "sound.h"
 
-void sound_load(const char* fileName, Sound* sound) {
+void sound_load(const char* pathToFile, Sound* sound) {
 
     sound->content = NULL;
-    
+
     sound->content = Mix_LoadMUS(fileName);
-    
+
     if (sound->content == NULL) {
         fprintf(stderr, "Failed to load sound! SDL_mixer Error: %s\n", SDL_GetError());
         error_quit();
