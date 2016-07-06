@@ -8,11 +8,11 @@
 
 #include "pixel.h"
 
-#pragma pack(push, 1)
 /**
  * \struct Circle
- * \brief Circle A struct used to represent a circle.
+ * \brief A struct used to represent a circle.
  */
+#pragma pack(push, 1)
 typedef struct {
     Point center; /*!< Point representing the center of the circle, must be relative to its Canvas. */
     int radius; /*!< int representing the radius of the circle. */
