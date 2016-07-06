@@ -15,8 +15,8 @@
  * \brief A struct used to represent a point.
  */
 typedef struct {
-    int x;
-    int y;
+    int x; /*!< The value of the point on the x-coordinate. */
+    int y; /*!< The value of the point on the y-coordinate. */
 } Point;
 
 /**
