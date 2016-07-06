@@ -10,7 +10,7 @@
 #include "error.h"
 
 /**
- * \struct Point
+ * \struct Sound
  * \brief A struct used to store a sound.
  */
 typedef struct {
