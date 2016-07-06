@@ -1,3 +1,10 @@
+/**
+ * \file graphics.h
+ * \brief The main lib file.
+ *
+ * It's the file to include when using the lib in a program. It includes all the others headers and dependencies.
+ */
+
 #ifndef DEF_GRAPHICS_H
 #define DEF_GRAPHICS_H
 
