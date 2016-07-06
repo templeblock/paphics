@@ -50,7 +50,7 @@ void rectangle_draw_fill(const Rectangle* rectangle, const Color* color);
 bool rectangle_contains_point(const Rectangle* rect, const Point* p) __attribute__((pure));
 
 /**
- * \fn bool rectangle_contains_point(const Rectangle* rect, const Point* p) __attribute__((pure))
+ * \fn bool rectangle_contains_absolute_point(const Rectangle* rect, const Point* p) __attribute__((pure))
  * \brief Function to know if a rectangle contains a Point, when the point have absolute coordinates, i.e. relative to the current Window.
  *
  * \param rect A pointer to the Rectangle.
