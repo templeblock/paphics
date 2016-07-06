@@ -1,3 +1,8 @@
+/**
+ * \file calc.h
+ * \brief Some maths functions.
+ */
+
 #ifndef DEF_CALC_H
 #define DEF_CALC_H
 
