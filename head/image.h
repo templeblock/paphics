@@ -19,7 +19,7 @@ typedef struct {
 
 /**
  * \fn void image_blit_naive(const Image* image)
- * \brief Function to blit an Image on its Canvas, it will be blitted "as is", event if the Image is bigger than its Canvas.
+ * \brief Function to blit an Image on its Canvas, it will be blitted "as is", even if the Image is bigger than its Canvas.
  *
  * \param image A pointer to the Image to blit.
  */
@@ -27,7 +27,7 @@ void image_blit_naive(const Image* image);
 
 /**
  * \fn void image_blit_scaled(const Image* image)
- * \brief Function to blit an Image on its Canvas, it will be scaled, i.e. fill the Canvas perfectly.
+ * \brief Function to blit an Image on its Canvas, it will be scaled, i.e. will fill the Canvas perfectly.
  *
  * \param image A pointer to the Image to blit.
  */
