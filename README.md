@@ -62,3 +62,7 @@ Et ceci au moment de l'édition de liens:
 Et éventuellement, ajouter la ligne suivante dans le Makefile de votre projet:
 
     export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib:$LD_LIBRARY_PATH
+
+# Documentation
+
+The doc is available [here](https://github.com/zapashcanon/graphics/raw/master/doc/doc.pdf).
