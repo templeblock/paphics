@@ -1,14 +1,23 @@
+/**
+ * \file canvas.h
+ * \brief All functions related to Canvas.
+ */
+
 #ifndef DEF_CANVAS_H
 #define DEF_CANVAS_H
 
 #include "window.h"
 #include "color.h"
 
+/**
+ * \struct Canvas
+ * \brief A Canvas is part of a Window or of another Canvas, on which it's possible to draw.
+ */
 typedef struct Canvas {
-    SDL_Surface* surface;
-    Point size;
-    Point origin;
-    struct Canvas* parent;
+    SDL_Surface* surface; /*!< Pointer to the SDL_Surface used to store the content of the Canvas, user shouldn't have to touch this. */
+    Point size; /*!< Point representing the size of the Canvas, usefull to get the value quickly, but user souldn't change it. */
+    Point origin; /*!< Point representing the origin of the Canvas, user can set and get it safely. */
+    struct Canvas* parent; /*!< Pointer to the Canvas representing the parent of the Canvas, i.e. the one one which it will be blitted, if the Canvas is the root Canvas representing the whole Window it points to NULL. */
 } Canvas;
 
 #include "rectangle.h"
