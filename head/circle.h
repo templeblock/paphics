@@ -1,5 +1,5 @@
 /**
- * \file canvas.h
+ * \file circle.h
  * \brief Everything related to Circle.
  */
 
@@ -8,11 +8,11 @@
 
 #include "pixel.h"
 
-/**
- * \struct Canvas
- * \brief A struct used to represent a circle.
- */
 #pragma pack(push, 1)
+/**
+ * \struct Circle
+ * \brief Circle A struct used to represent a circle.
+ */
 typedef struct {
     Point center; /*!< Point representing the center of the circle, must be relative to its Canvas. */
     int radius; /*!< int representing the radius of the circle. */

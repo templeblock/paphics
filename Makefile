@@ -94,12 +94,12 @@ build-dynamic-lib: $(LOG_DIR) $(TARGET_DYNAMIC)
 $(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
 	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
 
-build-doc:
+build-doc: $(LOG_DIR)
 	rm -f $(LOG_DIR)/doxygen.txt
 	touch $(LOG_DIR)/doxygen.txt
 	rm -rf $(DOC_DIR)/*
 	doxygen Doxyfile
-	dblatex $(DOC_DIR)/docbok/index.xml -o $(DOC_DIR)/doc.pdf
+	dblatex $(DOC_DIR)/docbook/index.xml -o $(DOC_DIR)/doc.dvi
 
 install:
 	rm -rf /usr/local/lib/$(TARGET_DYNAMIC)
@@ -117,7 +117,7 @@ clean:
 	rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig
 	rm -rf $(BUILD_DIR) *.tgz
 	rm -rf $(LOG_DIR)
-	rm -rf $(DOC_DIR)/docbok
+	rm -rf $(DOC_DIR)/docbook
 
 mrproper: clean
 	rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC) $(DOC_DIR)

@@ -11,7 +11,7 @@
 
 /**
  * \struct Canvas
- * \brief A Canvas is part of a Window or of another Canvas, on which it's possible to draw.
+ * \brief Canvas A Canvas is part of a Window or of another Canvas, on which it's possible to draw.
  */
 typedef struct Canvas {
     SDL_Surface* surface; /*!< Pointer to the SDL_Surface used to store the content of the Canvas, user shouldn't have to touch this. */
