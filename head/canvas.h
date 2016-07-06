@@ -1,6 +1,6 @@
 /**
  * \file canvas.h
- * \brief All functions related to Canvas.
+ * \brief Everything related to Canvas.
  */
 
 #ifndef DEF_CANVAS_H
