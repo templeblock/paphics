@@ -32,10 +32,10 @@ void sound_load(const char* pathToFile, Sound* sound);
  *
  * \param music A pointer to the Sound to play.
  */
-void sound_play_once(const Sound* music);
+void sound_play(const Sound* music);
 
 /**
- * \fn void sound_play(const Sound* music)
+ * \fn void sound_play_once(const Sound* music)
  * \brief Function to play a sound once.
  *
  * \param music A pointer to the Sound to play.
