@@ -10,8 +10,8 @@
 #include "point.h"
 
 /**
- * \struct Image
- * \brief A struct representing a Window.
+ * \struct Window
+ * \brief A struct representing a window.
  */
 typedef struct {
     SDL_Window* window; /*!< Pointer to the SDL_Window used to store the window. */
@@ -34,7 +34,7 @@ void window_create(Window* window, char* title, const Point* position, const Poi
 
 /**
  * \fn void window_destroy(Window* window)
- * \brief Function to destory a Window
+ * \brief Function to destroy a Window
  *
  * \param window A pointer to the Window to destroy.
  */

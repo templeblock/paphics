@@ -64,7 +64,7 @@ Point point_max_x(const Point a, const Point b);
 Point point_max_y(const Point a, const Point b);
 
 /**
- * \fn Point point_max_x(const Point a, const Point b)
+ * \fn Point point_min_x(const Point a, const Point b)
  * \brief Function to compare two Point and getting the one with the smallest x.
  *
  * \param a The first Point.
@@ -75,7 +75,7 @@ Point point_max_y(const Point a, const Point b);
 Point point_min_x(const Point a, const Point b);
 
 /**
- * \fn Point point_max_x(const Point a, const Point b)
+ * \fn Point point_min_y(const Point a, const Point b)
  * \brief Function to compare two Point and getting the one with the smallest y.
  *
  * \param a The first Point.

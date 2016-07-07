@@ -10,7 +10,7 @@
 #include "color.h"
 
 /**
- * \struct Circle
+ * \struct Sphere
  * \brief A struct used to represent a sphere.
  */
 #pragma pack(push, 1)

@@ -25,7 +25,7 @@ void color_translate(const Color* color, SDL_Color* sdlColor);
  * \fn Uint8 color_get_red(const Color* color) __attribute__((const))
  * \brief Function to get the red component of a Color.
  *
- * \param canvas1 A pointer to the Color.
+ * \param color A pointer to the Color.
  * \return The red component in a Uint8.
  */
 Uint8 color_get_red(const Color* color) __attribute__((const));
@@ -34,7 +34,7 @@ Uint8 color_get_red(const Color* color) __attribute__((const));
  * \fn Uint8 color_get_green(const Color* color) __attribute__((const))
  * \brief Function to get the green component of a Color.
  *
- * \param canvas1 A pointer to the Color.
+ * \param color A pointer to the Color.
  * \return The green component in a Uint8.
  */
 Uint8 color_get_green(const Color* color) __attribute__((const));
@@ -43,7 +43,7 @@ Uint8 color_get_green(const Color* color) __attribute__((const));
  * \fn Uint8 color_get_blue(const Color* color) __attribute__((const))
  * \brief Function to get the blue component of a Color.
  *
- * \param canvas1 A pointer to the Color.
+ * \param color A pointer to the Color.
  * \return The blue component in a Uint8.
  */
 Uint8 color_get_blue(const Color* color) __attribute__((pure));

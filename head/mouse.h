@@ -19,7 +19,7 @@
 void mouse_hide(void);
 
 /**
- * \fn void mouse_hide(void)
+ * \fn void mouse_show(void)
  * \brief Function to show the mouse cursor.
  */
 void mouse_show(void);
@@ -29,7 +29,7 @@ void mouse_show(void);
  * \brief Function to wait a click and store it into a Point.
  *
  * \param window A pointer to the Window on which the click is waited.
- * \param color A pointer to the Point on which the click position must be stored.
+ * \param click A pointer to the Point on which the click position must be stored.
  */
 void mouse_wait_click(const Window* window, Point* click);
 

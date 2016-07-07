@@ -1,5 +1,5 @@
 /**
- * \file line.h
+ * \file pixel.h
  * \brief Everything related to Pixel.
  */
 
@@ -21,7 +21,7 @@ typedef struct {
  * \fn void pixel_draw(const Pixel* pixel, const Color* color)
  * \brief Function to draw a pixel.
  *
- * \param line A pointer to the Pixel to draw.
+ * \param pixel A pointer to the Pixel to draw.
  * \param color A pointer to the Color to use to draw the Pixel.
  */
 void pixel_draw(const Pixel* pixel, const Color* color);

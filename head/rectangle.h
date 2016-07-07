@@ -1,5 +1,5 @@
 /**
- * \file point.h
+ * \file rectangle.h
  * \brief Everything related to Rectangle.
  */
 
@@ -24,7 +24,7 @@ typedef struct {
  * \fn void rectangle_draw(const Rectangle* rectangle, const Color* color)
  * \brief Function to draw a Rectangle.
  *
- * \param circle A pointer to the Rectangle to draw.
+ * \param rectangle A pointer to the Rectangle to draw.
  * \param color A pointer to the Color to use to draw the Rectangle.
  */
 void rectangle_draw(const Rectangle* rectangle, const Color* color);
@@ -33,7 +33,7 @@ void rectangle_draw(const Rectangle* rectangle, const Color* color);
  * \fn void rectangle_draw_fill(const Rectangle* rectangle, const Color* color)
  * \brief Function to draw a filled Rectangle.
  *
- * \param circle A pointer to the Rectangle to draw.
+ * \param rectangle A pointer to the Rectangle to draw.
  * \param color A pointer to the Color to use to draw the Rectangle.
  */
 void rectangle_draw_fill(const Rectangle* rectangle, const Color* color);
