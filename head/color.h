@@ -19,8 +19,6 @@ typedef struct {
 } Color;
 #pragma pack(pop)
 
-void color_translate(const Color* color, SDL_Color* sdlColor);
-
 /**
  * \fn Uint8 color_get_red(const Color* color) __attribute__((const))
  * \brief Function to get the red component of a Color.
