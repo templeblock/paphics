@@ -1,4 +1,4 @@
-.PHONY: default all install-all install install-dev get-dep-debian-all get-dep-debian get-dep-dev-debian build build-static-lib build-dynamic-lib copy-dynamic-lib copy-headers format run clean mrproper libs
+.PHONY: default all install-all install install-dev get-dep-debian-all get-dep-debian get-dep-dev-debian build format build-doc build-doc-pdf clean mrproper libs
 
 NAME := graphics
 
@@ -7,7 +7,6 @@ VERSION := 0.0.1
 SRC_DIR := ./src
 HEAD_DIR := ./head
 export BUILD_DIR=$(PWD)/build
-LIB_DIR := ./libs
 LOG_DIR := ./logs
 DOC_DIR := ./doc
 
@@ -29,16 +28,13 @@ TARGET_DYNAMIC := lib$(NAME).so
 H_FILES	:= $(wildcard $(HEAD_DIR)/*.h)
 C_FILES	:= $(wildcard $(SRC_DIR)/*.c)
 O_FILES := $(C_FILES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
-STATIC_LIBS := $(wildcard $(LIB_DIR)/*.a)
 
 DEP_DEBIAN := libsdl2-2.0-0 libsdl2-image-2.0-0 libsdl2-mixer-2.0-0
-DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev doxygen graphviz dblatex
+DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev doxygen graphviz
 
 default: all
 
-all: format build-dynamic-lib build-doc clean
-
-install-all: install install-dev
+all: format build build-doc-pdf clean
 
 get-dep-debian-all: get-dep-debian get-dep-dev-debian
 
@@ -63,62 +59,41 @@ else
 	$(FORMATTER) $(FORMATTERFLAGS) $(FORMATTERFLAGS_LOCAL) $(C_FILES) $(H_FILES)
 endif
 
-build: $(LOG_DIR) $(TARGET)
+build: $(TARGET)
 
 $(LOG_DIR):
 	mkdir -p $(LOG_DIR)
 
-$(BUILD_DIR)/%.a:
-	cd $(SRC_DIR)/$* && $(MAKE) all
-
-$(TARGET): $(O_FILES) $(STATIC_LIBS) Makefile libs
-	$(CC) -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS) $(LDFLAGS)
-
 $(BUILD_DIR):
-	mkdir $(BUILD_DIR)
+	mkdir -p $(BUILD_DIR)
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c Makefile $(BUILD_DIR)
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c Makefile $(LOG_DIR) $(BUILD_DIR)
 ifeq ($(TRAVIS),)
 	$(CC) -o $@ -x c -c $< $(CFLAGS_LOCAL) $(CFLAGS) $(INCLUDE)
 else
 	$(CC) -o $@ -x c -c $< $(CFLAGS) $(INCLUDE)
 endif
 
-build-static-lib: $(LOG_DIR) $(TARGET_STATIC)
-
-$(TARGET_STATIC): build
-	ar -q lib$(NAME).a $(TARGET)
-
-build-dynamic-lib: $(LOG_DIR) $(TARGET_DYNAMIC)
-
-$(TARGET_DYNAMIC): $(O_FILES) $(STATIC_LIBS) Makefile libs
-	$(CC) -shared -fPIC -o $@ $(O_FILES) $(STATIC_LIBS) $(LIBS)
+$(TARGET): $(O_FILES) Makefile libs
+	$(CC) -shared -fPIC -o $@ $(O_FILES) $(LIBS)
 
 build-doc: $(LOG_DIR)
-	rm -f $(LOG_DIR)/doxygen.txt
-	touch $(LOG_DIR)/doxygen.txt
-	rm -rf $(DOC_DIR)/*
 	( cat Doxyfile ; echo "PROJECT_NUMBER=$(VERSION)" ) | doxygen -
-	make doc-pdf
 
-doc-pdf:
+build-doc-pdf: build-doc
 	cd $(DOC_DIR)/latex/ && make pdf
 	mv $(DOC_DIR)/latex/refman.pdf $(DOC_DIR)/doc.pdf
 
-docbook-pdf:
-	dblatex $(DOC_DIR)/docbook/index.xml -o $(DOC_DIR)/docbook.pdf
+install-all: install install-dev
 
 install:
-	rm -rf /usr/local/lib/$(TARGET_DYNAMIC)
-	cp $(TARGET_DYNAMIC) /usr/local/lib/
+	rm -rf /usr/local/lib/$(TARGET)
+	cp $(TARGET) /usr/local/lib/
 
 install-dev:
 	rm -rf /usr/local/include/$(NAME)/*
 	mkdir -p /usr/local/include/$(NAME)/
 	cp $(H_FILES) /usr/local/include/$(NAME)/
-
-run:
-	./$(TARGET)
 
 clean:
 	rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig
@@ -127,4 +102,4 @@ clean:
 	rm -rf $(DOC_DIR)/docbook $(DOC_DIR)/latex
 
 mrproper: clean
-	rm -rf $(TARGET) $(TARGET_STATIC) $(TARGET_DYNAMIC) $(DOC_DIR)
+	rm -rf $(TARGET) $(DOC_DIR)
