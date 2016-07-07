@@ -2,7 +2,7 @@
 
 NAME := graphics
 
-VERSION := 0.0.0
+VERSION := 0.0.1
 
 SRC_DIR := ./src
 HEAD_DIR := ./head
@@ -98,7 +98,7 @@ build-doc: $(LOG_DIR)
 	rm -f $(LOG_DIR)/doxygen.txt
 	touch $(LOG_DIR)/doxygen.txt
 	rm -rf $(DOC_DIR)/*
-	doxygen Doxyfile
+	( cat Doxyfile ; echo "PROJECT_NUMBER=$(VERSION)" ) | doxygen -
 	make doc-pdf
 
 doc-pdf:
