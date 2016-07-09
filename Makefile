@@ -22,9 +22,7 @@ INCLUDE	:= -I$(SRC_DIR) -I$(HEAD_DIR) -I/usr/include -I/usr/local/include
 
 LIBS := -L/usr/lib -L/usr/local/lib -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL2_mixer-2.0
 
-TARGET := $(NAME).out
-TARGET_STATIC := lib$(NAME).a
-TARGET_DYNAMIC := lib$(NAME).so
+TARGET := lib$(NAME).so
 H_FILES	:= $(wildcard $(HEAD_DIR)/*.h)
 C_FILES	:= $(wildcard $(SRC_DIR)/*.c)
 O_FILES := $(C_FILES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
