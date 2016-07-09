@@ -36,12 +36,13 @@
 
 # Logs
 *.log
-./log/*
+log/
+log/*
 
 # Build dir
-./build/
-./build/*
+build/
+build/*
 
 # Doc dir
-./doc/
-./doc/*
+doc/
+doc/*
