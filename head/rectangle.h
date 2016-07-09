@@ -12,7 +12,7 @@
 
 /**
  * \struct Rectangle
- * \brief A struct used to represent a rectanglec.
+ * \brief A struct used to represent a rectangle.
  */
 typedef struct {
     Point origin; /*!< Point representing the origin of the Rectangle on its Canvas. */

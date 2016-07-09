@@ -160,7 +160,7 @@ void canvas_blit(Canvas* canvas);
  *
  * \param canvas A pointer to the Canvas to create.
  * \param size A pointer to a Point representing the wanted size for the Canvas.
- * \param origin A pointer to a Point representig the wanter origin for the Canvas.
+ * \param origin A pointer to a Point representig the wanted origin for the Canvas.
  * \param parent A pointer to the Canvas wanted as the parent of the Canvas to create.
  */
 void canvas_create(Canvas* canvas, const Point* size, const Point* origin, Canvas* parent);
