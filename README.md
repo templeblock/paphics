@@ -65,4 +65,4 @@ Et éventuellement, ajouter la ligne suivante dans le Makefile de votre projet:
 
 # Documentation
 
-The doc is available [here](https://github.com/zapashcanon/graphics/raw/master/doc/doc.pdf).
+The doc is available [here](http://www.ndrs.fr/graphics/doc.pdf).
