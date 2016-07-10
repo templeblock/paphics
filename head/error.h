@@ -11,7 +11,7 @@
 
 /**
  * \fn void error_quit(void) __attribute__ ((noreturn))
- * \brief Function to quit after an error, will stop graphics and SDL components and stop the program.
+ * \brief Function to quit after an error, will stop paphics and SDL components and stop the program.
  */
 void error_quit(void) __attribute__ ((noreturn));
 
