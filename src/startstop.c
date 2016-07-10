@@ -27,21 +27,21 @@ static void start_SDL_mixer(void) {
 }
 
 
-void graphics_start(const Uint32 flags) {
+void paphics_start(const Uint32 flags) {
 
     if (SDL_WasInit(flags)) {
-        fprintf(stderr, "\nCall to init_graphics with at least one flag already initialized\n");
+        fprintf(stderr, "\nCall to init_paphics with at least one flag already initialized\n");
         error_quit();
     } else {
         start_SDL(flags);
         start_SDL_image();
         start_SDL_mixer();
         // not sure if it's a good idea to call atexit() inside a dynamic lib...
-        atexit(graphics_stop);
+        atexit(paphics_stop);
     }
 }
 
-void graphics_stop() {
+void paphics_stop() {
     IMG_Quit();
     SDL_Quit();
     Mix_CloseAudio();

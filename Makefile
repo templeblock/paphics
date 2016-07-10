@@ -1,6 +1,6 @@
 .PHONY: default all install-all install install-dev get-dep-debian-all get-dep-debian get-dep-dev-debian build format build-doc build-doc-pdf clean mrproper libs
 
-NAME := graphics
+NAME := paphics
 
 VERSION := 0.0.1
 

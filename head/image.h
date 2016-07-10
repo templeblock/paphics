@@ -6,7 +6,7 @@
 #ifndef DEF_IMAGE_H
 #define DEF_IMAGE_H
 
-#include "graphics.h"
+#include "paphics.h"
 
 /**
  * \struct Image

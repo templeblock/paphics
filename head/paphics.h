@@ -1,12 +1,12 @@
 /**
- * \file graphics.h
+ * \file paphics.h
  * \brief The main lib file.
  *
  * It's the file to include when using the lib in a program. It includes all the others headers and dependencies.
  */
 
-#ifndef DEF_GRAPHICS_H
-#define DEF_GRAPHICS_H
+#ifndef DEF_PAPHICS_H
+#define DEF_PAPHICS_H
 
 #include <stdarg.h>
 #include <stdbool.h>

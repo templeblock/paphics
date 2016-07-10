@@ -1,6 +1,6 @@
 /**
  * \file startstop.h
- * \brief Everything related to graphics' start and stop functions.
+ * \brief Everything related to paphics' start and stop functions.
  */
 
 #ifndef DEF_STARTSTOP_H
@@ -10,17 +10,17 @@
 #include "error.h"
 
 /**
- * \fn void graphics_start(const Uint32 flags)
- * \brief Function to start graphics.
+ * \fn void paphics_start(const Uint32 flags)
+ * \brief Function to start paphics.
  *
  * \param flags A list of SDL flags, if you don't know, use SDL_INIT_EVERYTHING, or see SDL_Init doc.
  */
-void graphics_start(const Uint32 flags);
+void paphics_start(const Uint32 flags);
 
 /**
- * \fn void graphics_stop(void)
- * \brief Function to stop graphics.
+ * \fn void paphics_stop(void)
+ * \brief Function to stop paphics.
  */
-void graphics_stop(void);
+void paphics_stop(void);
 
 #endif

@@ -1,11 +1,11 @@
-# Graphics
+# Paphics
 
-Graphics library written in C and based on SDL 2.0
+Paphics is a library written in C and based on SDL 2.0.
 
-[![Build Status](https://travis-ci.org/zapashcanon/graphics.svg?branch=master)](https://travis-ci.org/zapashcanon/graphics)
-[![Latest stable release](https://img.shields.io/github/release/zapashcanon/graphics.svg?maxAge=2592000)](https://github.com/zapashcanon/graphics/releases)
-[![Overall downloads on Github](https://img.shields.io/github/downloads/zapashcanon/graphics/total.svg?maxAge=2592000)](https://github.com/zapashcanon/graphics/releases)
-[![license](https://img.shields.io/github/license/zapashcanon/graphics.svg?maxAge=2592000)](http://unlicense.org/)
+[![Build Status](https://travis-ci.org/zapashcanon/paphics.svg?branch=master)](https://travis-ci.org/zapashcanon/paphics)
+[![Latest stable release](https://img.shields.io/github/release/zapashcanon/paphics.svg?maxAge=2592000)](https://github.com/zapashcanon/paphics/releases)
+[![Overall downloads on Github](https://img.shields.io/github/downloads/zapashcanon/paphics/total.svg?maxAge=2592000)](https://github.com/zapashcanon/paphics/releases)
+[![license](https://img.shields.io/github/license/zapashcanon/paphics.svg?maxAge=2592000)](http://unlicense.org/)
 
 ## Récupérer le code source
 
@@ -19,13 +19,13 @@ Pour récupérer le code et pouvoir contribuer au projet, il faut installer git.
 
 ### Cloner le projet avec git
 
-    $ git clone https://github.com/zapashcanon/graphics.git
+    $ git clone https://github.com/zapashcanon/paphics.git
 
 ## Installation des dépendances
 
 Il faut se placer dans le répertoire récupéré précedemment.
 
-    $ cd graphics/
+    $ cd paphics/
 
 Puis installer les dépendances.
 
@@ -45,11 +45,11 @@ Puis installer les dépendances.
 
 Pour utiliser la bibliothèque dans un projet annexe, il suffit d'ajouter le flag suivant au moment de la compilation:
 
-    -lgraphics
+    -lpaphics
 
 Puis d'inclure le fichier contenant tous les headers:
 
-    #include <graphics/graphics.h>
+    #include <paphics/paphics.h>
 
 Il est possible que les fichiers ne soient pas trouvés, il faut alors ajouter ceci au moment de la compilation:
 
@@ -65,4 +65,4 @@ Et éventuellement, ajouter la ligne suivante dans le Makefile de votre projet:
 
 # Documentation
 
-The doc is available [here](http://www.ndrs.fr/graphics/doc.pdf).
+The doc is available [here](http://www.ndrs.fr/paphics/doc.pdf).

@@ -1,6 +1,6 @@
 #include "error.h"
 
 void error_quit() {
-    graphics_stop();
+    paphics_stop();
     exit(EXIT_FAILURE);
 }
