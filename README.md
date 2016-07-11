@@ -3,9 +3,9 @@
 Paphics is a library written in C and based on SDL 2.0.
 
 [![Build Status](https://travis-ci.org/zapashcanon/paphics.svg?branch=master)](https://travis-ci.org/zapashcanon/paphics)
-[![Latest stable release](https://img.shields.io/github/release/zapashcanon/paphics.svg?maxAge=2592000)](https://github.com/zapashcanon/paphics/releases)
-[![Overall downloads on Github](https://img.shields.io/github/downloads/zapashcanon/paphics/total.svg?maxAge=2592000)](https://github.com/zapashcanon/paphics/releases)
-[![license](https://img.shields.io/github/license/zapashcanon/paphics.svg?maxAge=2592000)](http://unlicense.org/)
+[![Latest stable release](https://img.shields.io/github/release/zapashcanon/paphics.svg)](https://github.com/zapashcanon/paphics/releases)
+[![Overall downloads on Github](https://img.shields.io/github/downloads/zapashcanon/paphics/total.svg)](https://github.com/zapashcanon/paphics/releases)
+[![license](https://img.shields.io/github/license/zapashcanon/paphics.svg)](http://unlicense.org/)
 
 ## Récupérer le code source
 
