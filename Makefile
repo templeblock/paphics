@@ -20,7 +20,7 @@ FORMATTERFLAGS_LOCAL := -xn -xc -xw
 
 INCLUDE	:= -I$(SRC_DIR) -I$(HEAD_DIR) -I/usr/include -I/usr/local/include
 
-LIBS := -L/usr/lib -L/usr/local/lib -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL2_mixer-2.0
+LDFLAGS := -L/usr/lib -L/usr/local/lib -lm -lSDL2-2.0 -lSDL2_image-2.0 -lSDL2_mixer-2.0
 
 TARGET := lib$(NAME).so
 H_FILES	:= $(wildcard $(HEAD_DIR)/*.h)
@@ -73,7 +73,7 @@ else
 endif
 
 $(TARGET): $(O_FILES) Makefile libs
-	$(CC) -shared -fPIC -o $@ $(O_FILES) $(LIBS)
+	$(CC) -shared -fPIC -o $@ $(O_FILES) $(LDFLAGS)
 
 build-doc: $(LOG_DIR)
 	( cat Doxyfile ; echo "PROJECT_NUMBER=$(VERSION)" ) | doxygen -
