@@ -18,7 +18,7 @@ typedef struct {
 } Sound;
 
 /**
- * \fn void sound_load(const char* fileName, Sound* sound)
+ * \fn void sound_load(const char* pathToFile, Sound* sound)
  * \brief Function to load a sound into a Sound struct.
  *
  * \param pathToFile The path to the file to load.

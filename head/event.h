@@ -33,7 +33,7 @@ void event_create(Event* newEvent);
  * \fn void event_update(Event* event)
  * \brief Function to update an Event.
  *
- * \param newEvent A pointer to the Event to update.
+ * \param event A pointer to the Event to update.
  */
 void event_update(Event* event);
 
