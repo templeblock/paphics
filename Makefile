@@ -98,7 +98,7 @@ check:
 	cd $(TEST_DIR) && make all
 
 clean:
-	rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig
+	rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig $(TEST_DIR)/*.orig
 	rm -rf $(BUILD_DIR) *.tgz
 	rm -rf $(LOG_DIR)
 	rm -rf $(DOC_DIR)/docbook $(DOC_DIR)/latex

@@ -17,7 +17,7 @@ all: build test mrproper
 build: $(O_FILES) Makefile
 
 test:
-	$(O_FILES)
+	$(O_FILES) $(LDFLAGS)
 
 clean:
 
