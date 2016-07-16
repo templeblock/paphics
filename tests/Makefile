@@ -2,19 +2,13 @@ NAME := paphics
 
 CC := gcc
 CFLAGS :=
-LDFLAGS := -l$(NAME) -lpthread -lsubunit -lrt -lcheck
-LOCAL_LDFLAGS := -lm
-TRAVIS_LDFLAGS := -lfloor
+LDFLAGS := -lpaphics -lpthread -lsubunit -lrt -lcheck -lm
 
 C_FILES	:= $(wildcard ./*.c)
 O_FILES := $(C_FILES:./%.c=./%.o)
 
 ./%.o: ./%.c Makefile
-ifeq ($(TRAVIS),)
 	$(CC) -o $@ -x c $< $(CFLAGS) $(LDFLAGS) $(LOCAL_LDFLAGS)
-else
-	$(CC) -o $@ -x c $< $(CFLAGS) $(LDFLAGS) $(TRAVIS_LDFLAGS)
-endif
 
 all: build test mrproper
 
