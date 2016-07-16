@@ -2,13 +2,14 @@ NAME := paphics
 
 CC := gcc
 CFLAGS :=
-LDFLAGS := -lpaphics -lcheck -lpthread -lsubunit -lrt -lm
+LDFLAGS := -L/usr/local/lib -lpaphics -lcheck -lpthread -lsubunit -lrt -lm
+INCLUDE := -I/usr/local/include
 
 C_FILES	:= $(wildcard ./*.c)
 O_FILES := $(C_FILES:./%.c=./%.o)
 
 ./%.o: ./%.c Makefile
-	$(CC) -o $@ -x c $< $(CFLAGS) $(LDFLAGS)
+	$(CC) -o $@ -x c $< $(CFLAGS) $(INCLUDE) $(LDFLAGS)
 
 all: build test mrproper
 
