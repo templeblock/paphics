@@ -29,7 +29,7 @@ C_FILES	:= $(wildcard $(SRC_DIR)/*.c)
 O_FILES := $(C_FILES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 DEP_DEBIAN := libsdl2-2.0-0 libsdl2-image-2.0-0 libsdl2-mixer-2.0-0
-DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev doxygen graphviz texlive texlive-latex-extra check libsubunit0 libsubunit-dev
+DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev doxygen graphviz texlive texlive-latex-extra check
 
 default: all
 
@@ -39,7 +39,7 @@ get-dep-debian-all: get-dep-debian get-dep-dev-debian
 
 get-dep-debian:
 ifneq ($(TRAVIS),)
-	apt-get -y install $(DEP_DEBIAN)
+	apt-get -y install $(DEP_DEBIAN) libsubunit0 libsubunit-dev
 else
 	apt-get install $(DEP_DEBIAN)
 endif
@@ -95,7 +95,7 @@ install-dev:
 	cp $(H_FILES) /usr/local/include/$(NAME)/
 
 check:
-	cd $(TEST_DIR) && make all
+	cd $(TEST_DIR) && make all TRAVIS=1
 
 clean:
 	rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig

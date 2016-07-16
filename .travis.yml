@@ -15,7 +15,7 @@ install:
   - sudo make install-all
 
 script:
-  - make check
+  - make check TRAVIS=1
 
 notifications:
   email: false
