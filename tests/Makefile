@@ -2,8 +2,8 @@ NAME := paphics
 
 CC := gcc
 CFLAGS :=
-LDFLAGS := -L/usr/local/lib -lpaphics -lcheck -lpthread -lsubunit -lrt -lm
-INCLUDE := -I/usr/local/include
+LDFLAGS := -L/usr/lib -L/usr/local/lib -lpaphics -lcheck -lpthread -lsubunit -lrt -lm
+INCLUDE := -I/usr/include -I/usr/local/include
 
 C_FILES	:= $(wildcard ./*.c)
 O_FILES := $(C_FILES:./%.c=./%.o)
