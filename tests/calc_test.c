@@ -5,22 +5,22 @@
 
 START_TEST(alea_float_range) {
 
-  int i;
+    int i;
 
-  for (i = 0; i < 1000; i++) {
-    fail_if(calc_alea_float() < 0., "must be >= 0");
-    fail_if(calc_alea_float() >= 1., "must be < 1");
-  }
+    for (i = 0; i < 1000; i++) {
+        fail_if(calc_alea_float() < 0., "must be >= 0");
+        fail_if(calc_alea_float() >= 1., "must be < 1");
+    }
 }
 END_TEST
 
 START_TEST(alea_float_is_random) {
 
-  int i;
+    int i;
 
-  for (i = 0; i < 10; i++) {
-    fail_if(calc_alea_float() == calc_alea_float(), "doesn't seem random");
-  }
+    for (i = 0; i < 10; i++) {
+        fail_if(calc_alea_float() == calc_alea_float(), "doesn't seem random");
+    }
 }
 END_TEST
 
@@ -43,14 +43,14 @@ Suite* alea_float(void) {
 
 START_TEST(alea_int_range) {
 
-  fail_if(calc_alea_int(0, 0) != 0, "must be == 0");
+    fail_if(calc_alea_int(0, 0) != 0, "must be == 0");
 
-  int i;
+    int i;
 
-  for (i = 0; i < 1000; i++) {
-    fail_if(calc_alea_int(50, -10) > 50, "must be <= 50");
-    fail_if(calc_alea_int(-294, 2384) < -294, "must be >= 294");
-  }
+    for (i = 0; i < 1000; i++) {
+        fail_if(calc_alea_int(50, -10) > 50, "must be <= 50");
+        fail_if(calc_alea_int(-294, 2384) < -294, "must be >= 294");
+    }
 }
 END_TEST
 
@@ -58,11 +58,11 @@ END_TEST
 
 START_TEST(alea_int_is_random) {
 
-  int i;
+    int i;
 
-  for (i = 0; i < 10; i++) {
-    fail_if(calc_alea_int(-999999, 999999) == calc_alea_int(-999999, 999999), "doesn't seem random");
-  }
+    for (i = 0; i < 10; i++) {
+        fail_if(calc_alea_int(-999999, 999999) == calc_alea_int(-999999, 999999), "doesn't seem random");
+    }
 }
 END_TEST
 
@@ -99,7 +99,7 @@ int main(void) {
 
     s = alea_int();
     sr = srunner_create(s);
-
+    
     srunner_run_all(sr, CK_NORMAL);
     number_failed += srunner_ntests_failed(sr);
     srunner_free(sr);
