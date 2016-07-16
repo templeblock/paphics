@@ -9,7 +9,7 @@ C_FILES	:= $(wildcard ./*.c)
 O_FILES := $(C_FILES:./%.c=./%.o)
 
 ./%.o: ./%.c Makefile
-	$(CC) -o $@ -x c $< $(CFLAGS) $(INCLUDE) $(LDFLAGS)
+	$(CC) $(CFLAGS) $(INCLUDE) -o $@ -x c $< $(LDFLAGS)
 
 all: build test mrproper
 
