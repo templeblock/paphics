@@ -95,7 +95,11 @@ install-dev:
 	cp $(H_FILES) /usr/local/include/$(NAME)/
 
 check:
+ifeq ($(TRAVIS),)
+	cd $(TEST_DIR) && make all
+else
 	cd $(TEST_DIR) && make all TRAVIS=1
+endif
 
 clean:
 	rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig

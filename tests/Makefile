@@ -13,7 +13,7 @@ O_FILES := $(C_FILES:./%.c=./%.o)
 ifeq ($(TRAVIS),)
 	$(CC) -o $@ -x c $< $(CFLAGS) $(LDFLAGS) $(LOCAL_LDFLAGS)
 else
-  $(CC) -o $@ -x c $< $(CFLAGS) $(LDFLAGS) $(TRAVIS_LDFLAGS)
+	$(CC) -o $@ -x c $< $(CFLAGS) $(LDFLAGS) $(TRAVIS_LDFLAGS)
 endif
 
 all: build test mrproper
