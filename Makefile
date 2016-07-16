@@ -29,7 +29,7 @@ C_FILES	:= $(wildcard $(SRC_DIR)/*.c)
 O_FILES := $(C_FILES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 DEP_DEBIAN := libsdl2-2.0-0 libsdl2-image-2.0-0 libsdl2-mixer-2.0-0
-DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev doxygen graphviz texlive texlive-latex-extra check
+DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev doxygen graphviz texlive texlive-latex-extra check libsubunit0 libsubunit-dev
 
 default: all
 
