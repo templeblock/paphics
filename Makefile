@@ -84,6 +84,7 @@ build-doc-pdf: build-doc
 	mv $(DOC_DIR)/latex/refman.pdf $(DOC_DIR)/doc.pdf
 
 install-all: install install-dev
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
 install:
 	rm -rf /usr/local/lib/$(TARGET)
