@@ -9,6 +9,7 @@ HEAD_DIR := ./head
 export BUILD_DIR=$(PWD)/build
 LOG_DIR := ./logs
 DOC_DIR := ./doc
+TEST_DIR := ./tests
 
 CC := gcc
 CFLAGS := -std=c11 -Wall -Wextra -Wdouble-promotion -Wformat -Winit-self  -Wmissing-include-dirs -Wswitch-default  -Wswitch-enum -Wunused -Wunused-parameter -Wuninitialized -Wunknown-pragmas -fstrict-overflow -Wstrict-overflow=2 -Wsuggest-attribute=const -Wsuggest-attribute=pure -Wmissing-format-attribute -Wstrict-aliasing -Wtrampolines -Wfloat-equal -Wundef -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wconversion -Wjump-misses-init -Wlogical-op -Wno-aggressive-loop-optimizations -Wstrict-prototypes -Wmissing-declarations -Wredundant-decls -Wpacked -Wpadded -Wnested-externs -Winline -Wvla -Wdisabled-optimization -Wstack-protector -Wunsuffixed-float-constants -Wabi -Winvalid-pch -Wshadow -pedantic-errors --pedantic -g -Werror -O6 -pass-exit-codes -pipe -aux-info $(LOG_DIR)/aux-info.log -fsigned-char -fsigned-bitfields -fPIC
@@ -28,7 +29,7 @@ C_FILES	:= $(wildcard $(SRC_DIR)/*.c)
 O_FILES := $(C_FILES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 DEP_DEBIAN := libsdl2-2.0-0 libsdl2-image-2.0-0 libsdl2-mixer-2.0-0
-DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev doxygen graphviz texlive texlive-latex-extra
+DEP_DEV_DEBIAN := build-essential astyle libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev doxygen graphviz texlive texlive-latex-extra check
 
 default: all
 
@@ -52,9 +53,9 @@ endif
 
 format:
 ifneq ($(TRAVIS),)
-	$(FORMATTER) $(FORMATTERFLAGS) $(C_FILES) $(H_FILES)
+	$(FORMATTER) $(FORMATTERFLAGS) $(C_FILES) $(H_FILES) $(TEST_DIR)/*.c
 else
-	$(FORMATTER) $(FORMATTERFLAGS) $(FORMATTERFLAGS_LOCAL) $(C_FILES) $(H_FILES)
+	$(FORMATTER) $(FORMATTERFLAGS) $(FORMATTERFLAGS_LOCAL) $(C_FILES) $(H_FILES) $(TEST_DIR)/*.c
 endif
 
 build: $(TARGET)
@@ -92,6 +93,9 @@ install-dev:
 	rm -rf /usr/local/include/$(NAME)/*
 	mkdir -p /usr/local/include/$(NAME)/
 	cp $(H_FILES) /usr/local/include/$(NAME)/
+
+check:
+	cd $(TEST_DIR) && make all
 
 clean:
 	rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig
