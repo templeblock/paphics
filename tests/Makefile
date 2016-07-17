@@ -1,7 +1,7 @@
 NAME := paphics
 
 CC := gcc
-CFLAGS :=
+CFLAGS := -std=c11 -Wall -Wextra -Wdouble-promotion -Wformat -Winit-self  -Wmissing-include-dirs -Wswitch-default  -Wswitch-enum -Wunused -Wunused-parameter -Wuninitialized -Wunknown-pragmas -fstrict-overflow -Wstrict-overflow=2 -Wmissing-format-attribute -Wstrict-aliasing -Wtrampolines -Wundef -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wconversion -Wjump-misses-init -Wlogical-op -Wno-aggressive-loop-optimizations -Wstrict-prototypes -Wredundant-decls -Wpacked -Wpadded -Wnested-externs -Winline -Wvla -Wdisabled-optimization -Wstack-protector -Wunsuffixed-float-constants -Wabi -Winvalid-pch -Wshadow -pedantic-errors --pedantic -g -Werror -O6 -pass-exit-codes -pipe -fsigned-char -fsigned-bitfields
 LDFLAGS := -l$(NAME) -lcheck -lpthread -lsubunit -lrt -lm
 
 C_FILES	:= $(wildcard ./*.c)
