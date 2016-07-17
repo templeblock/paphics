@@ -11,7 +11,7 @@ GCOV_FILES := $(C_FILES:./%_test.c=./%.c.gcov)
 LIB_DIR := ./lib
 
 ./%.o: ./%.c Makefile
-	$(CC) $(CFLAGS) -x c $< $(LDFLAGS) -o $@
+	$(CC) $(CFLAGS) $< $(LDFLAGS) -o $@
 
 all: build-lib build export run
 
