@@ -95,7 +95,7 @@ install-dev:
 	cp $(H_FILES) /usr/local/include/$(NAME)/
 
 check:
-	cd $(TEST_DIR) && make all
+	cd $(TEST_DIR) && make all && make coverage && make mrproper
 
 clean:
 	rm -rf *.orig $(SRC_DIR)/*.orig $(HEAD_DIR)/*.orig $(TEST_DIR)/*.orig
