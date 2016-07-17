@@ -1,12 +1,11 @@
 #include <stdlib.h>
 #include <check.h>
 #include <paphics/paphics.h>
-#include <limits.h>
 
 START_TEST(alea_float_range) {
 
     int i;
-    
+
     for (i = 0; i < 1000; i++) {
         fail_if(calc_alea_float() < 0., "must be >= 0");
         fail_if(calc_alea_float() >= 1., "must be < 1");
