@@ -6,7 +6,7 @@
 START_TEST(alea_float_range) {
 
     int i;
-
+    
     for (i = 0; i < 1000; i++) {
         fail_if(calc_alea_float() < 0., "must be >= 0");
         fail_if(calc_alea_float() >= 1., "must be < 1");
@@ -99,7 +99,7 @@ int main(void) {
 
     s = alea_int();
     sr = srunner_create(s);
-    
+
     srunner_run_all(sr, CK_NORMAL);
     number_failed += srunner_ntests_failed(sr);
     srunner_free(sr);
