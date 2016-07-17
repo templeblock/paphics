@@ -9,25 +9,14 @@ Paphics is a library written in C and based on SDL 2.0.
 
 ## Récupérer le code source
 
-### Installation de git
+Il suffit de récupérer l'archive souhaitée:
 
-Pour récupérer le code et pouvoir contribuer au projet, il faut installer git.
-
-#### Sous Debian et distributions dérivées (Ubuntu, Mint, etc.)
-
-    # apt-get install git
-
-### Cloner le projet avec git
-
-    $ git clone https://github.com/zapashcanon/paphics.git
+* [version de développement](https://github.com/zapashcanon/paphics/archive/master.zip)
+* [versions stables](https://github.com/zapashcanon/paphics/releases)
 
 ## Installation des dépendances
 
-Il faut se placer dans le répertoire récupéré précedemment.
-
-    $ cd paphics/
-
-Puis installer les dépendances.
+Il faut extraire l'archive précédemment récupérée, se placer dedans puis installer les dépendances:
 
 ### Sous Debian et distributions dérivées (Ubuntu, Mint, etc.)
 
@@ -61,7 +50,7 @@ Et ceci au moment de l'édition de liens:
 
 Et éventuellement, ajouter la ligne suivante dans le Makefile de votre projet:
 
-    export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 # Documentation
 
