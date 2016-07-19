@@ -67,6 +67,8 @@ Suite* suite_are_equals(void) {
 
 START_TEST(test_distance) {
 
+  int i;
+
   Point a;
   Point b;
 
@@ -98,6 +100,18 @@ START_TEST(test_distance) {
 
   fail_unless(point_distance(a, b) == 5, "must be == 5");
   fail_unless(point_distance(b, a) == 5, "must be == 5");
+
+  for (i = 0; i < 1000; i++) {
+
+    a.x = calc_alea_int(-999, 999);
+    a.y = calc_alea_int(-999, 999);
+    b.x = calc_alea_int(-999, 999);
+    b.y = calc_alea_int(-999, 999);
+
+    fail_if(point_distance(a, b) < 0, "must be >= 0");
+    fail_if(point_distance(b, a) < 0, "must be >= 0");
+
+  }
 
 }
 END_TEST
