@@ -2,7 +2,7 @@
 #include <check.h>
 #include <paphics/paphics.h>
 
-START_TEST(alea_float_range) {
+START_TEST(test_alea_float_range) {
 
     int i;
 
@@ -13,7 +13,7 @@ START_TEST(alea_float_range) {
 }
 END_TEST
 
-START_TEST(alea_float_is_random) {
+START_TEST(test_alea_float_is_random) {
 
     int i;
 
@@ -23,24 +23,24 @@ START_TEST(alea_float_is_random) {
 }
 END_TEST
 
-Suite* alea_float(void) {
+Suite* suite_alea_float(void) {
 
     Suite* s;
     TCase* tc_core;
 
-    s = suite_create("alea_float");
+    s = suite_create("suite_alea_float");
 
     /* Core test case */
     tc_core = tcase_create("Core");
 
-    tcase_add_test(tc_core, alea_float_range);
-    tcase_add_test(tc_core, alea_float_is_random);
+    tcase_add_test(tc_core, test_alea_float_range);
+    tcase_add_test(tc_core, test_alea_float_is_random);
     suite_add_tcase(s, tc_core);
 
     return s;
 }
 
-START_TEST(alea_int_range) {
+START_TEST(test_alea_int_range) {
 
     fail_if(calc_alea_int(0, 0) != 0, "must be == 0");
 
@@ -55,7 +55,7 @@ END_TEST
 
 
 
-START_TEST(alea_int_is_random) {
+START_TEST(test_alea_int_is_random) {
 
     int i;
 
@@ -65,18 +65,18 @@ START_TEST(alea_int_is_random) {
 }
 END_TEST
 
-Suite* alea_int(void) {
+Suite* suite_alea_int(void) {
 
     Suite* s;
     TCase* tc_core;
 
-    s = suite_create("alea_int");
+    s = suite_create("suite_alea_int");
 
     /* Core test case */
     tc_core = tcase_create("Core");
 
-    tcase_add_test(tc_core, alea_int_range);
-    tcase_add_test(tc_core, alea_int_is_random);
+    tcase_add_test(tc_core, test_alea_int_range);
+    tcase_add_test(tc_core, test_alea_int_is_random);
     suite_add_tcase(s, tc_core);
 
     return s;
@@ -89,14 +89,14 @@ int main(void) {
     Suite* s;
     SRunner* sr;
 
-    s = alea_float();
+    s = suite_alea_float();
     sr = srunner_create(s);
 
     srunner_run_all(sr, CK_NORMAL);
     number_failed += srunner_ntests_failed(sr);
     srunner_free(sr);
 
-    s = alea_int();
+    s = suite_alea_int();
     sr = srunner_create(s);
 
     srunner_run_all(sr, CK_NORMAL);
