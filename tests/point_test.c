@@ -132,6 +132,174 @@ Suite* suite_distance(void) {
     return s;
 }
 
+START_TEST(test_max_x) {
+
+  Point a;
+  Point b;
+
+  a.x = 0;
+  a.y = 0;
+  b.x = 0;
+  b.y = 0;
+
+  fail_unless(point_are_equals(point_max_x(a, b), b), "must be equals");
+  fail_unless(point_are_equals(point_max_x(b, a), b), "must be equals");
+  fail_unless(point_are_equals(point_max_x(a, b), a), "must be equals");
+  fail_unless(point_are_equals(point_max_x(b, a), a), "must be equals");
+
+  a.x = 1;
+
+  fail_unless(point_are_equals(point_max_x(a, b), a), "must be equals");
+  fail_unless(point_are_equals(point_max_x(b, a), a), "must be equals");
+
+  a.y = -3453;
+
+  fail_unless(point_are_equals(point_max_x(a, b), a), "must be equals");
+  fail_unless(point_are_equals(point_max_x(b, a), a), "must be equals");
+
+  a.y = 4554;
+
+  fail_unless(point_are_equals(point_max_x(a, b), a), "must be equals");
+  fail_unless(point_are_equals(point_max_x(b, a), a), "must be equals");
+
+  b.x = a.x + 1;
+
+  fail_unless(point_are_equals(point_max_x(a, b), b), "must be equals");
+  fail_unless(point_are_equals(point_max_x(b, a), b), "must be equals");
+}
+
+END_TEST
+
+START_TEST(test_max_y) {
+
+  Point a;
+  Point b;
+
+  a.x = 0;
+  a.y = 0;
+  b.x = 0;
+  b.y = 0;
+
+  fail_unless(point_are_equals(point_max_y(a, b), b), "must be equals");
+  fail_unless(point_are_equals(point_max_y(b, a), b), "must be equals");
+  fail_unless(point_are_equals(point_max_y(a, b), a), "must be equals");
+  fail_unless(point_are_equals(point_max_y(b, a), a), "must be equals");
+
+  a.y = 1;
+
+  fail_unless(point_are_equals(point_max_y(a, b), a), "must be equals");
+  fail_unless(point_are_equals(point_max_y(b, a), a), "must be equals");
+
+  a.x = -3453;
+
+  fail_unless(point_are_equals(point_max_y(a, b), a), "must be equals");
+  fail_unless(point_are_equals(point_max_y(b, a), a), "must be equals");
+
+  a.x = 4554;
+
+  fail_unless(point_are_equals(point_max_y(a, b), a), "must be equals");
+  fail_unless(point_are_equals(point_max_y(b, a), a), "must be equals");
+
+  b.y = a.y + 1;
+
+  fail_unless(point_are_equals(point_max_y(a, b), b), "must be equals");
+  fail_unless(point_are_equals(point_max_y(b, a), b), "must be equals");
+}
+END_TEST
+
+START_TEST(test_min_x) {
+
+    Point a;
+    Point b;
+
+    a.x = 0;
+    a.y = 0;
+    b.x = 0;
+    b.y = 0;
+
+    fail_unless(point_are_equals(point_min_x(a, b), a), "must be equals");
+    fail_unless(point_are_equals(point_min_x(b, a), a), "must be equals");
+    fail_unless(point_are_equals(point_min_x(a, b), b), "must be equals");
+    fail_unless(point_are_equals(point_min_x(b, a), b), "must be equals");
+
+    a.x = 1;
+
+    fail_unless(point_are_equals(point_min_x(a, b), b), "must be equals");
+    fail_unless(point_are_equals(point_min_x(b, a), b), "must be equals");
+
+    a.y = -3453;
+
+    fail_unless(point_are_equals(point_min_x(a, b), b), "must be equals");
+    fail_unless(point_are_equals(point_min_x(b, a), b), "must be equals");
+
+    a.y = 4554;
+
+    fail_unless(point_are_equals(point_min_x(a, b), b), "must be equals");
+    fail_unless(point_are_equals(point_min_x(b, a), b), "must be equals");
+
+    b.x = a.x + 1;
+
+    fail_unless(point_are_equals(point_min_x(a, b), a), "must be equals");
+    fail_unless(point_are_equals(point_min_x(b, a), a), "must be equals");
+}
+END_TEST
+
+START_TEST(test_min_y) {
+
+  Point a;
+  Point b;
+
+  a.x = 0;
+  a.y = 0;
+  b.x = 0;
+  b.y = 0;
+
+  fail_unless(point_are_equals(point_min_y(a, b), a), "must be equals");
+  fail_unless(point_are_equals(point_min_y(b, a), a), "must be equals");
+  fail_unless(point_are_equals(point_min_y(a, b), b), "must be equals");
+  fail_unless(point_are_equals(point_min_y(b, a), b), "must be equals");
+
+  a.y = 1;
+
+  fail_unless(point_are_equals(point_min_y(a, b), b), "must be equals");
+  fail_unless(point_are_equals(point_min_y(b, a), b), "must be equals");
+
+  a.x = -3453;
+
+  fail_unless(point_are_equals(point_min_y(a, b), b), "must be equals");
+  fail_unless(point_are_equals(point_min_y(b, a), b), "must be equals");
+
+  a.x = 4554;
+
+  fail_unless(point_are_equals(point_min_y(a, b), b), "must be equals");
+  fail_unless(point_are_equals(point_min_y(b, a), b), "must be equals");
+
+  b.y = a.y + 1;
+
+  fail_unless(point_are_equals(point_min_y(a, b), a), "must be equals");
+  fail_unless(point_are_equals(point_min_y(b, a), a), "must be equals");
+}
+END_TEST
+
+Suite* suite_extremum(void) {
+
+    Suite* s;
+    TCase* tc_core;
+
+    s = suite_create("suite_extremum");
+
+    /* Core test case */
+    tc_core = tcase_create("Core");
+
+    tcase_add_test(tc_core, test_max_x);
+    tcase_add_test(tc_core, test_max_y);
+    tcase_add_test(tc_core, test_min_x);
+    tcase_add_test(tc_core, test_min_y);
+    suite_add_tcase(s, tc_core);
+
+    return s;
+}
+
 int main(void) {
 
     int number_failed = 0;
@@ -147,6 +315,13 @@ int main(void) {
     srunner_free(sr);
 
     s = suite_distance();
+    sr = srunner_create(s);
+
+    srunner_run_all(sr, CK_NORMAL);
+    number_failed += srunner_ntests_failed(sr);
+    srunner_free(sr);
+
+    s = suite_extremum();
     sr = srunner_create(s);
 
     srunner_run_all(sr, CK_NORMAL);
