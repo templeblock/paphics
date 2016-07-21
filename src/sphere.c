@@ -33,7 +33,7 @@ void sphere_draw_fill(const Sphere* sphere, const Color* color) {
         circle.center.x = sphere->center.x + i;
         circle.center.y = sphere->center.y + i;
         
-        circle.radius = sphere->radius - dradius * i;
+        circle.radius = sphere->radius - dradius * i - 1;
         
         colorTmp.rgb = SDL_MapRGB(circle.canvas->surface->format, tmpRed, tmpGreen, tmpBlue);
         
