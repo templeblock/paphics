@@ -68,9 +68,9 @@ $(BUILD_DIR):
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c Makefile $(LOG_DIR) $(BUILD_DIR)
 ifeq ($(TRAVIS),)
-	$(CC) -o $@ -x c -c $< $(CFLAGS_LOCAL) $(CFLAGS) $(INCLUDE)
+	$(CC) -o $@ -c $< $(CFLAGS_LOCAL) $(CFLAGS) $(INCLUDE)
 else
-	$(CC) -o $@ -x c -c $< $(CFLAGS) $(INCLUDE)
+	$(CC) -o $@ -c $< $(CFLAGS) $(INCLUDE)
 endif
 
 $(TARGET): $(O_FILES) Makefile libs
