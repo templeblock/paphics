@@ -18,29 +18,23 @@ void mouse_show(void) {
 bool mouse_is_hidden(void) {
 
     int mouseStatus;
-    bool isHidden;
-    
+
     mouseStatus = SDL_ShowCursor(-1);
-    
+
     if (mouseStatus < 0) {
         fprintf(stderr, "mouse_is_hidden failed: %s\n", SDL_GetError());
         error_quit();
-        isHidden = false; // useless, but otherwise, gcc thinks it may be used unitialized
-    } else if (mouseStatus == 0) {
-        isHidden = true;
-    } else {
-        isHidden = false;
     }
-    
-    return isHidden;
+
+    return (mouseStatus == 0 ? true : false);
 }
 
 bool mouse_is_shown(void) {
 
     bool isShown;
-    
+
     isShown = !mouse_is_hidden();
-    
+
     return isShown;
 }
 
@@ -48,9 +42,9 @@ void mouse_wait_click(const Window* window, Point* click) {
 
     bool wait;
     wait = true;
-    
+
     SDL_Event input;
-    
+
     while (SDL_WaitEvent(&input) && wait) {
         if (input.type == SDL_MOUSEBUTTONDOWN && input.button.button == SDL_BUTTON_LEFT) {
             wait = false;
@@ -58,5 +52,5 @@ void mouse_wait_click(const Window* window, Point* click) {
             click->y = window->size.y - input.button.y - 1; // not sure the -1 is correct here
         }
     }
-    
+
 }
