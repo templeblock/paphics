@@ -15,7 +15,7 @@
 #pragma pack(push, 1)
 typedef struct {
     Uint32 rgb;  /*!< Uint32 representing the RGB component of the color. */
-    Uint8 alpha;  /*!< Uint32 representing the alpha component of the color. */
+    Uint8 alpha;  /*!< Uint8 representing the alpha component of the color. */
 } Color;
 #pragma pack(pop)
 
@@ -26,7 +26,7 @@ typedef struct {
  * \param color A pointer to the Color.
  * \return The red component in a Uint8.
  */
-Uint8 color_get_red(const Color* color) __attribute__((const));
+Uint8 color_get_red(const Color* color);
 
 /**
  * \fn Uint8 color_get_green(const Color* color) __attribute__((const))
@@ -35,7 +35,7 @@ Uint8 color_get_red(const Color* color) __attribute__((const));
  * \param color A pointer to the Color.
  * \return The green component in a Uint8.
  */
-Uint8 color_get_green(const Color* color) __attribute__((const));
+Uint8 color_get_green(const Color* color);
 
 /**
  * \fn Uint8 color_get_blue(const Color* color) __attribute__((const))
@@ -44,6 +44,6 @@ Uint8 color_get_green(const Color* color) __attribute__((const));
  * \param color A pointer to the Color.
  * \return The blue component in a Uint8.
  */
-Uint8 color_get_blue(const Color* color) __attribute__((pure));
+Uint8 color_get_blue(const Color* color);
 
 #endif
