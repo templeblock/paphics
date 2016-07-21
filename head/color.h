@@ -20,7 +20,7 @@ typedef struct {
 #pragma pack(pop)
 
 /**
- * \fn Uint8 color_get_red(const Color* color) __attribute__((const))
+ * \fn Uint8 color_get_red(const Color* color)
  * \brief Function to get the red component of a Color.
  *
  * \param color A pointer to the Color.
@@ -29,7 +29,7 @@ typedef struct {
 Uint8 color_get_red(const Color* color);
 
 /**
- * \fn Uint8 color_get_green(const Color* color) __attribute__((const))
+ * \fn Uint8 color_get_green(const Color* color)
  * \brief Function to get the green component of a Color.
  *
  * \param color A pointer to the Color.
@@ -38,7 +38,7 @@ Uint8 color_get_red(const Color* color);
 Uint8 color_get_green(const Color* color);
 
 /**
- * \fn Uint8 color_get_blue(const Color* color) __attribute__((const))
+ * \fn Uint8 color_get_blue(const Color* color)
  * \brief Function to get the blue component of a Color.
  *
  * \param color A pointer to the Color.
