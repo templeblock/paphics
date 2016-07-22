@@ -33,6 +33,16 @@ typedef struct Canvas {
 bool canvas_collision_canvas(const Canvas* canvas1, const Canvas* canvas2) __attribute__((pure));
 
 /**
+ * \fn bool canvas_contains_point(const Canvas* canvas, const Point point)
+ * \brief Function to know if a Canvas contains a Point
+ *
+ * \param canvas A pointer to the Canvas.
+ * \param point The Point.
+ * \return True if the Canvas contains the Point, false otherwise.
+ */
+bool canvas_contains_point(const Canvas* canvas, const Point point);
+
+/**
  * \fn bool canvas_is_out_of_parent_bottom(const Canvas* canvas) __attribute__((pure))
  * \brief Function to know if a Canvas is under its parent.
  *
