@@ -147,6 +147,42 @@ bool canvas_will_be_out_of_parent_x(const Canvas* canvas, const Point* move) __a
 bool canvas_will_be_out_of_parent_y(const Canvas* canvas, const Point* move) __attribute__((pure));
 
 /**
+ * \fn Point canvas_get_bottom_left_corner(const Canvas* canvas)
+ * \brief Function to get the bottom left corner of a Canvas
+ *
+ * \param canvas The Canvas.
+ * \return A Point representing the bottom left corner of the Canvas.
+ */
+Point canvas_get_bottom_left_corner(const Canvas* canvas);
+
+/**
+ * \fn Point canvas_get_bottom_right_corner(const Canvas* canvas)
+ * \brief Function to get the bottom right corner of a Canvas
+ *
+ * \param canvas The Canvas.
+ * \return A Point representing the bottom right corner of the Canvas.
+ */
+Point canvas_get_bottom_right_corner(const Canvas* canvas);
+
+/**
+ * \fn Point canvas_get_top_left_corner(const Canvas* canvas)
+ * \brief Function to get the top left corner of a Canvas
+ *
+ * \param canvas The Canvas.
+ * \return A Point representing the top left corner of the Canvas.
+ */
+Point canvas_get_top_left_corner(const Canvas* canvas);
+
+/**
+ * \fn Point canvas_get_top_right_corner(const Canvas* canvas)
+ * \brief Function to get the top right corner of a Canvas
+ *
+ * \param canvas The Canvas.
+ * \return A Point representing the top right corner of the Canvas.
+ */
+Point canvas_get_top_right_corner(const Canvas* canvas);
+
+/**
  * \fn void canvas_blit(Canvas* canvas)
  * \brief Function to blit a Canvas on its parent.
  *
@@ -160,7 +196,7 @@ void canvas_blit(Canvas* canvas);
  *
  * \param canvas A pointer to the Canvas to create.
  * \param size A pointer to a Point representing the wanted size for the Canvas.
- * \param origin A pointer to a Point representig the wanted origin for the Canvas.
+ * \param origin A pointer to a Point representing the wanted origin for the Canvas.
  * \param parent A pointer to the Canvas wanted as the parent of the Canvas to create.
  */
 void canvas_create(Canvas* canvas, const Point* size, const Point* origin, Canvas* parent);
