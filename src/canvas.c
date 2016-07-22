@@ -101,6 +101,44 @@ bool canvas_will_be_out_of_parent_y(const Canvas* canvas, const Point* move) {
     return (canvas_will_be_out_of_parent_bottom(canvas, move) || canvas_will_be_out_of_parent_top(canvas, move));
 }
 
+Point canvas_get_bottom_left_corner(const Canvas* canvas) {
+  return canvas->origin;
+}
+
+Point canvas_get_bottom_right_corner(const Canvas* canvas) {
+
+  Point corner;
+
+  corner = canvas->origin;
+
+  corner.x += canvas->size.x - 1;
+
+  return corner;
+}
+
+Point canvas_get_top_left_corner(const Canvas* canvas) {
+
+  Point corner;
+
+  corner = canvas->origin;
+
+  corner.y += canvas->size.y - 1;
+
+  return corner;
+}
+
+Point canvas_get_top_right_corner(const Canvas* canvas) {
+
+  Point corner;
+
+  corner = canvas->origin;
+
+  corner.x += canvas->size.x - 1;
+  corner.y += canvas->size.y - 1;
+
+  return corner;
+}
+
 void canvas_blit(Canvas* canvas) {
 
     if (canvas->parent != NULL) {
