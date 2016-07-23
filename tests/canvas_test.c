@@ -285,7 +285,17 @@ START_TEST(test_canvas_is_out_of_parent_left) {
     child.size.x = 10;
     child.size.y = 10;
 
+    child.origin.x = 0;
 
+    fail_if(canvas_is_out_of_parent_left(&child), "should be in");
+
+    child.origin.x = 249204;
+
+    fail_if(canvas_is_out_of_parent_left(&child), "should be in");
+
+    child.origin.x = -1;
+
+    fail_unless(canvas_is_out_of_parent_left(&child), "should not be in");
 }
 END_TEST
 
@@ -304,7 +314,25 @@ START_TEST(test_canvas_is_out_of_parent_right) {
     child.size.x = 10;
     child.size.y = 10;
 
+    child.origin.x = 0;
 
+    fail_if(canvas_is_out_of_parent_right(&child), "should be in");
+
+    child.origin.x = -28490;
+
+    fail_if(canvas_is_out_of_parent_right(&child), "should be in");
+
+    child.origin.x = 90;
+
+    fail_if(canvas_is_out_of_parent_right(&child), "should be in");
+
+    child.origin.x = 91;
+
+    fail_unless(canvas_is_out_of_parent_right(&child), "should not be in");
+
+    child.origin.x = 928420;
+
+    fail_unless(canvas_is_out_of_parent_right(&child), "should not be in");
 }
 END_TEST
 
@@ -323,7 +351,25 @@ START_TEST(test_canvas_is_out_of_parent_x) {
     child.size.x = 10;
     child.size.y = 10;
 
+    child.origin.x = 0;
 
+    fail_if(canvas_is_out_of_parent_x(&child), "should be in");
+
+    child.origin.x = -28490;
+
+    fail_unless(canvas_is_out_of_parent_x(&child), "should not be in");
+
+    child.origin.x = 90;
+
+    fail_if(canvas_is_out_of_parent_x(&child), "should be in");
+
+    child.origin.x = 91;
+
+    fail_unless(canvas_is_out_of_parent_x(&child), "should not be in");
+
+    child.origin.x = 928420;
+
+    fail_unless(canvas_is_out_of_parent_x(&child), "should not be in");
 }
 END_TEST
 
@@ -342,7 +388,25 @@ START_TEST(test_canvas_is_out_of_parent_y) {
     child.size.x = 10;
     child.size.y = 10;
 
+    child.origin.y = 0;
 
+    fail_if(canvas_is_out_of_parent_y(&child), "should be in");
+
+    child.origin.y = -28490;
+
+    fail_unless(canvas_is_out_of_parent_y(&child), "should not be in");
+
+    child.origin.y = 90;
+
+    fail_if(canvas_is_out_of_parent_y(&child), "should be in");
+
+    child.origin.y = 91;
+
+    fail_unless(canvas_is_out_of_parent_y(&child), "should not be in");
+
+    child.origin.y = 928420;
+
+    fail_unless(canvas_is_out_of_parent_y(&child), "should not be in");
 }
 END_TEST
 
@@ -383,6 +447,13 @@ int main(void) {
     srunner_free(sr);
 
     s = suite_canvas_contains_point();
+    sr = srunner_create(s);
+
+    srunner_run_all(sr, CK_NORMAL);
+    number_failed += srunner_ntests_failed(sr);
+    srunner_free(sr);
+
+    s = suite_canvas_is_out_of_parent();
     sr = srunner_create(s);
 
     srunner_run_all(sr, CK_NORMAL);
