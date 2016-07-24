@@ -203,7 +203,6 @@ Suite* suite_canvas_contains_point(void) {
     return s;
 }
 
-
 START_TEST(test_canvas_is_out_of_parent_bottom) {
 
     Canvas root;
@@ -432,6 +431,30 @@ Suite* suite_canvas_is_out_of_parent(void) {
     return s;
 }
 
+Suite* suite_canvas_will_be_out_of_parent(void) {
+
+    Suite* s;
+    TCase* tc_core;
+    
+    s = suite_create("suite_canvas_will_be_out_of_parent");
+    
+    /* Core test case */
+    tc_core = tcase_create("Core");
+    
+    /*
+    tcase_add_test(tc_core, test_canvas_will_be_out_of_parent_bottom);
+    tcase_add_test(tc_core, test_canvas_will_be_out_of_parent_top);
+    tcase_add_test(tc_core, test_canvas_will_be_out_of_parent_left);
+    tcase_add_test(tc_core, test_canvas_will_be_out_of_parent_right);
+    tcase_add_test(tc_core, test_canvas_will_be_out_of_parent_x);
+    tcase_add_test(tc_core, test_canvas_will_be_out_of_parent_y);
+    */
+    
+    suite_add_tcase(s, tc_core);
+    
+    return s;
+}
+
 int main(void) {
 
     int number_failed = 0;
@@ -454,6 +477,13 @@ int main(void) {
     srunner_free(sr);
     
     s = suite_canvas_is_out_of_parent();
+    sr = srunner_create(s);
+    
+    srunner_run_all(sr, CK_NORMAL);
+    number_failed += srunner_ntests_failed(sr);
+    srunner_free(sr);
+    
+    s = suite_canvas_will_be_out_of_parent();
     sr = srunner_create(s);
     
     srunner_run_all(sr, CK_NORMAL);
