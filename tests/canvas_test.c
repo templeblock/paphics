@@ -505,6 +505,38 @@ START_TEST(test_canvas_will_be_out_of_parent_top) {
 }
 END_TEST
 
+START_TEST(test_canvas_will_be_out_of_parent_left) {
+
+    Canvas root;
+    Canvas child;
+    Point move;
+    
+    root.origin.x = 100;
+    root.origin.y = 100;
+    root.size.x = 100;
+    root.size.y = 100;
+    
+    child.parent = &root;
+    
+    child.size.x = 10;
+    child.size.y = 10;
+    
+    child.origin.x = 0;
+    
+    move.x = 0;
+    
+    fail_if(canvas_will_be_out_of_parent_left(&child, &move), "should be in");
+    
+    move.x = 249204;
+    
+    fail_if(canvas_will_be_out_of_parent_left(&child, &move), "should be in");
+    
+    move.x = -1;
+    
+    fail_unless(canvas_will_be_out_of_parent_left(&child, &move), "should not be in");
+}
+END_TEST
+
 Suite* suite_canvas_will_be_out_of_parent(void) {
 
     Suite* s;
@@ -517,8 +549,8 @@ Suite* suite_canvas_will_be_out_of_parent(void) {
     
     tcase_add_test(tc_core, test_canvas_will_be_out_of_parent_bottom);
     tcase_add_test(tc_core, test_canvas_will_be_out_of_parent_top);
-    /*
     tcase_add_test(tc_core, test_canvas_will_be_out_of_parent_left);
+    /*
     tcase_add_test(tc_core, test_canvas_will_be_out_of_parent_right);
     tcase_add_test(tc_core, test_canvas_will_be_out_of_parent_x);
     tcase_add_test(tc_core, test_canvas_will_be_out_of_parent_y);
