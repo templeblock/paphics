@@ -457,7 +457,7 @@ START_TEST(test_canvas_will_be_out_of_parent_bottom) {
 
       fail_if(canvas_will_be_out_of_parent_bottom(&child, &move), "should be in");
 
-      move.y.y = -1;
+      move.y = -1;
 
       fail_unless(canvas_will_be_out_of_parent_bottom(&child, &move), "should not be in");
 }
