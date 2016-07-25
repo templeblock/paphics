@@ -804,6 +804,25 @@ Suite* suite_canvas_get_corner(void) {
     return s;
 }
 
+Suite* suite_canvas_get_absolute_origin(void) {
+
+    Suite* s;
+    TCase* tc_core;
+    
+    s = suite_create("suite_canvas_get_absolute_origin");
+    
+    /* Core test case */
+    tc_core = tcase_create("Core");
+    
+    /*
+    tcase_add_test(tc_core, test_canvas_get_absolute_origin);
+    */
+    
+    suite_add_tcase(s, tc_core);
+    
+    return s;
+}
+
 int main(void) {
 
     int number_failed = 0;
@@ -840,6 +859,13 @@ int main(void) {
     srunner_free(sr);
     
     s = suite_canvas_get_corner();
+    sr = srunner_create(s);
+    
+    srunner_run_all(sr, CK_NORMAL);
+    number_failed += srunner_ntests_failed(sr);
+    srunner_free(sr);
+    
+    s = suite_canvas_get_absolute_origin();
     sr = srunner_create(s);
     
     srunner_run_all(sr, CK_NORMAL);
