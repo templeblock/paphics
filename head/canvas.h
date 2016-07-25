@@ -157,6 +157,15 @@ bool canvas_will_be_out_of_parent_x(const Canvas* canvas, const Point* move) __a
 bool canvas_will_be_out_of_parent_y(const Canvas* canvas, const Point* move) __attribute__((pure));
 
 /**
+ * \fn Point canvas_get_absolute_origin(const Canvas* canvas)
+ * \brief Function to get the origin of a Canvas on the Window, instead of on its parent.
+ *
+ * \param canvas A pointer to the Canvas.
+ * \return A Point in which the absolute origin is stored.
+ */
+Point canvas_get_absolute_origin(const Canvas* canvas);
+
+/**
  * \fn Point canvas_get_bottom_left_corner(const Canvas* canvas)
  * \brief Function to get the bottom left corner of a Canvas
  *
@@ -254,14 +263,5 @@ void canvas_draw_borders_out(Canvas* canvas, const Color* color);
  * \param color A pointer to the Color wanted to fill the Canvas.
  */
 void canvas_fill(Canvas* canvas, const Color* color);
-
-/**
- * \fn void canvas_get_absolute_origin(const Canvas* canvas, Point* absoluteOrigin)
- * \brief Function to get the origin of a Canvas on the Window, instead of on its parent.
- *
- * \param canvas A pointer to the Canvas.
- * \param absoluteOrigin A pointer to the Point in which the origin will be stored.
- */
-void canvas_get_absolute_origin(const Canvas* canvas, Point* absoluteOrigin);
 
 #endif
