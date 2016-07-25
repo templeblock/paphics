@@ -100,6 +100,18 @@ bool canvas_will_be_out_of_parent_y(const Canvas* canvas, const Point* move) {
     return (canvas_will_be_out_of_parent_bottom(canvas, move) || canvas_will_be_out_of_parent_top(canvas, move));
 }
 
+Point canvas_get_absolute_origin(const Canvas* canvas) {
+
+    Point absoluteOrigin;
+    
+    absoluteOrigin.x = 0;
+    absoluteOrigin.y = 0;
+    
+    canvas_get_absolute_origin_private(canvas, &absoluteOrigin);
+    
+    return absoluteOrigin;
+}
+
 Point canvas_get_bottom_left_corner(const Canvas* canvas) {
     return canvas->origin;
 }
@@ -251,13 +263,4 @@ void canvas_fill(Canvas* canvas, const Color* color) {
         fprintf(stderr, "canvas_fill() failed: %s\n", SDL_GetError());
         error_quit();
     }
-}
-
-void canvas_get_absolute_origin(const Canvas* canvas, Point* absoluteOrigin) {
-
-    absoluteOrigin->x = 0;
-    absoluteOrigin->y = 0;
-    
-    canvas_get_absolute_origin_private(canvas, absoluteOrigin);
-    
 }
