@@ -676,6 +676,28 @@ Suite* suite_canvas_will_be_out_of_parent(void) {
     return s;
 }
 
+Suite* suite_canvas_get_corner(void) {
+
+    Suite* s;
+    TCase* tc_core;
+    
+    s = suite_create("suite_canvas_get_corner");
+    
+    /* Core test case */
+    tc_core = tcase_create("Core");
+    
+    /*
+    tcase_add_test(tc_core, test_canvas_get_bottom_left_corner);
+    tcase_add_test(tc_core, test_canvas_get_bottom_right_corner);
+    tcase_add_test(tc_core, test_canvas_get_top_left_corner);
+    tcase_add_test(tc_core, test_canvas_get_top_right_corner);
+    */
+    
+    suite_add_tcase(s, tc_core);
+    
+    return s;
+}
+
 int main(void) {
 
     int number_failed = 0;
@@ -705,6 +727,13 @@ int main(void) {
     srunner_free(sr);
     
     s = suite_canvas_will_be_out_of_parent();
+    sr = srunner_create(s);
+    
+    srunner_run_all(sr, CK_NORMAL);
+    number_failed += srunner_ntests_failed(sr);
+    srunner_free(sr);
+    
+    s = suite_canvas_get_corner();
     sr = srunner_create(s);
     
     srunner_run_all(sr, CK_NORMAL);
