@@ -804,6 +804,50 @@ Suite* suite_canvas_get_corner(void) {
     return s;
 }
 
+START_TEST(test_canvas_get_absolute_origin) {
+
+    Canvas root;
+    Canvas child1;
+    Canvas child2;
+    Canvas child3;
+    Point absoluteOrigin;
+    
+    root.origin.x = 0;
+    root.origin.y = 0;
+    root.parent = NULL;
+    
+    child1.origin.x = 10;
+    child1.origin.y = 10;
+    child1.parent = &root;
+    
+    child2.origin.x = 0;
+    child2.origin.y = 394;
+    child2.parent = &child1;
+    
+    child3.origin.x = 123;
+    child3.origin.y = 0;
+    child3.parent = &child2;
+    
+    absoluteOrigin.x = 0;
+    absoluteOrigin.y = 0;
+    
+    fail_unless(point_are_equals(canvas_get_absolute_origin(&root), absoluteOrigin), "should be equals");
+    
+    absoluteOrigin.x = 10;
+    absoluteOrigin.y = 10;
+    
+    fail_unless(point_are_equals(canvas_get_absolute_origin(&child1), absoluteOrigin), "should be equals");
+    
+    absoluteOrigin.y = 404;
+    
+    fail_unless(point_are_equals(canvas_get_absolute_origin(&child2), absoluteOrigin), "should be equals");
+    
+    absoluteOrigin.x = 133;
+    
+    fail_unless(point_are_equals(canvas_get_absolute_origin(&child3), absoluteOrigin), "should be equals");
+}
+END_TEST
+
 Suite* suite_canvas_get_absolute_origin(void) {
 
     Suite* s;
@@ -814,9 +858,7 @@ Suite* suite_canvas_get_absolute_origin(void) {
     /* Core test case */
     tc_core = tcase_create("Core");
     
-    /*
     tcase_add_test(tc_core, test_canvas_get_absolute_origin);
-    */
     
     suite_add_tcase(s, tc_core);
     
