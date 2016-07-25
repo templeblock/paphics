@@ -70,7 +70,7 @@ bool rectangle_contains_absolute_point(const Rectangle* rect, const Point* p) {
     
     rectAbsolute.size = rect->size;
     
-    canvas_get_absolute_origin(rect->canvas, &rectAbsolute.origin);
+    rectAbsolute.origin = canvas_get_absolute_origin(rect->canvas);
     rectAbsolute.origin.x += rect->origin.x;
     rectAbsolute.origin.y += rect->origin.y;
     
