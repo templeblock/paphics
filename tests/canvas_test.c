@@ -757,6 +757,33 @@ START_TEST(test_canvas_get_top_left_corner) {
 }
 END_TEST
 
+START_TEST(test_canvas_get_top_right_corner) {
+
+    Canvas canvas;
+    Point corner;
+    
+    canvas.origin.x = 0;
+    canvas.origin.y = 0;
+    canvas.size.x = 0;
+    canvas.size.y = 0;
+    
+    corner.x = 0;
+    corner.y = 0;
+    
+    fail_unless(point_are_equals(canvas_get_top_right_corner(&canvas), corner), "should be equals (1)");
+    
+    canvas.origin.x = 10;
+    canvas.origin.y = 100;
+    canvas.size.x = 100;
+    canvas.size.y = 100;
+    
+    corner.x = 109;
+    corner.y = 199;
+    
+    fail_unless(point_are_equals(canvas_get_top_right_corner(&canvas), corner), "should be equals (2)");
+}
+END_TEST
+
 Suite* suite_canvas_get_corner(void) {
 
     Suite* s;
@@ -770,9 +797,7 @@ Suite* suite_canvas_get_corner(void) {
     tcase_add_test(tc_core, test_canvas_get_bottom_left_corner);
     tcase_add_test(tc_core, test_canvas_get_bottom_right_corner);
     tcase_add_test(tc_core, test_canvas_get_top_left_corner);
-    /*
     tcase_add_test(tc_core, test_canvas_get_top_right_corner);
-    */
     
     suite_add_tcase(s, tc_core);
     
