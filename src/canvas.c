@@ -110,7 +110,9 @@ Point canvas_get_bottom_right_corner(const Canvas* canvas) {
     
     corner = canvas->origin;
     
-    corner.x += canvas->size.x - 1;
+    if (canvas->size.x > 0) {
+        corner.x += canvas->size.x - 1;
+    }
     
     return corner;
 }
@@ -121,7 +123,9 @@ Point canvas_get_top_left_corner(const Canvas* canvas) {
     
     corner = canvas->origin;
     
-    corner.y += canvas->size.y - 1;
+    if (canvas->size.y > 0) {
+        corner.y += canvas->size.y - 1;
+    }
     
     return corner;
 }
@@ -132,8 +136,13 @@ Point canvas_get_top_right_corner(const Canvas* canvas) {
     
     corner = canvas->origin;
     
-    corner.x += canvas->size.x - 1;
-    corner.y += canvas->size.y - 1;
+    if (canvas->size.x > 0) {
+        corner.x += canvas->size.x - 1;
+    }
+    
+    if (canvas->size.y > 0) {
+        corner.y += canvas->size.y - 1;
+    }
     
     return corner;
 }
