@@ -3,48 +3,47 @@
 static void line_draw_noVarX(const Line* line, const Color* color) {
 
     Pixel pix;
+    Line lineTmp;
     
     pix.canvas = line->canvas;
     pix.position.x = line->a.x;
     
-    if (line->a.y > line->b.y) {
-    
-        for (pix.position.y = line->b.y; pix.position.y <= line->a.y; pix.position.y++) {
-            pixel_draw(&pix, color);
-        }
+    if (line->a.y <= line->b.y) {
+        lineTmp.a = line->b;
+        lineTmp.b = line->a;
     } else {
-    
-        for (pix.position.y = line->a.y; pix.position.y <= line->b.y; pix.position.y++) {
-            pixel_draw(&pix, color);
-        }
+        lineTmp = *(line);
     }
     
+    for (pix.position.y = lineTmp.b.y; pix.position.y <= lineTmp.a.y; pix.position.y++) {
+        pixel_draw(&pix, color);
+    }
 }
 
 static void line_draw_noVarY(const Line* line, const Color* color) {
 
+    Line lineTmp;
     Pixel pix;
     
     pix.canvas = line->canvas;
     pix.position.y = line->a.y;
     
-    if (line->a.x > line->b.x) {
-    
-        for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
-            pixel_draw(&pix, color);
-        }
+    if (line->a.x <= line->b.x) {
+        lineTmp.a = line->b;
+        lineTmp.b = line->a;
     } else {
-    
-        for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
-            pixel_draw(&pix, color);
-        }
+        lineTmp = *(line);
     }
     
+    for (pix.position.x = lineTmp.b.x; pix.position.x <= lineTmp.a.x; pix.position.x++) {
+        pixel_draw(&pix, color);
+    }
 }
 
 static void line_draw_sameVarXY(const Line* line, const Color* color) {
 
     short int dy;
+    Line lineTmp;
     Pixel pix;
     
     if (line->a.y < line->b.y) {
@@ -55,27 +54,20 @@ static void line_draw_sameVarXY(const Line* line, const Color* color) {
     
     pix.canvas = line->canvas;
     
-    if (line->a.x < line->b.x) {
-    
-        pix.position.y = line->a.y;
-        
-        for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
-        
-            pixel_draw(&pix, color);
-            pix.position.y += dy;
-        }
-        
+    if (line->a.x >= line->b.x) {
+        lineTmp.a = line->b;
+        lineTmp.b = line->a;
     } else {
-    
-        pix.position.y = line->b.y;
-        
-        for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
-        
-            pixel_draw(&pix, color);
-            pix.position.y -= dy;
-        }
+        lineTmp = *(line);
+        dy = (short int) - dy;
     }
     
+    pix.position.y = lineTmp.a.y;
+    
+    for (pix.position.x = lineTmp.a.x; pix.position.x <= lineTmp.b.x; pix.position.x++) {
+        pixel_draw(&pix, color);
+        pix.position.y += dy;
+    }
 }
 
 static void line_draw_naive(const Line* line, const Color* color) {
@@ -85,26 +77,21 @@ static void line_draw_naive(const Line* line, const Color* color) {
     
     pix.canvas = line->canvas;
     
-    if (line->a.x < line->b.x) {
+    Line lineTmp;
     
-        delta.x = line->b.x - line->a.x;
-        delta.y = line->b.y - line->a.y;
-        
-        for (pix.position.x = line->a.x; pix.position.x <= line->b.x; pix.position.x++) {
-            pix.position.y = line->a.y + delta.y * (pix.position.x - line->a.x) / delta.x;
-            pixel_draw(&pix, color);
-        }
-        
+    if (line->a.x >= line->b.x) {
+        lineTmp.a = line->b;
+        lineTmp.b = line->a;
     } else {
+        lineTmp = *(line);
+    }
     
-        delta.x = line->a.x - line->b.x;
-        delta.y = line->a.y - line->b.y;
-        
-        for (pix.position.x = line->b.x; pix.position.x <= line->a.x; pix.position.x++) {
-            pix.position.y = line->b.y + delta.y * (pix.position.x - line->b.x) / delta.x;
-            pixel_draw(&pix, color);
-        }
-        
+    delta.x = lineTmp.b.x - lineTmp.a.x;
+    delta.y = lineTmp.b.y - lineTmp.a.y;
+    
+    for (pix.position.x = lineTmp.a.x; pix.position.x <= lineTmp.b.x; pix.position.x++) {
+        pix.position.y = lineTmp.a.y + delta.y * (pix.position.x - lineTmp.a.x) / delta.x;
+        pixel_draw(&pix, color);
     }
 }
 
