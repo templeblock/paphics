@@ -46,12 +46,6 @@ static void line_draw_sameVarXY(const Line* line, const Color* color) {
     Line lineTmp;
     Pixel pix;
     
-    if (line->a.y < line->b.y) {
-        dy = 1;
-    } else {
-        dy = -1;
-    }
-    
     pix.canvas = line->canvas;
     
     if (line->a.x >= line->b.x) {
@@ -59,8 +53,9 @@ static void line_draw_sameVarXY(const Line* line, const Color* color) {
         lineTmp.b = line->a;
     } else {
         lineTmp = *(line);
-        dy = (short int) - dy;
     }
+    
+    dy = lineTmp.a.y < lineTmp.b.y ? 1 : -1;
     
     pix.position.y = lineTmp.a.y;
     
