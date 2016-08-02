@@ -26,6 +26,14 @@ typedef struct {
 #pragma pack(pop)
 
 /**
+ * \fn char event_wait_key(void)
+ * \brief Function to wait for a key to be pressed and getting it's ASCII value.
+ *
+ * \return A char containing the ASCII value of the pressed key.
+ */
+char event_wait_key(void);
+
+/**
  * \fn void event_create(Event* newEvent)
  * \brief Function to create an Event.
  *

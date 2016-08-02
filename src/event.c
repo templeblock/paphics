@@ -1,5 +1,20 @@
 #include "event.h"
 
+char event_wait_key() {
+
+    SDL_Event tmp;
+    char key = '\0';
+    
+    while (SDL_WaitEvent(&tmp) != 0) {
+        if (tmp.type == SDL_KEYDOWN) {
+            key = (char) tmp.key.keysym.sym;
+            break;
+        }
+    }
+    
+    return key;
+}
+
 void event_create(Event* newEvent) {
 
     newEvent->quit = false;
@@ -45,6 +60,7 @@ void event_update(Event* event) {
                     break;
             }
         } else if (tmp.type == SDL_KEYUP) {
+        
             switch (tmp.key.keysym.sym) {
                 case SDLK_UP:
                     event->arrows.y = 0;
