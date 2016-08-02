@@ -55,3 +55,8 @@ Et éventuellement, ajouter la ligne suivante dans le Makefile de votre projet:
 # Documentation
 
 The doc is available [here](http://www.ndrs.fr/paphics/doc.pdf).
+
+# Examples
+
+* [pong](https://github.com/zapashcanon/pong) - C
+* [rythmo-phono](https://github.com/zapashcanon/rythmo-phone) - C++
