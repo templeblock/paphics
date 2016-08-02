@@ -12,9 +12,5 @@ Uint8 color_get_green(const Color* color) {
 
 Uint8 color_get_blue(const Color* color) {
 
-    Uint8 blue;
-    
-    blue = color->rgb % 256;
-    
-    return blue;
+    return (color->rgb % 256);
 }
