@@ -12,6 +12,10 @@
 #include "point.h"
 #include "window.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \fn void mouse_hide(void)
  * \brief Function to hide the mouse cursor.
@@ -48,5 +52,9 @@ bool mouse_is_hidden(void);
  * \return Returns true if the cursor is shown, false otherwise.
  */
 bool mouse_is_shown(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

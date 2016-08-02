@@ -8,6 +8,10 @@
 
 #include "pixel.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \struct Line
  * \brief A struct used to represent a line segment.
@@ -44,5 +48,9 @@ void line_draw_bis(const Line* line, const Color* color);
  * \param color A pointer to the Color to use to draw the Line.
  */
 void line_draw_ter(const Line* line, const Color* color);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

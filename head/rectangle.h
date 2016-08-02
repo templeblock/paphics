@@ -10,6 +10,10 @@
 #include "line.h"
 #include "color.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \struct Rectangle
  * \brief A struct used to represent a rectangle.
@@ -59,5 +63,9 @@ bool rectangle_contains_point(const Rectangle* rect, const Point* p) __attribute
  * \return Returns true if the Rectangle contains the Point, false otherwise.
  */
 bool rectangle_contains_absolute_point(const Rectangle* rect, const Point* p);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

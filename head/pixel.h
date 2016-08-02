@@ -8,6 +8,10 @@
 
 #include "canvas.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \struct Pixel
  * \brief A struct used to represent a pixel.
@@ -25,5 +29,9 @@ typedef struct {
  * \param color A pointer to the Color to use to draw the Pixel.
  */
 void pixel_draw(const Pixel* pixel, const Color* color);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

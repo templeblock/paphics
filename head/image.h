@@ -8,6 +8,10 @@
 
 #include "paphics.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \struct Image
  * \brief A struct representing an image.
@@ -49,5 +53,9 @@ void image_load(Image* image, const char* pathToImg);
  * \param image A pointer to the Image to unload.
  */
 void image_unload(Image* image);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

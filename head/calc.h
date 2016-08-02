@@ -9,6 +9,10 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \fn float calc_alea_float(void)
  * \brief Function to get a random float x in [0 ; 1[.
@@ -24,5 +28,9 @@ float calc_alea_float(void);
  * \return The random int.
  */
 int calc_alea_int(const int min, const int max);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -9,6 +9,10 @@
 #include "window.h"
 #include "color.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \struct Canvas
  * \brief A Canvas is part of a Window or of another Canvas, on which it's possible to draw.
@@ -263,5 +267,9 @@ void canvas_draw_borders_out(Canvas* canvas, const Color* color);
  * \param color A pointer to the Color wanted to fill the Canvas.
  */
 void canvas_fill(Canvas* canvas, const Color* color);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

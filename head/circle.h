@@ -8,6 +8,10 @@
 
 #include "pixel.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \struct Circle
  * \brief A struct used to represent a circle.
@@ -37,5 +41,9 @@ void circle_draw(const Circle* circle, const Color* color);
  * \param color A pointer to the Color to use to draw the Circle.
  */
 void circle_draw_fill(const Circle* circle, const Color* color);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

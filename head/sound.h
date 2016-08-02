@@ -9,6 +9,10 @@
 #include <SDL2/SDL_mixer.h>
 #include "error.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \struct Sound
  * \brief A struct used to store a sound.
@@ -67,5 +71,9 @@ void sound_pause(void);
  * \brief Function to resume the current paused Sound.
  */
 void sound_resume(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

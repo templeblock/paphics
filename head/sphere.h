@@ -9,6 +9,10 @@
 #include "circle.h"
 #include "color.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \struct Sphere
  * \brief A struct used to represent a sphere.
@@ -29,5 +33,9 @@ typedef struct {
  * \param color A pointer to the Color to use to draw the Sphere.
  */
 void sphere_draw_fill(const Sphere* sphere, const Color* color);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

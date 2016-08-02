@@ -8,6 +8,10 @@
 
 #include <SDL2/SDL.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \struct Color
  * \brief A struct used to represent a RGBA color.
@@ -45,5 +49,9 @@ Uint8 color_get_green(const Color* color);
  * \return The blue component in a Uint8.
  */
 Uint8 color_get_blue(const Color* color);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

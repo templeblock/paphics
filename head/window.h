@@ -9,6 +9,10 @@
 #include "error.h"
 #include "point.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \struct Window
  * \brief A struct representing a window.
@@ -47,5 +51,9 @@ void window_destroy(Window* window);
  * \param window A pointer to the Window to update.
  */
 void window_update(Window* window);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

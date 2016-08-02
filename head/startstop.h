@@ -9,6 +9,10 @@
 #include <SDL2/SDL_mixer.h>
 #include "error.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \fn void paphics_start(const Uint32 flags)
  * \brief Function to start paphics.
@@ -22,5 +26,9 @@ void paphics_start(const Uint32 flags);
  * \brief Function to stop paphics.
  */
 void paphics_stop(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

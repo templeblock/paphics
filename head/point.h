@@ -10,6 +10,10 @@
 #include <stdbool.h>
 #include <stdarg.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \struct Point
  * \brief A struct used to represent a point.
@@ -84,5 +88,9 @@ Point point_min_x(const Point a, const Point b);
  * \return The Point with the smallest y.
  */
 Point point_min_y(const Point a, const Point b);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

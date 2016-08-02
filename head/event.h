@@ -9,6 +9,10 @@
 #include <SDL2/SDL.h>
 #include "point.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * \struct Event
  * \brief A struct used to represent events, i.e. user input.
@@ -36,5 +40,9 @@ void event_create(Event* newEvent);
  * \param event A pointer to the Event to update.
  */
 void event_update(Event* event);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

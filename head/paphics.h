@@ -36,4 +36,12 @@
 #include "startstop.h"
 #include "mouse.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+
 #endif
