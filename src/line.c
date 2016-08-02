@@ -406,9 +406,8 @@ static void line_draw_bresenham(const Line* line, const Point* dist, const Color
         }
     }
     
-    int tmp = 0;
-    
-    if (tmp == 1) {
+    // tmp
+    if (false) {
         line_switch_from_octant_zero_to(0, line->a);
         line_switch_to_octant_zero_from(0, line->a);
     }
