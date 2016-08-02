@@ -59,4 +59,4 @@ The doc is available [here](http://www.ndrs.fr/paphics/doc.pdf).
 # Examples
 
 * [pong](https://github.com/zapashcanon/pong) - C
-* [rythmo-phono](https://github.com/zapashcanon/rythmo-phone) - C++
+* [rythmo-phono](https://github.com/zapashcanon/rythmo-phono) - C++
