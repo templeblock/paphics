@@ -5,11 +5,12 @@ char event_wait_key() {
     SDL_Event tmp;
     char key = '\0';
     
-    while (SDL_WaitEvent(&tmp) != 0) {
-        if (tmp.type == SDL_KEYDOWN) {
-            key = (char) tmp.key.keysym.sym;
-            break;
-        }
+    SDL_WaitEvent(&tmp);
+    
+    if (tmp.type == SDL_QUIT) {
+        key = 27;
+    } else if (tmp.type == SDL_KEYDOWN) {
+        key = (char) tmp.key.keysym.sym;
     }
     
     return key;
